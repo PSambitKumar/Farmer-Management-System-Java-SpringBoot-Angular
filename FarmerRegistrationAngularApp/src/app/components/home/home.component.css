@@ -1,0 +1,16 @@
+@import "bootstrap";
+
+body{
+  font-family: "Yu Gothic UI Semibold";
+  background-color: #f2f2f2;
+}
+h3{
+  color: green;
+  font-size: 35px;
+}
+.homeButton{
+  margin: 2rem;
+  color: white;
+  background: #0d6efd;
+  border: none;
+}

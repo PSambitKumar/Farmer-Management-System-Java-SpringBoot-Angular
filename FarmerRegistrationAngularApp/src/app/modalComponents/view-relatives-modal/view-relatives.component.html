@@ -1,0 +1,49 @@
+<h2 mat-dialog-title style="color: forestgreen; font-family: Yu Gothic UI Semibold,serif;">Hello, {{farmerName}}</h2>
+<body style="background-color: #f2f2f2">
+<mat-dialog-content class="mat-typography">
+  <fieldset style="margin-top: 2rem; margin-left: 2rem; margin-right: 2rem;" class="form-group border p-3">
+    <legend style="color: green; font-size: 18px;" class="w-auto px-2">Relative List</legend>
+    <table id="dynamicTable" class="table row-border hover table-responsive table-bordered" style="width: 100%;">
+
+      <thead style="color: green">
+      <th>Sl No.</th>
+      <th>Relative Name</th>
+      <th>Relation</th>
+      <th>Gender</th>
+      <th>Age</th>
+      <th>Mobile</th>
+      <th>Action</th>
+      </thead>
+
+<!--      If Relative List Array is Empty-->
+      <tbody *ngIf="!relativeList?.length">
+      <tr>
+        <td colspan="11" style="text-align: center">No Data Found, Table is Empty!</td>
+      </tr>
+      </tbody>
+
+<!--      If Relative List Array is Not Empty-->
+      <tbody *ngIf="relativeList?.length">
+      <tr *ngFor="let relative of relativeList; let count = index">
+        <td>{{count + 1}}</td>
+        <td>{{relative.name}}</td>
+        <td>{{relative.relationName}}</td>
+        <td>{{relative.gender}}</td>
+        <td>{{relative.age}}</td>
+        <td>{{relative.mobile}}</td>
+        <td id="action"><button class="btn btn-icon-only btn-facebook" type="button" ><span class="fa fa-pencil"></span></button>&nbsp;&nbsp;
+          <button class="btn btn-icon-only btn-facebook" type="button" ><span style="color: #da3b3b" class="fa fa-trash"></span></button>
+        </td>
+      </tr>
+      </tbody>
+
+    </table>
+  </fieldset>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button [mat-dialog-close]="true" class="btn btnCancel" style="font-family: 'Yu Gothic UI Semibold',serif;">Cancel</button>
+  <button mat-button class="btn btnCancel" style="font-family: 'Yu Gothic UI Semibold',serif; color: green;" (click)="addRelative()">Add Relative</button>
+<!--  <button mat-dialog-close class="btn btnCancel" style="font-family: 'Yu Gothic UI Semibold',serif;">Cancel</button>-->
+</mat-dialog-actions>
+</body>
+

@@ -1,0 +1,80 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Farmer Portal Registration</title>
+</head>
+<body>
+
+
+<div class="card">
+
+  <div class="card-body">
+    <div id="add">
+      <fieldset style="margin-left: 2rem; margin-right: 2rem;" class="form-group border p-3">
+        <legend class="w-auto px-2">Farmers Potal Registration</legend>
+        <form (ngSubmit)="farmerPostalForm()" style="margin-top: 2rem; width: 99%"id="farmerForm">
+          <div class="container">
+
+            <div class="row farmerDetails">
+              <div class="col-sm">
+                <div class="col-md-12">
+                  <label for="uniqueId" class="form-label">Unique ID</label>
+                  <select #uniqueId (change)="uniqueDropDownChange(uniqueId.value)" class="custom-select my-1 mr-sm-2" aria-label="Default select example" style="background-color: #f2f2f2" id="uniqueId" name="uniqueId">
+                    <option value="0" selected>Select</option>
+                    <option value="1">Ack Id</option>
+                    <option value="2">Janadhaar Id</option>
+                    <option value="3">Adhaar Id</option>
+                  </select>
+                  <div id="uniqueIdAlert" class="custom-alert"></div>
+                </div>
+              </div>
+
+              <div class="col-sm">
+                <div class="col-md-12">
+                  <div id="id1">
+                    <label for="ackId" class="form-label">Acknowledge ID</label>
+                    <input type="text" maxlength="15" class="form-control" id="ackId" style="background-color: #f2f2f2" name="ackId" placeholder="Enter Acknowledge ID" required>
+                    <div id="ackAlert" class="custom-alert"></div>
+                  </div>
+                  <div id="id2">
+                    <label for="janadhaarId" class="form-label">Janadhaar ID</label>
+                    <input maxlength="10" type="text" class="form-control" id="janadhaarId" style="background-color: #f2f2f2" name="janadhaarId" placeholder="Enter Janadhaar ID" required>
+                    <div id="janAlert" class="custom-alert"></div>
+                  </div>
+                  <div id="id3">
+                    <label for="adhaarId" class="form-label">Adhaar ID</label>
+                    <input #aadhar   maxlength="12" type="text" class="form-control" id="adhaarId" style="background-color: #f2f2f2" name="adhaarId" placeholder="Enter Adhaar ID" required>
+                    <div id="aadharAlert" class="custom-alert"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm">
+                <div class="col-md-12">
+                  <button id="btnSubmit" class="btn " type="submit" style="margin-top: 31px;margin-left: -1rem; width: 30%; margin-right: 15px;">Submit</button>
+                  <button id="btnReset" class="btn " type="reset" style="width: 30%; margin-right: 2rem; margin-top: 31px">Reset</button>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </form>
+
+        <div style="margin-top: 2rem;">
+          <h2 style="color: blue; margin-left: 1rem;">Family Details</h2>
+          <div class="row" style="margin-left: 1rem;">
+            <h3 style="color: black">Note : </h3>
+            <p style="color: orangered; margin-top: 4px; margin-left: 6px;">Please Select Husband Wife and minor dill fon Laghu and Seeman Krishak Family</p>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+</div>
+</body>
+</html>

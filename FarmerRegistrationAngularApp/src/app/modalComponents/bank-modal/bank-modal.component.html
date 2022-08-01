@@ -1,0 +1,39 @@
+  <!--<h2 mat-dialog-title>Bank Account Details</h2>-->
+  <body style="background-color: #f2f2f2">
+  <mat-dialog-content class="mat-typography">
+    <fieldset style="margin-top: 2rem; margin-left: 2rem; margin-right: 2rem;" class="form-group border p-3">
+      <legend style="color: green; font-size: 18px;" class="w-auto px-2">Bank Account Details</legend>
+      <table id="dynamicTable" class="table row-border hover table-responsive table-bordered" style="width: 100%;">
+
+        <thead style="color: green">
+        <th>Sl No.</th>
+        <th>Account Holder Name</th>
+        <th>Bank Name</th>
+        <th>Account No.</th>
+        <th>IFSC Code</th>
+        <th>Mobile</th>
+        <th>Action</th>
+        </thead>
+
+        <tbody>
+        <tr>
+          <td>1</td>
+          <td>{{farmerName}}</td>
+          <td>{{bank.bankName}}</td>
+          <td>{{bank.accountNumber}}</td>
+          <td>{{bank.ifscCode}}</td>
+          <td>{{bank.mobileNumber}}</td>
+          <td id="action"><button class="btn btn-icon-only btn-facebook" type="button" ><span class="fa fa-pencil"></span></button>&nbsp;&nbsp;
+            <button class="btn btn-icon-only btn-facebook" type="button" ><span style="color: #da3b3b" class="fa fa-trash"></span></button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </fieldset>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-dialog-close class="btn btnCancel" style="font-family: 'Yu Gothic UI Semibold';">Cancel</button>
+    <!--  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>-->
+  </mat-dialog-actions>
+  </body>
+

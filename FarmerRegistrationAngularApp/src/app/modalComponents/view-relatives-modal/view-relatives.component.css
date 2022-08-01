@@ -1,0 +1,24 @@
+@import "font-awesome/css/font-awesome.css";
+
+.mat-typography{
+  font-family: "Yu Gothic UI Semibold";
+}
+.okButton{
+  height: 30px;
+  width: 80px;
+}
+/*#action{*/
+/*  width: 15%;*/
+/*}*/
+.btnCancel{
+  margin-right: 5px;
+  margin-bottom: 12px;
+  height: 35px;
+  color: red;
+  text-align: center;
+  font-size: small;
+  border: 1px solid #edecec;
+}
+.mat-dialog-container{
+  background: #f2f2f2;
+}

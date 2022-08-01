@@ -1,0 +1,177 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Farmer Relative Management</title>
+</head>
+<body>
+<!--<h3 class="text-center">Farmer Management System</h3>-->
+
+<div class="card">
+
+  <div class="card-body">
+    <div id="add">
+      <fieldset style="margin-left: 2rem; margin-right: 2rem;" class="form-group border p-3">
+        <legend class="w-auto px-2">Farmers Relative Details</legend>
+        <form (ngSubmit)="relativeForm()" style="margin-top: 2rem; width: 99%"id="farmerForm">
+          <div class="container">
+
+            <div class="row farmerDetails" style="width: 105%; margin-left: -1rem;">
+
+              <div class="col-sm">
+                <div class="col-md-12">
+                  <label for="name" class="form-label">Farmer Name</label>
+                  <input #name="ngModel" [(ngModel)]="relation.name" [value]="relationData.name" type="text"  class="form-control" maxlength="30" id="name" name="name" style="background-color: #f2f2f2" placeholder="Enter Farmer's Name" required>
+                  <div id="nameAlert" class="custom-alert"></div>
+                </div>
+              </div>
+
+              <div class="col-sm">
+                <div class="col-md-12">
+                  <label for="fathersName" class="form-label">Father's Name</label>
+                  <input [(ngModel)]="relation.fathersName" [value]="relationData.fathersName" type="text" class="form-control" id="fathersName" name="fathersName" style="background-color: #f2f2f2" placeholder="Enter Father's Name" required>
+                  <div id="fathersNameAlert" class="custom-alert"></div>
+                </div>
+              </div>
+
+              <div class="col-sm">
+                <div class="col-md-12">
+                  <label for="age" class="form-label">Age</label>
+                  <input [(ngModel)]="relation.age" [value]="relationData.age" type="number" maxlength="2" class="form-control" id="age" name="age" style="background-color: #f2f2f2" placeholder="Enter Age" required>
+                  <div id="ageAlert" class="custom-alert"></div>
+                </div>
+              </div>
+
+              <div class="col-sm">
+                <div class="col-md-12">
+                  <label class="form-label ">Gender</label>
+                  <div>
+                    <div class="form-check-inline">
+                      <input [(ngModel)]="relation.gender" type="radio" id="male" name="gender" style="background-color: #f2f2f2" value="male">
+                      <label class="form-check-label" for="male">Male</label>
+                    </div>
+                    <div class="form-check-inline">
+                      <input [(ngModel)]="relation.gender" type="radio" id="female" name="gender" style="background-color: #f2f2f2" value="female">
+                      <label class="form-check-label" for="female">Female</label>
+                    </div>
+                    <div id="genderAlert" class="custom-alert"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row"  style="width: 105%; margin-left: -1rem; margin-top: 2rem;">
+              <div class="col-sm">
+                <div class="col-md-12">
+                  <label for="relation" class="form-label">Relation With {{farmer.name}}</label>
+                  <select [(ngModel)]="relation.relationName" [value]="relationData.relationName" class="custom-select my-1 mr-sm-2"  aria-label="Default select example" style="background-color: #f2f2f2" id="relation" name="relation">
+                    <option selected value="Mother">Mother</option>
+                    <option selected value="Brother">Brother</option>
+                    <option selected value="Sister">Sister</option>
+                  </select>
+                  <div id="relationAlert" class="custom-alert"></div>
+                </div>
+              </div>
+
+              <div class="col-sm">
+                <div class="col-md-12">
+                  <label for="accountNumber" class="form-label">Account Number</label>
+                  <input [(ngModel)]="relation.bank.accountNumber" [value]="relationData.bank.accountNumber" type="text" class="form-control" id="accountNumber" style="background-color: #f2f2f2" name="accountNumber" placeholder="Enter  Account Number" required>
+                  <div id="accountNumberAlert" class="custom-alert"></div>
+                </div>
+              </div>
+
+              <div class="col-sm">
+                <div class="col-md-12">
+                  <label for="ifscCode" class="form-label">IFSC Code</label>
+                  <input #ifscCode (keyup)="checkIFSCCode(ifscCode.value)" [(ngModel)]="relation.bank.ifscCode" [value]="relationData.bank.ifscCode" type="text"  class="form-control" id="ifscCode" style="background-color: #f2f2f2" name="ifscCode" placeholder="Enter IFSC Code" required>
+                  <div id="ifscAlert" class="custom-alert"></div>
+                </div>
+              </div>
+
+              <div class="col-sm">
+                <div class="col-md-12">
+                  <label for="bankName" class="form-label">Bank Name</label>
+                  <input [(ngModel)]="relation.bank.bankName" [value]="relationData.bank.bankName" type="text"  class="form-control" id="bankName" style="background-color: #f2f2f2" name="bankName" placeholder="Enter Bank Name" required>
+                  <div id="bankAlert" class="custom-alert"></div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="row" style="width: 105%; margin-left: -1rem; margin-top: 2rem;">
+              <div class="col-sm">
+                <div class="col-md-12">
+                  <label for="mobile" class="form-label">Mobile Number</label>
+                  <input type="text" [(ngModel)]="relation.mobile" [value]="relationData.mobile" maxlength="10" class="form-control" id="mobile" style="background-color: #f2f2f2" name="mobile" placeholder="Enter Mobile Number" required>
+                  <div id="mobileAlert" class="custom-alert"></div>
+                </div>
+              </div>
+
+              <div class="col-sm">
+                <div class="col-md-12">
+<!--                  <label for="uniqueId" class="form-label">Unique ID</label>-->
+<!--                  <select #uniqueId (change)="uniqueDropDownChange(uniqueId.value)" [(ngModel)]="farmerBean.uniqueId" class="custom-select my-1 mr-sm-2" aria-label="Default select example" style="background-color: #f2f2f2" id="uniqueId" name="uniqueId">-->
+<!--                    <option value="0" selected>Select</option>-->
+<!--                    <option value="1">Ack Id</option>-->
+<!--                    <option value="2">Janadhaar Id</option>-->
+<!--                    <option value="3">Adhaar Id</option>-->
+<!--                  </select>-->
+<!--                  <div id="uniqueIdAlert" class="custom-alert"></div>-->
+                </div>
+              </div>
+
+              <div class="col-sm">
+                <div class="col-md-12">
+<!--                  <div id="id1">-->
+<!--                    <label for="ackId" class="form-label">Acknowledge ID</label>-->
+<!--                    <input [(ngModel)]="farmerBean.acknowledge" type="text" maxlength="15" class="form-control" id="ackId" style="background-color: #f2f2f2" name="ackId" placeholder="Enter Acknowledge ID" required>-->
+<!--                    <div id="ackAlert" class="custom-alert"></div>-->
+<!--                  </div>-->
+<!--                  <div id="id2">-->
+<!--                    <label for="janadhaarId" class="form-label">Janadhaar ID</label>-->
+<!--                    <input [(ngModel)]="farmerBean.janAdhaar" maxlength="10" type="text" class="form-control" id="janadhaarId" style="background-color: #f2f2f2" name="janadhaarId" placeholder="Enter Janadhaar ID" required>-->
+<!--                    <div id="janAlert" class="custom-alert"></div>-->
+<!--                  </div>-->
+<!--                  <div id="id3">-->
+<!--                    <label for="adhaarId" class="form-label">Adhaar ID</label>-->
+<!--                    <input #aadhar [(ngModel)]="farmerBean.aadhar" (keyup)="checkAadharId(aadhar.value)" maxlength="12" type="text" class="form-control" id="adhaarId" style="background-color: #f2f2f2" name="adhaarId" placeholder="Enter Adhaar ID" required>-->
+<!--                    <div id="aadharAlert" class="custom-alert"></div>-->
+<!--                  </div>-->
+
+                </div>
+              </div>
+
+              <div class="col-sm">
+                <div class="col-md-12">
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div style="margin-top: 2rem;" class="container">
+
+            <div class="row buttonClass">
+
+              <div class="col-sm">
+                <div class="col-md-12">
+                  <button id="btnSubmit" class="btn" type="submit">Submit</button>
+                  <button id="btnReset" class="btn" type="reset">Reset</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+
+        </form>
+      </fieldset>
+    </div>
+  </div>
+</div>
+</body>
+</html>
