@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {FarmerBean} from "../beans/farmerBean";
 import {Observable} from "rxjs";
 import {Farmer} from "../models/farmer";

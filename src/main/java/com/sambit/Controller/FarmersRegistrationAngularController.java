@@ -65,6 +65,7 @@ public class FarmersRegistrationAngularController {
         return ResponseEntity.ok(responseBean);
     }
 
+
     @ResponseBody
     @GetMapping(value = "/getFarmerList")
     public List<Farmer> getFarmerList(){
