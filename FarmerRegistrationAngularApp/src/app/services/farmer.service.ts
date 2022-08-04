@@ -50,4 +50,25 @@ export class FarmerService {
   saveRelationUsingFarmerId(relation : Relation, farmerId : any) : Observable<ResponseBean>{
     return this.httpClient.post<ResponseBean>(`${this.baseUrl + "/saveRelationUsingFarmerId/"}` + farmerId, relation);
   }
+
+
+
+//   public getDentists(name, city, type, rating): Observable<Dentist[]>{
+//     let params = new HttpParams();
+//     params = params.append('name', name);
+//     params = params.append('city', city);
+//     params = params.append('type', type);
+//     params = params.append('rating', rating);
+//     return this.httpClient.get('dentists/', {params: params});
+//   }
+//   in my Controller.java
+//   @RequestMapping(value = "/dentists", method = RequestMethod.GET)
+//   public List<Dentist> search(@RequestParam("name") String name,
+//   @RequestParam("city") String city,
+//   @RequestParam("type") String type,
+//   @RequestParam("rating") String rating) {
+//   return dentistRepository.findDentistByName(name);
+// }
+
+
 }
