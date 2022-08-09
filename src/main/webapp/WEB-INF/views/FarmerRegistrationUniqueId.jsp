@@ -491,7 +491,7 @@
         <div class="col-sm-11 ">
         </div>
         <div class="col-sm-1">
-            <a class="addIcon bg-success text-#f2f2f2"  href="javascript:;" title="Add"><i  class="fa fa-plus" style="width: 17px;margin-left: 5px ;"></i></a></div>
+            <a class="addIcon bg-success text-#f2f2f2" href="javascript:" title="Add"><i class="fa fa-plus" style="width: 17px;margin-left: 5px ;"></i></a></div>
            </div>
     </div>
 
