@@ -28,16 +28,16 @@ export class FarmerComponent implements OnInit{
   responseBean : ResponseBean = new ResponseBean();
   farmerList : Farmer[] = [];
   bankDetailsBean : BankDetailsBean = new BankDetailsBean();
-  // response1 : any;
-  // response2 : any;
-  // response3 : any;
-  // response4 : any;
-  // response5 : any;
-  // response6 : any;
-  // response7 : any;
-  // response8: any;
-  // response9 : any;
-  // response10 : any;
+  response1 : any;
+  response2 : any;
+  response3 : any;
+  response4 : any;
+  response5 : any;
+  response6 : any;
+  response7 : any;
+  response8: any;
+  response9 : any;
+  response10 : any;
 
   constructor(private farmerService : FarmerService, private modalService : ModalService, public matDialog: MatDialog, private validationService : ValidationService, private router : Router) { }
 
@@ -53,55 +53,56 @@ export class FarmerComponent implements OnInit{
     console.log(this.farmerBean);
     console.log("Inside FarmerBean Form Submit-------------->>");
 
-    // this.response1 = this.validationService.validateDropdown(this.farmerBean.uniqueId, "#uniqueId", "#uniqueIdAlert", this.farmerBean.acknowledge, this.farmerBean.janAdhaar, this.farmerBean.aadhar);
-    // this.response2 = this.validationService.validateMobileNumber(this.farmerBean.mobile, "#mobile", "#mobileAlert");
-    // this.response3 = this.validationService.validateName(this.farmerBean.bank, "#bankName", "#bankAlert");
-    // this.response4 = this.validationService.validateIFSCode(this.farmerBean.ifscCode, "#ifscCode", "#ifscAlert");
-    // this.response5 = this.validationService.validateBankAccountNumber(this.farmerBean.accountNumber, "#accountNumber", "#accountNumberAlert");
-    // this.response6 = this.validationService.validateRelationDropdown(this.farmerBean.relation, "#relation", "#relationAlert");
-    // this.response7 = this.validationService.validateRadio(this.farmerBean.gender, "#male", "#female", "#genderAlert");
-    // this.response8 = this.validationService.validateAge(this.farmerBean.age, "#age", "#ageAlert");
-    // this.response9 = this.validationService.validateName(this.farmerBean.fathersName, "#fathersName", "#fathersNameAlert");
-    // this.response10 = this.validationService.validateName(this.farmerBean.name, "#name", "#nameAlert");
-
-    // console.log("Valid or Invalid Data : ");
-    // console.log(this.response1 + "," + this.response2 + "," + this.response3 + "," + this.response4 + "," + this.response5 + "," + this.response6 + "," + this.response7 + "," + this.response8 + "," + this.response9 + "," + this.response10);
+    this.response1 = this.validationService.validateDropdown(this.farmerBean.uniqueId, "#uniqueId", "#uniqueIdAlert", this.farmerBean.acknowledge, this.farmerBean.janAdhaar, this.farmerBean.aadhar);
+    this.response2 = this.validationService.validateMobileNumber(this.farmerBean.mobile, "#mobile", "#mobileAlert");
+    this.response3 = this.validationService.validateName(this.farmerBean.bank, "#bankName", "#bankAlert");
+    this.response4 = this.validationService.validateIFSCode(this.farmerBean.ifscCode, "#ifscCode", "#ifscAlert");
+    this.response5 = this.validationService.validateBankAccountNumber(this.farmerBean.accountNumber, "#accountNumber", "#accountNumberAlert");
+    this.response6 = this.validationService.validateRelationDropdown(this.farmerBean.relation, "#relation", "#relationAlert");
+    this.response7 = this.validationService.validateRadio(this.farmerBean.gender, "#male", "#female", "#genderAlert");
+    this.response8 = this.validationService.validateAge(this.farmerBean.age, "#age", "#ageAlert");
+    this.response9 = this.validationService.validateName(this.farmerBean.fathersName, "#fathersName", "#fathersNameAlert");
+    this.response10 = this.validationService.validateName(this.farmerBean.name, "#name", "#nameAlert");
 
 
-    if (this.validationService.validateName(this.farmerBean.name, "#name", "#nameAlert") == "Valid" &&
-      this.validationService.validateName(this.farmerBean.fathersName, "#fathersName", "#fathersNameAlert") == "Valid" &&
-      this.validationService.validateAge(this.farmerBean.age, "#age", "#ageAlert") == "Valid" &&
-      this.validationService.validateRadio(this.farmerBean.gender, "#male", "#female", "#genderAlert") == "Valid" &&
-      this.validationService.validateRelationDropdown(this.farmerBean.relation, "#relation", "#relationAlert") == "Valid" &&
-      this.validationService.validateBankAccountNumber(this.farmerBean.accountNumber, "#accountNumber", "#accountNumberAlert") == "Valid" &&
-      this.validationService.validateIFSCode(this.farmerBean.ifscCode, "#ifscCode", "#ifscAlert") == "Valid" &&
-      this.validationService.validateName(this.farmerBean.bank, "#bankName", "#bankAlert") == "Valid" &&
-      this.validationService.validateMobileNumber(this.farmerBean.mobile, "#mobile", "#mobileAlert") == "Valid" &&
-      this.validationService.validateDropdown(this.farmerBean.uniqueId, "#uniqueId", "#uniqueIdAlert", this.farmerBean.acknowledge, this.farmerBean.janAdhaar, this.farmerBean.aadhar) == "Valid"){
-      Swal.fire({
-        title: 'Do you want to save the Data?',
-        showDenyButton: true,
-        showCancelButton: true,
-        confirmButtonText: 'Save',
-        denyButtonText: `Don't Save`,
-      }).then((result) => {
-        /* Read more about isConfirmed, isDenied below */
-        if (result.isConfirmed) {
-          this.farmerService.createFarmer(this.farmerBean).subscribe(data => {
-            console.log(data);
-            console.log("Resposnse Data : " + data);//Check Difference In Console
-            this.responseBean = data;
-            console.log(this.responseBean);
-            if (this.responseBean.status == "Success"){
-              this.router.navigate([""]);
-            }
-          });
-          Swal.fire('Data Saved Successfully!', '', 'success')
-        } else if (result.isDenied) {
-          Swal.fire('Failed To Save Data!', '', 'info')
-        }
-      })
-    }
+    console.log("Valid or Invalid Data : ");
+    console.log(this.response1 + "," + this.response2 + "," + this.response3 + "," + this.response4 + "," + this.response5 + "," + this.response6 + "," + this.response7 + "," + this.response8 + "," + this.response9 + "," + this.response10);
+
+
+    // if (this.validationService.validateName(this.farmerBean.name, "#name", "#nameAlert") == "Valid" &&
+    //   this.validationService.validateName(this.farmerBean.fathersName, "#fathersName", "#fathersNameAlert") == "Valid" &&
+    //   this.validationService.validateAge(this.farmerBean.age, "#age", "#ageAlert") == "Valid" &&
+    //   this.validationService.validateRadio(this.farmerBean.gender, "#male", "#female", "#genderAlert") == "Valid" &&
+    //   this.validationService.validateRelationDropdown(this.farmerBean.relation, "#relation", "#relationAlert") == "Valid" &&
+    //   this.validationService.validateBankAccountNumber(this.farmerBean.accountNumber, "#accountNumber", "#accountNumberAlert") == "Valid" &&
+    //   this.validationService.validateIFSCode(this.farmerBean.ifscCode, "#ifscCode", "#ifscAlert") == "Valid" &&
+    //   this.validationService.validateName(this.farmerBean.bank, "#bankName", "#bankAlert") == "Valid" &&
+    //   this.validationService.validateMobileNumber(this.farmerBean.mobile, "#mobile", "#mobileAlert") == "Valid" &&
+    //   this.validationService.validateDropdown(this.farmerBean.uniqueId, "#uniqueId", "#uniqueIdAlert", this.farmerBean.acknowledge, this.farmerBean.janAdhaar, this.farmerBean.aadhar) == "Valid"){
+    //   Swal.fire({
+    //     title: 'Do you want to save the Data?',
+    //     showDenyButton: true,
+    //     showCancelButton: true,
+    //     confirmButtonText: 'Save',
+    //     denyButtonText: `Don't Save`,
+    //   }).then((result) => {
+    //     /* Read more about isConfirmed, isDenied below */
+    //     if (result.isConfirmed) {
+    //       this.farmerService.createFarmer(this.farmerBean).subscribe(data => {
+    //         console.log(data);
+    //         console.log("Resposnse Data : " + data);//Check Difference In Console
+    //         this.responseBean = data;
+    //         console.log(this.responseBean);
+    //         if (this.responseBean.status == "Success"){
+    //           this.router.navigate([""]);
+    //         }
+    //       });
+    //       Swal.fire('Data Saved Successfully!', '', 'success')
+    //     } else if (result.isDenied) {
+    //       Swal.fire('Failed To Save Data!', '', 'info')
+    //     }
+    //   })
+    // }
     // $('#farmerForm').trigger("reset");
   }
 
