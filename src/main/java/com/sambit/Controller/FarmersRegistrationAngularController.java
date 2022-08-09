@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.lang.instrument.Instrumentation;
+import java.text.Format;
 import java.util.Collection;
 import java.util.List;
 
@@ -80,10 +81,16 @@ public class FarmersRegistrationAngularController {
         System.out.println("IFSC Code : " + ifscCode);
         Gson gson = new Gson();
         RestTemplate restTemplate = new RestTemplate();
+
+//        Get Data in Form of String Format
         String bankDetails = restTemplate.getForObject("https://ifsc.razorpay.com/"+ifscCode, String.class);
         System.out.println(bankDetails);
 
-        //        Converting JSON String to ModeL Class
+//        Get Data to BankDetailsBean
+        BankDetailsBean bankDetailsBean1 = restTemplate.getForObject("https://ifsc.razorpay.com/"+ifscCode, BankDetailsBean.class);
+        System.out.println("Bank Details Bean Data : " + bankDetailsBean1);
+
+//        Converting JSON String to ModeL Class
         BankDetailsBean bankDetailsBean = gson.fromJson(bankDetails, BankDetailsBean.class);
         System.out.println("Bank Details are : " + bankDetailsBean);
 
