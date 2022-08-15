@@ -148,4 +148,14 @@ public class FarmersRegistrationAngularController {
         return ResponseEntity.ok(responseBean);
     }
 
+//    Recieving Data From Angular to Controller Using RequestParam
+    @RequestMapping(value = "/dentists", method = RequestMethod.GET)
+   public ResponseEntity<ResponseBean> search(@RequestParam("name") String name,
+   @RequestParam("city") String city,
+   @RequestParam("type") String type,
+   @RequestParam("rating") String rating) {
+        ResponseBean responseBean = new ResponseBean();
+   return ResponseEntity.ok(responseBean);
+ }
+
 }
