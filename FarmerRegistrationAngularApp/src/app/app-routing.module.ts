@@ -7,6 +7,7 @@ import {AddRelativeComponent} from "./modalComponents/add-relative/add-relative.
 import {
   FarmerPortalRegistrationComponent
 } from "./components/farmer-portal-registration/farmer-portal-registration.component";
+import {FarmerImageUploadComponent} from "./components/farmer-image-upload/farmer-image-upload.component";
 
 const routes: Routes = [
   {path: "home", component:HomeComponent},
@@ -14,7 +15,8 @@ const routes: Routes = [
   {path:"farmerManagement", component:FarmerComponent},
   {path : "testPurpose", component : TestComponent},
   {path : "addRelative", component : AddRelativeComponent},
-  {path : "farmerPortalRegistration", component : FarmerPortalRegistrationComponent}
+  {path : "farmerPortalRegistration", component : FarmerPortalRegistrationComponent},
+  {path : "farmerImageUpload", component : FarmerImageUploadComponent}
 ];
 
 @NgModule({
