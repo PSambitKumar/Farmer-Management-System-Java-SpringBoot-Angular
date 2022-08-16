@@ -30,7 +30,7 @@
             <div class="row farmerDetails">
 
               <div class="col-sm">
-                <div class="col-md-12">
+                <div class="col-md-12 custom-file">
                   <label for="name" class="form-label">Farmer Name</label>
                   <input #name="ngModel" [(ngModel)]="farmerImageData.name" [value]="farmerImageData.name" type="text"  class="form-control" maxlength="30" id="name" name="name" style="background-color: #f2f2f2" placeholder="Enter Farmer's Name" required>
                   <div id="nameAlert" class="custom-alert"></div>
@@ -39,8 +39,11 @@
 
               <div class="col-sm">
                 <div class="col-md-12">
-                  <label for="farmerImage" class="form-label">Farmer Image</label>
-                  <input [(ngModel)]="farmerImageData.image" [value]="farmerImageData.image" type="file" class="form-control" id="farmerImage" name="farmerImage" style="background-color: #f2f2f2" placeholder="Choose Image" required>
+<!--                  <input type="file" class="custom-file-input" id="customFile" aria-label="File upload">-->
+<!--                  <label class="custom-file-label" for="customFile">Choose file</label>-->
+<!--                  <label for="farmerImage1" class="form-label">Farmer Image</label>-->
+                  <label for="farmerImage" class="custom-file-label" style="margin-top: 32px; cursor: pointer">Choose Image</label>
+                  <input [(ngModel)]="farmerImageData.image" [value]="farmerImageData.image" type="file" class="custom-file-input" id="farmerImage" name="farmerImage" aria-label="File upload" placeholder="Choose Image" required>
                   <div id="fathersNameAlert" class="custom-alert"></div>
                 </div>
               </div>
