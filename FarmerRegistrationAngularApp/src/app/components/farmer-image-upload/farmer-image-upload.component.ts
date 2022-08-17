@@ -3,6 +3,9 @@ import {FarmerComponent} from "../farmer/farmer.component";
 import {FarmerImage} from "../../models/farmerImage";
 import * as $ from "jquery";
 import {FarmerService} from "../../services/farmer.service";
+import {ResponseBean} from "../../beans/responseBean";
+import {Router} from "@angular/router";
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-farmer-image-upload',
@@ -14,8 +17,9 @@ export class FarmerImageUploadComponent implements OnInit {
   farmerImageDataList : FarmerImage[] = [];
   selectedFile? : FileList;
   currentFile?: File;
+  responseBean : ResponseBean = new ResponseBean();
 
-  constructor(private farmerService : FarmerService) { }
+  constructor(private farmerService : FarmerService, private router : Router) { }
 
   ngOnInit(): void {
     this.addFarmerImage();
@@ -34,8 +38,10 @@ export class FarmerImageUploadComponent implements OnInit {
     console.log("Inside GetFile----------->>");
     console.log(this.selectedFile);
   }
-  saveFarmerImage(){
+  saveFarmerImage(form: NgForm){
     console.log(this.farmerImageData);
+    console.log("NG Form");
+    console.log(form);
     if (this.selectedFile){
       const file : File | null = this.selectedFile.item(0);
       console.log("Selected File--------------->>" );
@@ -44,6 +50,14 @@ export class FarmerImageUploadComponent implements OnInit {
         this.currentFile = file;
         this.farmerService.createFarmerImage(this.farmerImageData, this.currentFile).subscribe(data => {
           console.log(data);
+          console.log(data.status);
+          this.responseBean = data;
+          console.log(this.responseBean)
+          if (data.status == "Success"){
+            console.log("Inside Match.");
+            form.resetForm();
+            this.router.navigate(["farmerImageUpload"]);
+          }
         })
       }
     }else {

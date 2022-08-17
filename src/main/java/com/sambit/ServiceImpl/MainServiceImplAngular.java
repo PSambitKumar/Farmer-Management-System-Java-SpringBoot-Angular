@@ -159,4 +159,9 @@ public class MainServiceImplAngular implements MainServiceAngular {
 		System.out.println("Final Data For Save Farmer : " + farmer);
 		return farmerRegistrationDaoAngular.updateFarmer(farmer);
 	}
+
+	@Override
+	public FarmerImage createFarmerImage(FarmerImage farmerImage) {
+		return farmerRegistrationDaoAngular.saveFarmerImage(farmerImage);
+	}
 }

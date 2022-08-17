@@ -74,7 +74,7 @@ export class FarmerService {
 
 
 
-  // Farmer Image Upload Service Working
+  // Farmer Image Upload Service Working 1
   // createFarmerImage(farmerImage : FarmerImage, imageData : File) : Observable<HttpEvent<any>>{
   //   const farmerImageData = new FormData();
   //   farmerImageData.append("imageData", imageData);
@@ -82,6 +82,7 @@ export class FarmerService {
   //   return this.httpClient.request(req);
   // }
 
+  // Farmer Image Upload Service Working 2
   // createFarmerImage(farmerImage : FarmerImage, imageData : File) : Observable<HttpEvent<any>>{
   //   const farmerImageData = new FormData();
   //   farmerImageData.append("imageData", imageData);
@@ -89,14 +90,23 @@ export class FarmerService {
   //   return this.httpClient.request(req);
   // }
 
-createFarmerImage(farmerImage : FarmerImage, imageData : File) : Observable<HttpEvent<any>>{
-  const farmerImageData = new FormData();
-  farmerImageData.append("imageData", imageData);
-  farmerImageData.append("name", farmerImage.name);
-  farmerImageData.append("image", farmerImage.image);
-  const req = new HttpRequest('POST', `${this.baseUrl}/createFarmerImage`, farmerImageData);
-  return this.httpClient.request(req);
-}
+  // Farmer Image Upload Service Working 3
+// createFarmerImage(farmerImage : FarmerImage, imageData : File) : Observable<HttpEvent<ResponseBean>>{
+//   const farmerImageData = new FormData();
+//   farmerImageData.append("imageData", imageData);
+//   farmerImageData.append("name", farmerImage.name);
+//   farmerImageData.append("image", farmerImage.image);
+//   const req = new HttpRequest('POST', `${this.baseUrl}/createFarmerImage`, farmerImageData);
+//   return this.httpClient.request(req);
+// }
+
+  createFarmerImage(farmerImage : FarmerImage, imageData : File) : Observable<ResponseBean>{
+    const farmerImageData = new FormData();
+    farmerImageData.append("imageData", imageData);
+    farmerImageData.append("name", farmerImage.name);
+    farmerImageData.append("image", farmerImage.image);
+    return this.httpClient.post<ResponseBean>(`${this.baseUrl}/createFarmerImage`, farmerImageData)
+  }
 }
 
 

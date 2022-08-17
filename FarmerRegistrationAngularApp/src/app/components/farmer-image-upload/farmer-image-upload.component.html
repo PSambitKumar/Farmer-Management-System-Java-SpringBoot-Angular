@@ -24,7 +24,7 @@
     <div id="add">
       <fieldset style="margin-left: 2rem; margin-right: 2rem;" class="form-group border p-3">
         <legend class="w-auto px-2">Farmers Details</legend>
-        <form (ngSubmit)="saveFarmerImage()" style="margin-top: 2rem; width: 99%"id="farmerForm">
+        <form #myForm="ngForm" (ngSubmit)="saveFarmerImage(myForm)" style="margin-top: 2rem; width: 99%"id="farmerImageForm">
           <div class="container">
 
             <div class="row farmerDetails">

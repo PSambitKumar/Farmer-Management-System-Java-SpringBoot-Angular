@@ -95,4 +95,11 @@ public class FarmerRegistrationDaoImplAngular implements FarmerRegistrationDaoAn
 		entityManager.persist(relation);
 		return relation;
 	}
+
+	@Override
+	@Transactional
+	public FarmerImage saveFarmerImage(FarmerImage farmerImage) {
+		entityManager.persist(farmerImage);
+		return farmerImage;
+	}
 }

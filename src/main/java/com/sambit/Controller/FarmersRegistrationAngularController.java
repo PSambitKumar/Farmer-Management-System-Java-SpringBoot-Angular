@@ -5,12 +5,10 @@ import com.sambit.Bean.BankDetailsBean;
 import com.sambit.Bean.FarmerBean;
 import com.sambit.Bean.FarmerImageBean;
 import com.sambit.Bean.ResponseBean;
-import com.sambit.Model.Acknowledge;
-import com.sambit.Model.Bank;
-import com.sambit.Model.Farmer;
-import com.sambit.Model.Relation;
+import com.sambit.Model.*;
 import com.sambit.Service.MainService;
 import com.sambit.Service.MainServiceAngular;
+import com.sambit.Utils.CommonFileUpload;
 import com.sambit.Utils.RecieveData;
 import com.sambit.Validation.AadharValidation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.lang.instrument.Instrumentation;
 import java.text.Format;
 import java.util.Collection;
@@ -161,7 +160,7 @@ public class FarmersRegistrationAngularController {
    return ResponseEntity.ok(responseBean);
  }
 
-// Create Farmer Image Working
+// Create Farmer Image Working 1
 //    @PostMapping(value = "/createFarmerImage")
 //    public String createFarmerImage(@RequestParam(value = "imageData", required = false)MultipartFile imageData){
 //        System.out.println("Inside Create Farmer Image---------->>");
@@ -170,6 +169,7 @@ public class FarmersRegistrationAngularController {
 //        return null;
 //    }
 
+    // Create Farmer Image Working 2
 //    @PostMapping(value = "/createFarmerImage")
 //    public String createFarmerImage(@PathVariable(value = "imageData", required = false)MultipartFile imageData, @RequestBody FarmerImageBean farmerImageBean){
 //        System.out.println("Inside Create Farmer Image---------->>");
@@ -177,14 +177,29 @@ public class FarmersRegistrationAngularController {
 //        return null;
 //    }
 
+    // Create Farmer Image Working 3
     @PostMapping(value = "/createFarmerImage")
-    public String createFarmerImage(@RequestParam(value = "name", required = false)String name,
+    public ResponseEntity<ResponseBean> createFarmerImage(@RequestParam(value = "name", required = false)String name,
                                     @RequestParam(value = "image", required = false)String imagePath,
-                                    @RequestParam(value = "imageData", required = false)MultipartFile imageData){
+                                    @RequestParam(value = "imageData", required = false)MultipartFile imageData,
+                                    FarmerImage farmerImage, ResponseBean responseBean) throws IOException {
         System.out.println("Inside Create Farmer Image---------->>");
         System.out.println("Farmer Image Object : " + imageData);
         System.out.println("Farmer Image Name : " + imageData.getOriginalFilename());
         System.out.println("Farmer Data : " + name + ", Image Path From Farmer Local Computer : " + imagePath);
-        return null;
+        String fileUploadPath = CommonFileUpload.singleFileUplaod(imageData, "farmerImage");
+        System.out.println("Image Uploaded in Path : " + fileUploadPath);
+        farmerImage.setName(name);
+        farmerImage.setFarmerImagePath(fileUploadPath);
+        FarmerImage updatedFarmerImage = mainServiceAngular.createFarmerImage(farmerImage);
+        if (updatedFarmerImage.getId() > 0){
+            System.out.println("Data Inserted to The Database Successfully.");
+            System.out.println("Updated Farmer Image Data : " + updatedFarmerImage);
+            responseBean.setStatus("Success");
+        }else {
+            System.out.println("Failed to Insert Data into Database!");
+            responseBean.setStatus("Failed");
+        }
+        return ResponseEntity.ok(responseBean);
     }
 }

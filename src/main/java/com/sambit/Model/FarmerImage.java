@@ -21,7 +21,7 @@ public class FarmerImage {
 	@Column
 	private String name;
 	@Column
-	private String farmerImage;
+	private String farmerImagePath;
 
 	public int getId() {
 		return id;
@@ -39,11 +39,20 @@ public class FarmerImage {
 		this.name = name;
 	}
 
-	public String getFarmerImage() {
-		return farmerImage;
+	public String getFarmerImagePath() {
+		return farmerImagePath;
 	}
 
-	public void setFarmerImage(String farmerImage) {
-		this.farmerImage = farmerImage;
+	public void setFarmerImagePath(String farmerImagePath) {
+		this.farmerImagePath = farmerImagePath;
+	}
+
+	@Override
+	public String toString() {
+		return "FarmerImage{" +
+			   "id=" + id +
+			   ", name='" + name + '\'' +
+			   ", farmerImagePath='" + farmerImagePath + '\'' +
+			   '}';
 	}
 }
