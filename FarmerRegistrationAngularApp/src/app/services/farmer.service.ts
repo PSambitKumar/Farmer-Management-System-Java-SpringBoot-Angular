@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpParams} from "@angular/common/http";
+import {HttpClient, HttpEvent, HttpParams, HttpRequest} from "@angular/common/http";
 import {FarmerBean} from "../beans/farmerBean";
 import {Observable} from "rxjs";
 import {Farmer} from "../models/farmer";
 import {ResponseBean} from "../beans/responseBean";
 import {Relation} from "../models/relation";
+import {FarmerImage} from "../models/farmerImage";
 
 @Injectable({
   providedIn: 'root'
 })
 export class FarmerService {
-  private baseUrl = "http://localhost:8088/farmer/v1";
+  private baseUrl = "http://localhost:8080/farmer/v1";
 
   constructor(private httpClient : HttpClient) { }
 
@@ -71,4 +72,31 @@ export class FarmerService {
 // }
 
 
+
+
+  // Farmer Image Upload Service Working
+  // createFarmerImage(farmerImage : FarmerImage, imageData : File) : Observable<HttpEvent<any>>{
+  //   const farmerImageData = new FormData();
+  //   farmerImageData.append("imageData", imageData);
+  //   const req = new HttpRequest('POST', `${this.baseUrl}/createFarmerImage`, farmerImageData);
+  //   return this.httpClient.request(req);
+  // }
+
+  // createFarmerImage(farmerImage : FarmerImage, imageData : File) : Observable<HttpEvent<any>>{
+  //   const farmerImageData = new FormData();
+  //   farmerImageData.append("imageData", imageData);
+  //   const req = new HttpRequest('POST', `${this.baseUrl}/createFarmerImage/` , farmerImage);
+  //   return this.httpClient.request(req);
+  // }
+
+createFarmerImage(farmerImage : FarmerImage, imageData : File) : Observable<HttpEvent<any>>{
+  const farmerImageData = new FormData();
+  farmerImageData.append("imageData", imageData);
+  farmerImageData.append("name", farmerImage.name);
+  farmerImageData.append("image", farmerImage.image);
+  const req = new HttpRequest('POST', `${this.baseUrl}/createFarmerImage`, farmerImageData);
+  return this.httpClient.request(req);
 }
+}
+
+

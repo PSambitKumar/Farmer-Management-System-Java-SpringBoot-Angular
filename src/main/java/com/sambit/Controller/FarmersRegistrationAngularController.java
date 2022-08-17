@@ -3,6 +3,7 @@ package com.sambit.Controller;
 import com.google.gson.Gson;
 import com.sambit.Bean.BankDetailsBean;
 import com.sambit.Bean.FarmerBean;
+import com.sambit.Bean.FarmerImageBean;
 import com.sambit.Bean.ResponseBean;
 import com.sambit.Model.Acknowledge;
 import com.sambit.Model.Bank;
@@ -17,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.lang.instrument.Instrumentation;
 import java.text.Format;
@@ -24,6 +26,7 @@ import java.util.Collection;
 import java.util.List;
 
 @Controller
+//@CrossOrigin(origins = "*")
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(value = "/farmer/v1")
 public class FarmersRegistrationAngularController {
@@ -158,4 +161,30 @@ public class FarmersRegistrationAngularController {
    return ResponseEntity.ok(responseBean);
  }
 
+// Create Farmer Image Working
+//    @PostMapping(value = "/createFarmerImage")
+//    public String createFarmerImage(@RequestParam(value = "imageData", required = false)MultipartFile imageData){
+//        System.out.println("Inside Create Farmer Image---------->>");
+//        System.out.println("Farmer Image Object : " + imageData);
+//        System.out.println("Farmer Image Name : " + imageData.getOriginalFilename());
+//        return null;
+//    }
+
+//    @PostMapping(value = "/createFarmerImage")
+//    public String createFarmerImage(@PathVariable(value = "imageData", required = false)MultipartFile imageData, @RequestBody FarmerImageBean farmerImageBean){
+//        System.out.println("Inside Create Farmer Image---------->>");
+//        System.out.println("Farmer Data : " + farmerImageBean);
+//        return null;
+//    }
+
+    @PostMapping(value = "/createFarmerImage")
+    public String createFarmerImage(@RequestParam(value = "name", required = false)String name,
+                                    @RequestParam(value = "image", required = false)String imagePath,
+                                    @RequestParam(value = "imageData", required = false)MultipartFile imageData){
+        System.out.println("Inside Create Farmer Image---------->>");
+        System.out.println("Farmer Image Object : " + imageData);
+        System.out.println("Farmer Image Name : " + imageData.getOriginalFilename());
+        System.out.println("Farmer Data : " + name + ", Image Path From Farmer Local Computer : " + imagePath);
+        return null;
+    }
 }

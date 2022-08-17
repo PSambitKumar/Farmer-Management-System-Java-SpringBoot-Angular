@@ -43,7 +43,7 @@
 <!--                  <label class="custom-file-label" for="customFile">Choose file</label>-->
 <!--                  <label for="farmerImage1" class="form-label">Farmer Image</label>-->
                   <label for="farmerImage" class="custom-file-label" style="margin-top: 32px; cursor: pointer">Choose Image</label>
-                  <input [(ngModel)]="farmerImageData.image" [value]="farmerImageData.image" type="file" class="custom-file-input" id="farmerImage" name="farmerImage" aria-label="File upload" placeholder="Choose Image" required>
+                  <input [(ngModel)]="farmerImageData.image" (change)="getFile($event)" name="imageData" [value]="farmerImageData.image" type="file" class="custom-file-input" id="farmerImage" name="farmerImage" aria-label="File upload" placeholder="Choose Image" required>
                   <div id="fathersNameAlert" class="custom-alert"></div>
                 </div>
               </div>
