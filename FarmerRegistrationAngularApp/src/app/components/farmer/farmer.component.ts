@@ -97,13 +97,13 @@ export class FarmerComponent implements OnInit{
               this.router.navigate([""]);
             }
           });
-          Swal.fire('Data Saved Successfully!', '', 'success')
+          Swal.fire('Data Saved Successfully!', '', 'success');
+          $('#farmerForm').trigger("reset");//For Reset of Form Using FormId
         } else if (result.isDenied) {
           Swal.fire('Failed To Save Data!', '', 'info')
         }
       })
     }
-    $('#farmerForm').trigger("reset");
   }
 
   // Chcek IFSC Code
