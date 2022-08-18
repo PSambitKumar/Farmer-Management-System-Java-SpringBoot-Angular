@@ -202,4 +202,13 @@ public class FarmersRegistrationAngularController {
         }
         return ResponseEntity.ok(responseBean);
     }
+
+    @ResponseBody
+    @GetMapping(value = "/getFarmerImageList")
+    public List<FarmerImage> getFarmerImageList(){
+        System.out.println("Inside Get Farmer Image List---------->>");
+        List<FarmerImage> farmerImageList = mainServiceAngular.getFarmerImageList();
+        farmerImageList.forEach(System.out::println);
+        return mainServiceAngular.getFarmerImageList();
+    }
 }

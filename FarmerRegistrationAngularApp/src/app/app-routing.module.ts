@@ -8,6 +8,7 @@ import {
   FarmerPortalRegistrationComponent
 } from "./components/farmer-portal-registration/farmer-portal-registration.component";
 import {FarmerImageUploadComponent} from "./components/farmer-image-upload/farmer-image-upload.component";
+import {UploadAadharDocumentComponent} from "./components/upload-aadhar-document/upload-aadhar-document.component";
 
 const routes: Routes = [
   {path: "home", component:HomeComponent},
@@ -16,7 +17,8 @@ const routes: Routes = [
   {path : "testPurpose", component : TestComponent},
   {path : "addRelative", component : AddRelativeComponent},
   {path : "farmerPortalRegistration", component : FarmerPortalRegistrationComponent},
-  {path : "farmerImageUpload", component : FarmerImageUploadComponent}
+  {path : "farmerImageUpload", component : FarmerImageUploadComponent},
+  {path : "uploadAadharDocument", component : UploadAadharDocumentComponent}
 ];
 
 @NgModule({

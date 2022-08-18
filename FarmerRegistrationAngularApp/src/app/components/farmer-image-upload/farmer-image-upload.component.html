@@ -43,7 +43,7 @@
 <!--                  <label class="custom-file-label" for="customFile">Choose file</label>-->
 <!--                  <label for="farmerImage1" class="form-label">Farmer Image</label>-->
                   <label for="farmerImage" class="custom-file-label" style="margin-top: 32px; cursor: pointer">Choose Image</label>
-                  <input [(ngModel)]="farmerImageData.image" (change)="getFile($event)" name="imageData" [value]="farmerImageData.image" type="file" class="custom-file-input" id="farmerImage" name="farmerImage" aria-label="File upload" placeholder="Choose Image" required>
+                  <input [(ngModel)]="farmerImageData.farmerImagePath" (change)="getFile($event)" name="imageData" [value]="farmerImageData.farmerImagePath" type="file" class="custom-file-input" id="farmerImage" name="farmerImage" aria-label="File upload" placeholder="Choose Image" required>
                   <div id="fathersNameAlert" class="custom-alert"></div>
                 </div>
               </div>
@@ -100,7 +100,7 @@
           <tr *ngFor="let farmerImage of farmerImageDataList; let count = index">
             <td>{{count + 1}}</td>
             <td>{{farmerImage.name}}</td>
-            <td>{{farmerImage.image}}</td>
+            <td><img src="assets/farmerImages/sambit.jpg"/></td>
             <td><button (click)="editFarmer(farmerImage.id)" class="btn btn-icon-only btn-facebook" type="button" aria-label="edit button" title="Edit Data"><span aria-hidden="true" class="fa fa-pencil"></span></button>&nbsp;&nbsp;
               <button (click)="deleteFarmer(farmerImage.id)" class="btn btn-icon-only btn-facebook" type="button" aria-label="delete button" title="Delete Data"><span aria-hidden="true" style="color: #da3b3b" class="fa fa-trash"></span></button>
             </td>

@@ -104,8 +104,12 @@ export class FarmerService {
     const farmerImageData = new FormData();
     farmerImageData.append("imageData", imageData);
     farmerImageData.append("name", farmerImage.name);
-    farmerImageData.append("image", farmerImage.image);
+    farmerImageData.append("image", farmerImage.farmerImagePath);
     return this.httpClient.post<ResponseBean>(`${this.baseUrl}/createFarmerImage`, farmerImageData)
+  }
+  
+  getFarmerImageList() : Observable<FarmerImage[]> {
+    return this.httpClient.get<FarmerImage[]>(`${this.baseUrl}/getFarmerImageList`);
   }
 }
 

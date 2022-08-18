@@ -164,4 +164,9 @@ public class MainServiceImplAngular implements MainServiceAngular {
 	public FarmerImage createFarmerImage(FarmerImage farmerImage) {
 		return farmerRegistrationDaoAngular.saveFarmerImage(farmerImage);
 	}
+
+	@Override
+	public List<FarmerImage> getFarmerImageList() {
+		return farmerRegistrationDaoAngular.getFarmerImageList();
+	}
 }

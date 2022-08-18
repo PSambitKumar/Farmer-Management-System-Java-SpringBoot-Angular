@@ -102,4 +102,9 @@ public class FarmerRegistrationDaoImplAngular implements FarmerRegistrationDaoAn
 		entityManager.persist(farmerImage);
 		return farmerImage;
 	}
+
+	@Override
+	public List<FarmerImage> getFarmerImageList() {
+		return entityManager.createQuery("SELECT f FROM FarmerImage f", FarmerImage.class).getResultList();
+	}
 }

@@ -23,6 +23,7 @@ export class FarmerImageUploadComponent implements OnInit {
 
   ngOnInit(): void {
     this.addFarmerImage();
+    this.getFarmerListData();
   }
   addFarmerImage(){
     $('#add').show();
@@ -63,6 +64,13 @@ export class FarmerImageUploadComponent implements OnInit {
     }else {
       console.log("Empty File.")
     }
+  }
+
+  getFarmerListData(){
+    this.farmerService.getFarmerImageList().subscribe(data => {
+      this.farmerImageDataList = data;
+      console.log(this.farmerImageDataList);
+    })
   }
   editFarmer(id : any){}
   deleteFarmer(id : any){}

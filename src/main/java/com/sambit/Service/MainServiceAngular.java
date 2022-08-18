@@ -16,4 +16,5 @@ public interface MainServiceAngular {
 	Farmer getFarmerById(int id);
 	Farmer saveRelationUsingFarmerId(int farmerId, Relation relation);
 	FarmerImage createFarmerImage(FarmerImage farmerImage);
+	List<FarmerImage> getFarmerImageList();
 }
