@@ -1,5 +1,6 @@
 package com.sambit.Controller;
 
+import com.azure.core.annotation.Get;
 import com.google.gson.Gson;
 import com.sambit.Bean.BankDetailsBean;
 import com.sambit.Bean.FarmerBean;
@@ -210,5 +211,24 @@ public class FarmersRegistrationAngularController {
         List<FarmerImage> farmerImageList = mainServiceAngular.getFarmerImageList();
         farmerImageList.forEach(System.out::println);
         return mainServiceAngular.getFarmerImageList();
+    }
+
+    @GetMapping(value = "/getAadharIdUsingFarmerId/{id}")
+    public ResponseEntity<ResponseBean> getAadharIdByFarmerId(@PathVariable(value = "id")int id, ResponseBean responseBean){
+        System.out.println("Inside Get Aadhar Id Using Farmer Id---------->>");
+        System.out.println("Farmer Id : " + id);
+        Farmer farmer = mainServiceAngular.getAadharIdByFarmerId(id);
+        System.out.println("Farmer Data : " + farmer);
+        if (farmer != null){
+            System.out.println("Farmer Data is Not Null.");
+            if (farmer.getAadhar() != null && farmer.getAadhar().getAadharId() != null) {
+                System.out.println("Farmer Aadhar Id is Present.");
+                responseBean.setStatus(farmer.getAadhar().getAadharId());
+            }else
+                responseBean.setStatus("Absent");
+        }else {
+            System.out.println("Farmer Data is Absent/Null");
+        }
+        return ResponseEntity.ok(responseBean);
     }
 }

@@ -19,4 +19,5 @@ public interface FarmerRegistrationDaoAngular {
 	Relation saveRelation(Relation relation);
 	FarmerImage saveFarmerImage(FarmerImage farmerImage);
 	List<FarmerImage> getFarmerImageList();
+	Farmer getAadharIdByFarmerId(int id);
 }

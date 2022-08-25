@@ -134,7 +134,7 @@
                 <div class="col-md-12">
                   <label for="uniqueId" class="form-label">Unique ID</label>
                   <select #uniqueId (change)="uniqueDropDownChange(uniqueId.value)" [(ngModel)]="farmerBean.uniqueId" class="custom-select my-1 mr-sm-2" aria-label="Default select example" style="background-color: #f2f2f2" id="uniqueId" name="uniqueId">
-                    <option value="0" selected>Select</option>
+                    <option value="0" selected hidden>Select</option>
                     <option value="1">Ack Id</option>
                     <option value="2">Janadhaar Id</option>
                     <option value="3">Adhaar Id</option>

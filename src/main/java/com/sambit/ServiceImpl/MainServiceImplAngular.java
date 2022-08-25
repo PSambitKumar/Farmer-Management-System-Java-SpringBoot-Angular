@@ -169,4 +169,9 @@ public class MainServiceImplAngular implements MainServiceAngular {
 	public List<FarmerImage> getFarmerImageList() {
 		return farmerRegistrationDaoAngular.getFarmerImageList();
 	}
+
+	@Override
+	public Farmer getAadharIdByFarmerId(int id) {
+		return farmerRegistrationDaoAngular.getAadharIdByFarmerId(id);
+	}
 }

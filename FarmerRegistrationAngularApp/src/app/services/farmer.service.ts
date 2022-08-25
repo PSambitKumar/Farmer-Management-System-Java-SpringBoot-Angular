@@ -52,6 +52,10 @@ export class FarmerService {
     return this.httpClient.post<ResponseBean>(`${this.baseUrl + "/saveRelationUsingFarmerId/"}` + farmerId, relation);
   }
 
+  getAadharIdByFarmerId(id : any) : Observable<ResponseBean>{
+    return this.httpClient.get<ResponseBean>(`${this.baseUrl + "/getAadharIdUsingFarmerId/"}` + id);
+  }
+
 
 
 //   public getDentists(name, city, type, rating): Observable<Dentist[]>{

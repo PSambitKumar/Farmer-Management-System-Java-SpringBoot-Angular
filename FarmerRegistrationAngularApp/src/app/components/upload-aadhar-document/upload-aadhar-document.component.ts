@@ -4,6 +4,7 @@ import {FarmerService} from "../../services/farmer.service";
 import {Farmer} from "../../models/farmer";
 import {ValidationService} from "../../services/validation.service";
 import * as $ from "jquery";
+import {FarmerAadharUpload} from "../../models/FarmerAadharUpload";
 
 @Component({
   selector: 'app-upload-aadhar-document',
@@ -14,6 +15,7 @@ export class UploadAadharDocumentComponent implements OnInit {
   farmerList : Farmer[] = [];
   selectedFile? : FileList;
   currentFile?: File;
+  FarmerAadharUploadList : FarmerAadharUpload[] = [];
 
   constructor(private farmerService : FarmerService, private validationService : ValidationService) { }
 
@@ -43,6 +45,7 @@ export class UploadAadharDocumentComponent implements OnInit {
     this.validationService.validateAadhar(aadharId, "#adhaarId", "#aadharAlert");
   }
 
+  // File Saved in Selected File Variable
   getFile(event : any){
     this.selectedFile = event.target.files;
     console.log("Inside GetFile----------->>");
@@ -57,7 +60,24 @@ export class UploadAadharDocumentComponent implements OnInit {
     $('#view').show();
   }
 
-  saveFarmerAadhar(form : NgForm){
-
+  getAadharByFarmerId(){
+    var farmerId = $('#farmerName').val();
+    console.log(farmerId);
+    this.farmerService.getAadharIdByFarmerId(farmerId).subscribe(data => {
+      console.log(data);
+      if (data.status == "Absent"){
+        console.log(data.status);
+        $('#aadharAlert').text("Your Aadhar Data is Missing, Please Provide!").css('color', 'red');
+      }else {
+        $('#adhaarId').val(data.status);
+        $('#aadharAlert').text("Your Aadhar Data is Present, Looks Good").css('color', 'green');
+      }
+    })
   }
+
+  saveFarmerAadhar(form : NgForm){
+  }
+
+  editFarmerAadhar(id : any){}
+  deleteFarmerAadhar(id : any){}
 }

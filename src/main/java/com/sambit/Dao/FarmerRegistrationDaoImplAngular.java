@@ -107,4 +107,11 @@ public class FarmerRegistrationDaoImplAngular implements FarmerRegistrationDaoAn
 	public List<FarmerImage> getFarmerImageList() {
 		return entityManager.createQuery("SELECT f FROM FarmerImage f", FarmerImage.class).getResultList();
 	}
+
+	@Override
+	@Transactional
+	public Farmer getAadharIdByFarmerId(int id) {
+		Farmer farmer = (Farmer) entityManager.createQuery("SELECT f FROM Farmer f WHERE f.id=:id").setParameter("id", id).getSingleResult();
+		return farmer;
+	}
 }
