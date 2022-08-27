@@ -47,6 +47,7 @@ export class FarmerComponent implements OnInit{
     this.getFarmerList();
   }
 
+
   // Methods Part
 
   farmerForm(){
@@ -119,6 +120,7 @@ export class FarmerComponent implements OnInit{
       })
     }
   }
+
 
   // Check Aadhar Id
   checkAadharId(aadharId : any){
@@ -304,5 +306,8 @@ export class FarmerComponent implements OnInit{
   openModal1(){
     $('#modalSubscribe').show();
   }
+
+
+
 
 }
