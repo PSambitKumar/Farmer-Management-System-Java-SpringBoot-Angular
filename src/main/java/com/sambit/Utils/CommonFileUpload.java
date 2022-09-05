@@ -11,7 +11,7 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class CommonFileUpload {
-    public static final String windowsRootFolder = "C://FarmerRegistrationData//";
+    public static final String windowsRootFolder = "C:/FarmerRegistrationData/";
     public static final String linuxRootFolder = "/opt/FarmerRegistrationData/";
     public static String operatingSystem = System.getProperty("os.name").toLowerCase().trim();
 
@@ -27,7 +27,7 @@ public class CommonFileUpload {
         }
 
         //Checking Root Directory is Present or Not
-        File file = new File("C://FarmerRegistrationData");
+        File file = new File("C:/FarmerRegistrationData");
         if (!file.exists()){
             Scanner scanner = new Scanner(System.in);
             char response = scanner.next().charAt(0);
@@ -66,7 +66,7 @@ public class CommonFileUpload {
     }
 
 
-//    Check For Folder Is Exists or Not
+//   Check For Folder Is Exists or Not
     public static String fileExistsOrNot(String folderName){
         String filePath = "";
         String result= null;
@@ -77,8 +77,8 @@ public class CommonFileUpload {
             filePath = linuxRootFolder + folderName;
         }
 
-        //Checking Root Directory is Present or Not
-        File file = new File("C://FarmerRegistrationData");
+       //Checking Root Directory is Present or Not
+        File file = new File("C:/FarmerRegistrationData");
         if (!file.exists()){
             Scanner scanner = new Scanner(System.in);
             char response = scanner.next().charAt(0);
@@ -90,11 +90,11 @@ public class CommonFileUpload {
                         boolean checkCreated1 = file1.mkdir();
                         if (checkCreated1){
                             result = "Success";
-                            return filePath + "//";
+                            return filePath + "/";
                         }
                         else {
                             result = "Failed";
-                            return filePath + "//";
+                            return filePath + "/";
                         }
                     }
                 }
@@ -109,18 +109,18 @@ public class CommonFileUpload {
                 boolean checkCreated2 = file1.mkdir();
                 if (checkCreated2){
                     result = "Success";
-                    return filePath + "//";
+                    return filePath;
                 }
                 else {
                     result = "Failed";
-                    return filePath + "//";
+                    return filePath;
                 }
             }
         }
         return filePath;
     }
 
-//    Upload Single File into Local Folder
+//   Upload Single File into Local Folder
     public static String singleFileUplaod(MultipartFile file, String fileName) throws IOException {
         String fileFlag = "";
         if (file.isEmpty()){
@@ -129,28 +129,28 @@ public class CommonFileUpload {
         else {
             String folderPath = fileExistsOrNot(fileName);
             byte[] bytes =file.getBytes();
-            Path path =Paths.get(folderPath + "//" + file.getOriginalFilename());
+            Path path =Paths.get(folderPath + "/" + file.getOriginalFilename());
             Files.write(path, bytes);
-            fileFlag = folderPath + "//" + file.getOriginalFilename();
+            fileFlag = folderPath + "/" + file.getOriginalFilename();
         }
         return fileFlag;
     }
 
 //    Dynamic Path File Upload
-//    public static String dynamicFileUpload(MultipartFile file, String aadharId, int userId, String folderName) throws IOException {
+//   public static String dynamicFileUpload(MultipartFile file, String aadharId, int userId, String folderName) throws IOException {
 //        System.out.println("Inside Dynamic File Upload--------->>");
 //        String path = "";
 //        path = fileExistsOrNot(String.valueOf(userId));
-//        path = fileExistsOrNot(userId + "//" + folderName);
-//        path = fileExistsOrNot(userId + "//" + folderName + "//" + aadharId);
+//        path = fileExistsOrNot(userId + "/" + folderName);
+//        path = fileExistsOrNot(userId + "/" + folderName + "/" + aadharId);
 //        System.out.println("Path: " + path);
-//        return singleFileUplaod(file, userId + "//" + folderName + "//" + aadharId);
+//        return singleFileUplaod(file, userId + "/" + folderName + "/" + aadharId);
 //    }
 
-    //    Dynamic Path File Upload
+   //    Dynamic Path File Upload
     public static String dynamicFileUpload(MultipartFile file, String aadharId, int userId, String folderName) throws IOException {
         System.out.println("Inside Dynamic File Upload--------->>");
-        String path = userId + "//" + folderName + "//" + aadharId;
+        String path = userId + "/" + folderName + "/" + aadharId;
         File fileData = new File(windowsRootFolder + path);
         fileData.getParentFile().mkdirs();
         return singleFileUplaod(file, path);
