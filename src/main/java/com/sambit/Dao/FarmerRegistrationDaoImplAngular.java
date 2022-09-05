@@ -114,4 +114,17 @@ public class FarmerRegistrationDaoImplAngular implements FarmerRegistrationDaoAn
 		Farmer farmer = (Farmer) entityManager.createQuery("SELECT f FROM Farmer f WHERE f.id=:id").setParameter("id", id).getSingleResult();
 		return farmer;
 	}
+
+	@Override
+	@Transactional
+	public AadharDocument saveAadharDocument(AadharDocument aadharDocument) {
+		entityManager.persist(aadharDocument);
+		return aadharDocument;
+	}
+
+	@Override
+	public AadharDocument getAadharDocumentByAadharDocId(int id) {
+		AadharDocument aadharDocument = (AadharDocument) entityManager.createQuery("SELECT a FROM AadharDocument a WHERE a.aadharDocId=:id").setParameter("id", id).getSingleResult();
+		return aadharDocument;
+	}
 }

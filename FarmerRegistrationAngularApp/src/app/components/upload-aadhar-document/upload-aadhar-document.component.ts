@@ -17,12 +17,14 @@ export class UploadAadharDocumentComponent implements OnInit {
   currentFile?: File;
   FarmerAadharUploadList : FarmerAadharUpload[] = [];
   aadharId : any;
+  aadharDocPathId : any;
 
   constructor(private farmerService : FarmerService, private validationService : ValidationService) { }
 
   ngOnInit(): void {
     this.addFarmerAadhar();
     this.getAllFarmerList();
+    $('#downloadFile').hide();
   }
 
   getAllFarmerList(){
@@ -88,11 +90,21 @@ export class UploadAadharDocumentComponent implements OnInit {
         this.currentFile = file;
         this.farmerService.saveFarmerAadharDocument(this.aadharId, this.currentFile).subscribe(data => {
           console.log(data);
+          this.aadharDocPathId = data.status;
+          $('#downloadFile').show();
         });
       }
     }else {
       console.log("Empty File.")
     }
+  }
+
+  downloadFile(){
+    console.log(this.aadharDocPathId);
+    this.farmerService.downloadFile(this.aadharDocPathId).subscribe(data => {
+      console.log("Result")
+      console.log(data);
+    })
   }
 
   editFarmerAadhar(id : any){}

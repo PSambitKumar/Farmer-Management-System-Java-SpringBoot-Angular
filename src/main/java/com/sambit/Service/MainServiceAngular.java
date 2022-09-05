@@ -1,6 +1,7 @@
 package com.sambit.Service;
 
 import com.sambit.Bean.FarmerBean;
+import com.sambit.Model.AadharDocument;
 import com.sambit.Model.Farmer;
 import com.sambit.Model.FarmerImage;
 import com.sambit.Model.Relation;
@@ -18,4 +19,6 @@ public interface MainServiceAngular {
 	FarmerImage createFarmerImage(FarmerImage farmerImage);
 	List<FarmerImage> getFarmerImageList();
 	Farmer getAadharIdByFarmerId(int id);
+	AadharDocument saveAadharDocument(AadharDocument aadharDocument);
+	AadharDocument getAadharDocumentByAadharDocId(int id);
 }

@@ -1,6 +1,7 @@
 package com.sambit.Controller;
 
 import com.azure.core.annotation.Get;
+import com.azure.core.annotation.Post;
 import com.google.gson.Gson;
 import com.sambit.Bean.BankDetailsBean;
 import com.sambit.Bean.FarmerBean;
@@ -12,6 +13,7 @@ import com.sambit.Service.MainServiceAngular;
 import com.sambit.Utils.CommonFileUpload;
 import com.sambit.Utils.RecieveData;
 import com.sambit.Validation.AadharValidation;
+import org.hibernate.event.spi.SaveOrUpdateEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -19,11 +21,14 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.instrument.Instrumentation;
 import java.text.Format;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 //@CrossOrigin(origins = "*")
@@ -232,32 +237,50 @@ public class FarmersRegistrationAngularController {
         return ResponseEntity.ok(responseBean);
     }
 
+    @ResponseBody
      @PostMapping(value = "/saveFarmerAadharDocument/{aadharId}")
     public ResponseEntity<ResponseBean> saveFarmerAadharDocument(@PathVariable("aadharId")String aadharId,
                                                                  @RequestParam(value = "aadharDocument", required = false)MultipartFile aadharDocument,
                                                                  ResponseBean responseBean) throws IOException {
+        String path = "";
         System.out.println("Inside Save Farmer Aadhar Document---------->>");
         System.out.println("Aadhar Id : " + aadharId);
         System.out.println("Aadhar Document : " + aadharDocument);
         System.out.println("Aadhar Document Name : " + aadharDocument.getOriginalFilename());
 
-        String path = CommonFileUpload.dynamicFileUpload(aadharDocument, aadharId.toString(), 1, "aadharDocument");
+        Objects.requireNonNull(aadharDocument.getOriginalFilename()).replace(aadharDocument.getOriginalFilename(), "FM-" + 1 + "-" + aadharId + ".pdf");
+        System.out.println("Aadhar Document Name After Replacing : " + aadharDocument.getOriginalFilename());
+
+        path = CommonFileUpload.dynamicFileUpload(aadharDocument, aadharId.toString(), 1, "aadharDocument");
         System.out.println("Aadhar Document Uploaded in Path : " + path);
 
-//        String fileUploadPath = CommonFileUpload.singleFileUplaod(aadharDocument, "aadharDocument");
-//        System.out.println("Aadhar Document Uploaded in Path : " + fileUploadPath);
+//        path = path.replace("C://FarmerRegistrationData//", "");
+//        System.out.println("Aadhar Document Path After Replacing : " + path);
+
+        AadharDocument aadharDocument1 = new AadharDocument();
+        aadharDocument1.setAadharDocPath(path);
+        aadharDocument1 = mainServiceAngular.saveAadharDocument(aadharDocument1);
 
 
+            if (!path.equals(""))
+                responseBean.setStatus(Integer.toString(aadharDocument1.getAadharDocId()));
+            else
+                responseBean.setStatus("Failed");
 
-
-//        if (aadhar.getId() == aadharId){
-//            System.out.println("Data Inserted to The Database Successfully.");
-//            System.out.println("Updated Aadhar Data : " + aadhar);
-//            responseBean.setStatus("Success");
-//        }else {
-//            System.out.println("Failed to Insert Data into Database!");
-//            responseBean.setStatus("Failed");
-//        }
+        System.out.println("Response Bean : " + responseBean);
         return ResponseEntity.ok(responseBean);
+    }
+
+    @ResponseBody
+    @GetMapping(value = "/downloadFile/{aadharDocPathId}")
+    public ResponseEntity<ResponseBean> downloadFile(@PathVariable(value = "aadharDocPathId", required = false)String aadharDocPathId,
+                               HttpServletResponse response, ResponseBean responseBean) throws IOException {
+        System.out.println("Inside Download File---------->>");
+        AadharDocument aadharDocument = mainServiceAngular.getAadharDocumentByAadharDocId(Integer.parseInt(aadharDocPathId));
+        System.out.println("Aadhar Document : " + aadharDocument);
+        System.out.println("File Path : " + aadharDocument.getAadharDocPath());
+        CommonFileUpload.downloadFileUsingCompletePath(response, aadharDocument.getAadharDocPath());
+        responseBean.setStatus("Success");
+        return null;
     }
 }

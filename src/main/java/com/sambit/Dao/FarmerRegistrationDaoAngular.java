@@ -20,4 +20,6 @@ public interface FarmerRegistrationDaoAngular {
 	FarmerImage saveFarmerImage(FarmerImage farmerImage);
 	List<FarmerImage> getFarmerImageList();
 	Farmer getAadharIdByFarmerId(int id);
+	AadharDocument saveAadharDocument(AadharDocument aadharDocument);
+	AadharDocument getAadharDocumentByAadharDocId(int id);
 }

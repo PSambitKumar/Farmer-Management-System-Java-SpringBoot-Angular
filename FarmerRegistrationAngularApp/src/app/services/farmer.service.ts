@@ -121,6 +121,13 @@ export class FarmerService {
     aadharDocumentData.append("aadharDocument", aadharDocument);
     return this.httpClient.post<ResponseBean>(`${this.baseUrl}/saveFarmerAadharDocument/` + aadharId, aadharDocumentData);
   }
+
+  downloadFile(aadharDocPathId : any) : Observable<ResponseBean> {
+    // alert("From Service : " + path);
+    const pathData = new FormData();
+    pathData.append("Aadhar Doc Path Id", aadharDocPathId);
+    return this.httpClient.get<ResponseBean>(`${this.baseUrl}/downloadFile/` + aadharDocPathId,/* {responseType: 'blob' as 'json'}*/);
+  }
 }
 
 

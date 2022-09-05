@@ -174,4 +174,14 @@ public class MainServiceImplAngular implements MainServiceAngular {
 	public Farmer getAadharIdByFarmerId(int id) {
 		return farmerRegistrationDaoAngular.getAadharIdByFarmerId(id);
 	}
+
+	@Override
+	public AadharDocument saveAadharDocument(AadharDocument aadharDocument) {
+		return farmerRegistrationDaoAngular.saveAadharDocument(aadharDocument);
+	}
+
+	@Override
+	public AadharDocument getAadharDocumentByAadharDocId(int id) {
+		return farmerRegistrationDaoAngular.getAadharDocumentByAadharDocId(id);
+	}
 }
