@@ -16,6 +16,7 @@ export class UploadAadharDocumentComponent implements OnInit {
   selectedFile? : FileList;
   currentFile?: File;
   FarmerAadharUploadList : FarmerAadharUpload[] = [];
+  aadharId : any;
 
   constructor(private farmerService : FarmerService, private validationService : ValidationService) { }
 
@@ -70,12 +71,28 @@ export class UploadAadharDocumentComponent implements OnInit {
         $('#aadharAlert').text("Your Aadhar Data is Missing, Please Provide!").css('color', 'red');
       }else {
         $('#adhaarId').val(data.status);
+        this.aadharId = data.status;
         $('#aadharAlert').text("Your Aadhar Data is Present, Looks Good").css('color', 'green');
       }
     })
   }
 
   saveFarmerAadhar(form : NgForm){
+    console.log(form);
+    console.log(form.value);
+    if (this.selectedFile){
+      const file : File | null = this.selectedFile.item(0);
+      console.log("Selected File--------------->>" );
+      console.log(file);
+      if (file){
+        this.currentFile = file;
+        this.farmerService.saveFarmerAadharDocument(this.aadharId, this.currentFile).subscribe(data => {
+          console.log(data);
+        });
+      }
+    }else {
+      console.log("Empty File.")
+    }
   }
 
   editFarmerAadhar(id : any){}

@@ -231,4 +231,33 @@ public class FarmersRegistrationAngularController {
         }
         return ResponseEntity.ok(responseBean);
     }
+
+     @PostMapping(value = "/saveFarmerAadharDocument/{aadharId}")
+    public ResponseEntity<ResponseBean> saveFarmerAadharDocument(@PathVariable("aadharId")String aadharId,
+                                                                 @RequestParam(value = "aadharDocument", required = false)MultipartFile aadharDocument,
+                                                                 ResponseBean responseBean) throws IOException {
+        System.out.println("Inside Save Farmer Aadhar Document---------->>");
+        System.out.println("Aadhar Id : " + aadharId);
+        System.out.println("Aadhar Document : " + aadharDocument);
+        System.out.println("Aadhar Document Name : " + aadharDocument.getOriginalFilename());
+
+        String path = CommonFileUpload.dynamicFileUpload(aadharDocument, aadharId.toString(), 1, "aadharDocument");
+        System.out.println("Aadhar Document Uploaded in Path : " + path);
+
+//        String fileUploadPath = CommonFileUpload.singleFileUplaod(aadharDocument, "aadharDocument");
+//        System.out.println("Aadhar Document Uploaded in Path : " + fileUploadPath);
+
+
+
+
+//        if (aadhar.getId() == aadharId){
+//            System.out.println("Data Inserted to The Database Successfully.");
+//            System.out.println("Updated Aadhar Data : " + aadhar);
+//            responseBean.setStatus("Success");
+//        }else {
+//            System.out.println("Failed to Insert Data into Database!");
+//            responseBean.setStatus("Failed");
+//        }
+        return ResponseEntity.ok(responseBean);
+    }
 }

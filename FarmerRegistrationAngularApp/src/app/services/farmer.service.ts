@@ -115,6 +115,12 @@ export class FarmerService {
   getFarmerImageList() : Observable<FarmerImage[]> {
     return this.httpClient.get<FarmerImage[]>(`${this.baseUrl}/getFarmerImageList`);
   }
+
+  saveFarmerAadharDocument(aadharId : any, aadharDocument : File) : Observable<ResponseBean>{
+    const aadharDocumentData = new FormData();
+    aadharDocumentData.append("aadharDocument", aadharDocument);
+    return this.httpClient.post<ResponseBean>(`${this.baseUrl}/saveFarmerAadharDocument/` + aadharId, aadharDocumentData);
+  }
 }
 
 

@@ -2,10 +2,12 @@ package com.sambit.Utils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class CommonFileUpload {
@@ -132,5 +134,25 @@ public class CommonFileUpload {
             fileFlag = folderPath + "//" + file.getOriginalFilename();
         }
         return fileFlag;
+    }
+
+//    Dynamic Path File Upload
+//    public static String dynamicFileUpload(MultipartFile file, String aadharId, int userId, String folderName) throws IOException {
+//        System.out.println("Inside Dynamic File Upload--------->>");
+//        String path = "";
+//        path = fileExistsOrNot(String.valueOf(userId));
+//        path = fileExistsOrNot(userId + "//" + folderName);
+//        path = fileExistsOrNot(userId + "//" + folderName + "//" + aadharId);
+//        System.out.println("Path: " + path);
+//        return singleFileUplaod(file, userId + "//" + folderName + "//" + aadharId);
+//    }
+
+    //    Dynamic Path File Upload
+    public static String dynamicFileUpload(MultipartFile file, String aadharId, int userId, String folderName) throws IOException {
+        System.out.println("Inside Dynamic File Upload--------->>");
+        String path = userId + "//" + folderName + "//" + aadharId;
+        File fileData = new File(windowsRootFolder + path);
+        fileData.getParentFile().mkdirs();
+        return singleFileUplaod(file, path);
     }
 }
