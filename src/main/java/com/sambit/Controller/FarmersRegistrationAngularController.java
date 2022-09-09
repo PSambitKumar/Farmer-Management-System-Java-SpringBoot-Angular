@@ -12,6 +12,11 @@ import com.sambit.Utils.RecieveData;
 import com.sambit.Validation.AadharValidation;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +25,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.sql.Blob;
 import java.util.List;
 import java.util.Objects;
 
@@ -264,17 +273,66 @@ public class FarmersRegistrationAngularController {
         return ResponseEntity.ok(responseBean);
     }
 
+//    Working
+//    Single File Download Using Path Method 1
     @ResponseBody
     @GetMapping(value = "/downloadFile/{aadharDocPathId}")
     public ResponseEntity<ResponseBean> downloadFile(@PathVariable(value = "aadharDocPathId", required = false)String aadharDocPathId,
                                HttpServletResponse response, ResponseBean responseBean) throws IOException {
         System.out.println("Inside Download File---------->>");
+        System.out.println("Aadhar Document Path Id : " + aadharDocPathId);
         AadharDocument aadharDocument = mainServiceAngular.getAadharDocumentByAadharDocId(Integer.parseInt(aadharDocPathId));
-        System.out.println("Aadhar Document : " + aadharDocument);
-        System.out.println("File Path : " + aadharDocument.getAadharDocPath());
+        System.out.println("Aadhar Document Data : " + aadharDocument);
         CommonFileUpload.downloadFileUsingCompletePath(response, aadharDocument.getAadharDocPath());
-        responseBean.setStatus("Success");
 
+        responseBean.setStatus("Success");
         return ResponseEntity.ok(responseBean);
     }
+
+
+//    Working
+//    Single File Download Using Path Method 2
+    @GetMapping(value = "/downloadFile1/{aadharDocPathId}")
+    public ResponseEntity<Resource> downloadFile1(@PathVariable(value = "aadharDocPathId", required = false)String aadharDocPathId,
+                                                     HttpServletResponse response, ResponseBean responseBean) throws IOException {
+        System.out.println("Inside Download File---------->>");
+        System.out.println("Aadhar Document Path Id : " + aadharDocPathId);
+        AadharDocument aadharDocument = mainServiceAngular.getAadharDocumentByAadharDocId(Integer.parseInt(aadharDocPathId));
+        System.out.println("Aadhar Document Data : " + aadharDocument);
+
+        Path file = Paths.get(aadharDocument.getAadharDocPath());
+        Resource resource = new UrlResource(file.toUri());
+
+        System.out.println("Resource : " + resource);
+        System.out.println("Resource File : " + resource.getFile());
+        System.out.println("Resource File Name : " + resource.getFilename());
+        System.out.println("Resource File Description : " + resource.getDescription());
+
+
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType("application/pdf"))
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
+                .body(resource);
+    }
+
+
+//    Working
+//    Single File Download Method 3
+    @GetMapping(value = "/downloadFile2/{aadharDocPathId}")
+    public ResponseEntity<ByteArrayResource> downloadFile2(@PathVariable(value = "aadharDocPathId", required = false)String aadharDocPathId) throws IOException {
+        System.out.println("Inside Download File 2---------->>");
+        AadharDocument aadharDocument = mainServiceAngular.getAadharDocumentByAadharDocId(Integer.parseInt("10"));
+        System.out.println("Aadhar Document : " + aadharDocument);
+        System.out.println("File Path : " + aadharDocument.getAadharDocPath());
+
+        Path path = Paths.get(aadharDocument.getAadharDocPath());
+        System.out.println("Bytes : " + Files.readAllBytes(path));
+
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType("application/pdf"))
+                .header("Content-Disposition", "attachment;filename=" + path.toFile().getName())
+                .body(new ByteArrayResource(Files.readAllBytes(path)));
+    }
+
+
 }

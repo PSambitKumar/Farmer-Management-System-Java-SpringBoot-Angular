@@ -124,9 +124,7 @@ export class FarmerService {
 
   downloadFile(aadharDocPathId : any) : Observable<ResponseBean> {
     // alert("From Service : " + path);
-    const pathData = new FormData();
-    pathData.append("Aadhar Doc Path Id", aadharDocPathId);
-    return this.httpClient.get<ResponseBean>(`${this.baseUrl}/downloadFile/` + aadharDocPathId,/* {responseType: 'blob' as 'json'}*/);
+    return this.httpClient.get<ResponseBean>(`${this.baseUrl}/downloadFile1/` + aadharDocPathId/*, {responseType: 'blob' as 'json'}*/);
   }
 }
 

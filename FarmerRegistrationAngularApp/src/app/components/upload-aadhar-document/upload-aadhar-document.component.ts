@@ -95,6 +95,7 @@ export class UploadAadharDocumentComponent implements OnInit {
           console.log(data);
           this.aadharDocPathId = data.status;
           $('#downloadFile').show();
+          // this.selectedFile = undefined;
         });
       }
     }else {
@@ -130,12 +131,6 @@ export class UploadAadharDocumentComponent implements OnInit {
   }
 
 
-
-  // Download File Using Complte Path In Angular
-  downloadFileUsingPath(){
-    console.log("Inside Download File Using Path--------->>");
-
-
-  }  editFarmerAadhar(id : any){}
+  editFarmerAadhar(id : any){}
   deleteFarmerAadhar(id : any){}
 }
