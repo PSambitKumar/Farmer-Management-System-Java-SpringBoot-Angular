@@ -1,11 +1,8 @@
 package com.sambit.Controller;
 
-import com.azure.core.annotation.Get;
-import com.azure.core.annotation.Post;
 import com.google.gson.Gson;
 import com.sambit.Bean.BankDetailsBean;
 import com.sambit.Bean.FarmerBean;
-import com.sambit.Bean.FarmerImageBean;
 import com.sambit.Bean.ResponseBean;
 import com.sambit.Model.*;
 import com.sambit.Service.MainService;
@@ -13,7 +10,7 @@ import com.sambit.Service.MainServiceAngular;
 import com.sambit.Utils.CommonFileUpload;
 import com.sambit.Utils.RecieveData;
 import com.sambit.Validation.AadharValidation;
-import org.hibernate.event.spi.SaveOrUpdateEvent;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -21,12 +18,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.lang.instrument.Instrumentation;
-import java.text.Format;
-import java.util.Collection;
+import java.io.*;
 import java.util.List;
 import java.util.Objects;
 
@@ -281,6 +274,7 @@ public class FarmersRegistrationAngularController {
         System.out.println("File Path : " + aadharDocument.getAadharDocPath());
         CommonFileUpload.downloadFileUsingCompletePath(response, aadharDocument.getAadharDocPath());
         responseBean.setStatus("Success");
-        return null;
+
+        return ResponseEntity.ok(responseBean);
     }
 }

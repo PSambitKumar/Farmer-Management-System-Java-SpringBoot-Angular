@@ -18,7 +18,7 @@ const routes: Routes = [
   {path : "addRelative", component : AddRelativeComponent},
   {path : "farmerPortalRegistration", component : FarmerPortalRegistrationComponent},
   {path : "farmerImageUpload", component : FarmerImageUploadComponent},
-  {path : "uploadAadharDocument", component : UploadAadharDocumentComponent}
+  {path : "uploadAadharDocument", component : UploadAadharDocumentComponent},
 ];
 
 @NgModule({

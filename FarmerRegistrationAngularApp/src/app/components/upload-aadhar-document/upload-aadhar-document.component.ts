@@ -18,6 +18,8 @@ export class UploadAadharDocumentComponent implements OnInit {
   FarmerAadharUploadList : FarmerAadharUpload[] = [];
   aadharId : any;
   aadharDocPathId : any;
+  documentType : any;
+  docPath : String =  "C://FarmerRegistrationData//1//aadharDocument//220778011303//PayslipReport.pdf";
 
   constructor(private farmerService : FarmerService, private validationService : ValidationService) { }
 
@@ -53,6 +55,7 @@ export class UploadAadharDocumentComponent implements OnInit {
     this.selectedFile = event.target.files;
     console.log("Inside GetFile----------->>");
     console.log(this.selectedFile);
+    // $('#downloadFile').show();//This is for Download File Button After Selection of Document
   }
   addFarmerAadhar(){
     $('#add').show();
@@ -101,12 +104,38 @@ export class UploadAadharDocumentComponent implements OnInit {
 
   downloadFile(){
     console.log(this.aadharDocPathId);
+
+
+    // Download The Same File After Selection Form Local Folder
+    // if (this.selectedFile) {
+    //   console.log("Selected File is Present");
+    //   const file: File | null = this.selectedFile.item(0);
+    //   console.log(file);
+    //   if (file) {
+    //     console.log("Current File is Present");
+    //     this.documentType = file.type;
+    //     const blob = new Blob([file], { type: this.documentType });
+    //     const url= window.URL.createObjectURL(blob);
+    //     window.open(url);
+    //   }
+    // }else {
+    //   console.log("Selected File is Null");
+    // }
+
+
     this.farmerService.downloadFile(this.aadharDocPathId).subscribe(data => {
       console.log("Result")
       console.log(data);
     })
   }
 
-  editFarmerAadhar(id : any){}
+
+
+  // Download File Using Complte Path In Angular
+  downloadFileUsingPath(){
+    console.log("Inside Download File Using Path--------->>");
+
+
+  }  editFarmerAadhar(id : any){}
   deleteFarmerAadhar(id : any){}
 }
