@@ -289,7 +289,6 @@ public class FarmersRegistrationAngularController {
         return ResponseEntity.ok(responseBean);
     }
 
-
 //    Working
 //    Single File Download Using Path Method 2
     @GetMapping(value = "/downloadFile1/{aadharDocPathId}")
@@ -321,7 +320,7 @@ public class FarmersRegistrationAngularController {
     @GetMapping(value = "/downloadFile2/{aadharDocPathId}")
     public ResponseEntity<ByteArrayResource> downloadFile2(@PathVariable(value = "aadharDocPathId", required = false)String aadharDocPathId) throws IOException {
         System.out.println("Inside Download File 2---------->>");
-        AadharDocument aadharDocument = mainServiceAngular.getAadharDocumentByAadharDocId(Integer.parseInt("10"));
+        AadharDocument aadharDocument = mainServiceAngular.getAadharDocumentByAadharDocId(Integer.parseInt("5"));
         System.out.println("Aadhar Document : " + aadharDocument);
         System.out.println("File Path : " + aadharDocument.getAadharDocPath());
 
@@ -332,6 +331,21 @@ public class FarmersRegistrationAngularController {
                 .contentType(MediaType.parseMediaType("application/pdf"))
                 .header("Content-Disposition", "attachment;filename=" + path.toFile().getName())
                 .body(new ByteArrayResource(Files.readAllBytes(path)));
+    }
+
+
+    @ResponseBody
+    @GetMapping(value = "/downloadFileData")
+    public ResponseEntity<byte[]> DownloadFileData() throws IOException {
+        System.out.println("Inside Download File Data---------->>");
+        AadharDocument aadharDocument = mainServiceAngular.getAadharDocumentByAadharDocId(Integer.parseInt("7"));
+        System.out.println("Aadhar Document : " + aadharDocument);
+        System.out.println("File Path : " + aadharDocument.getAadharDocPath());
+
+        Path path = Paths.get(aadharDocument.getAadharDocPath());
+        System.out.println("Bytes : " + Files.readAllBytes(path));
+
+        return ResponseEntity.ok(Files.readAllBytes(path));
     }
 
 

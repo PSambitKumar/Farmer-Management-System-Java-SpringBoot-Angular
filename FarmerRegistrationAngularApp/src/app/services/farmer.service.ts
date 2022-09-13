@@ -104,12 +104,20 @@ export class FarmerService {
 //   return this.httpClient.request(req);
 // }
 
+
+  // Sending Data Using Post Method Using FormData
   createFarmerImage(farmerImage : FarmerImage, imageData : File) : Observable<ResponseBean>{
     const farmerImageData = new FormData();
     farmerImageData.append("imageData", imageData);
     farmerImageData.append("name", farmerImage.name);
     farmerImageData.append("image", farmerImage.farmerImagePath);
     return this.httpClient.post<ResponseBean>(`${this.baseUrl}/createFarmerImage`, farmerImageData)
+  }
+
+
+  // Sending Data Using Params Using Get Method
+  createFarmerImage1(farmerImage : FarmerImage, imageData : File) : Observable<ResponseBean>{
+    return this.httpClient.post<ResponseBean>(`${this.baseUrl}/createFarmerImage`, {params: farmerImage, imageData})
   }
   
   getFarmerImageList() : Observable<FarmerImage[]> {
@@ -122,10 +130,21 @@ export class FarmerService {
     return this.httpClient.post<ResponseBean>(`${this.baseUrl}/saveFarmerAadharDocument/` + aadharId, aadharDocumentData);
   }
 
-  downloadFile(aadharDocPathId : any) : Observable<ResponseBean> {
-    // alert("From Service : " + path);
-    return this.httpClient.get<ResponseBean>(`${this.baseUrl}/downloadFile1/` + aadharDocPathId/*, {responseType: 'blob' as 'json'}*/);
+  // Working But Not Downloading
+  // downloadFile(aadharDocPathId : any) : Observable<ResponseBean> {
+  //   // alert("From Service : " + path);
+  //   return this.httpClient.get<ResponseBean>(`${this.baseUrl}/downloadFile1/` + aadharDocPathId/*, {responseType: 'blob' as 'json'}*/);
+  // }
+
+  // Perfectly Working
+  downloadFile1(aadharDocPathId : any) : Observable<any> {
+    const httpOptions = {
+      // 'responseType'  : 'arraybuffer' as 'json' //This also worked
+      'responseType'  : 'blob' as 'json'
+    };
+    return this.httpClient.get<any>(`${this.baseUrl}/downloadFileData`, httpOptions);
   }
+
 }
 
 

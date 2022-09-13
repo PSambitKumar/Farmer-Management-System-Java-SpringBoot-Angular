@@ -124,9 +124,14 @@ export class UploadAadharDocumentComponent implements OnInit {
     // }
 
 
-    this.farmerService.downloadFile(this.aadharDocPathId).subscribe(data => {
+
+    this.farmerService.downloadFile1(this.aadharDocPathId).subscribe(data => {
       console.log("Result")
       console.log(data);
+      // This Method To Download File
+      let file = new Blob([data], { type: 'application/pdf' });
+      var fileURL = URL.createObjectURL(file);
+      window.open(fileURL)
     })
   }
 
