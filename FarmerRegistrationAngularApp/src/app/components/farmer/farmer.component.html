@@ -207,6 +207,7 @@
             <th>Janadhaar No.</th>
             <th>Bank Acc. No.</th>
             <th>Relatives</th>
+            <th>Validate</th>
             <th width="9%">Action</th>
           </tr>
           </thead>
@@ -235,6 +236,10 @@
               <td *ngIf="farmer.janAdhaar">{{farmer.janAdhaar.janadhaarId}}</td>
               <td title="Click To Fetch Details"><a href="javascript:void(0)" (click)="showBankDetails(farmer.bank, farmer.name)">{{farmer.bank.accountNumber}}</a></td>
               <td title="Click To View Relatives"><button (click)="viewRelatives(farmer, farmer.relationList, farmer.name, farmer.id)" class="btn btn-icon-only btn-facebook fa fa-eye" style="color: black"></button></td>
+              <td>
+                <div *ngIf="isLoading" class="loadingio-spinner-rolling-o08pwprj6g"><div class="ldio-1vv3dp0tlwf"><div></div></div></div>
+                <div *ngIf="!isLoading"><i class="fa fa-check-circle" ></i></div>
+              </td>
               <td><button (click)="editFarmer(farmer.id)" class="btn btn-icon-only btn-facebook" type="button" aria-label="edit button" title="Edit Data"><span aria-hidden="true" class="fa fa-pencil"></span></button>&nbsp;&nbsp;
                 <button (click)="deleteFarmer(farmer.id)" class="btn btn-icon-only btn-facebook" type="button" aria-label="delete button" title="Delete Data"><span aria-hidden="true" style="color: #da3b3b" class="fa fa-trash"></span></button>
               </td>

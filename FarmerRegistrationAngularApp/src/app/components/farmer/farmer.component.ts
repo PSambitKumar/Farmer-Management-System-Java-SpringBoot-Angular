@@ -15,6 +15,8 @@ import {Router} from "@angular/router";
 import {Relation} from "../../models/relation";
 import {ViewRelativesComponent} from "../../modalComponents/view-relatives-modal/view-relatives.component";
 
+
+
 @Component({
   selector: 'app-farmer',
   templateUrl: './farmer.component.html',
@@ -28,6 +30,7 @@ export class FarmerComponent implements OnInit{
   responseBean : ResponseBean = new ResponseBean();
   farmerList : Farmer[] = [];
   bankDetailsBean : BankDetailsBean = new BankDetailsBean();
+  isLoading : boolean = true;
   response1 : any;
   response2 : any;
   response3 : any;
@@ -45,6 +48,10 @@ export class FarmerComponent implements OnInit{
     this.hideUniqueIdInput();
     this.addFarmer();
     this.getFarmerList();
+
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 2000)
   }
 
 

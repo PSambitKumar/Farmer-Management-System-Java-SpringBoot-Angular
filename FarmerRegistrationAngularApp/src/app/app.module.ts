@@ -31,7 +31,7 @@ import { UploadAadharDocumentComponent } from './components/upload-aadhar-docume
     AddRelativeComponent,
     FarmerPortalRegistrationComponent,
     FarmerImageUploadComponent,
-    UploadAadharDocumentComponent
+    UploadAadharDocumentComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +41,7 @@ import { UploadAadharDocumentComponent } from './components/upload-aadhar-docume
     DataTablesModule,//Added For Data Table
     FontAwesomeModule,//For Font Awesome
     MatDialogModule, BrowserAnimationsModule, MatButtonModule,//For Modal
+    FontAwesomeModule//Font Awesome Module
   ],
   providers: [],
   bootstrap: [AppComponent]
