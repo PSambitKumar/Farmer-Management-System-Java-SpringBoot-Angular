@@ -9,7 +9,7 @@ import {Relation} from "../../models/relation";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
+  data : any = [];//For Declaration of Random Array
   // private relationList: Relation[] = [];
   constructor(private farmerService : FarmerService) { }
 

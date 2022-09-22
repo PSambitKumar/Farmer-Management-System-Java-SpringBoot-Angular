@@ -15,8 +15,6 @@ import {Router} from "@angular/router";
 import {Relation} from "../../models/relation";
 import {ViewRelativesComponent} from "../../modalComponents/view-relatives-modal/view-relatives.component";
 
-
-
 @Component({
   selector: 'app-farmer',
   templateUrl: './farmer.component.html',
@@ -54,9 +52,7 @@ export class FarmerComponent implements OnInit{
     }, 2000)
   }
 
-
   // Methods Part
-
   farmerForm(){
     console.log(this.farmerBean);
     console.log("Inside FarmerBean Form Submit-------------->>");
@@ -72,10 +68,8 @@ export class FarmerComponent implements OnInit{
     // this.response9 = this.validationService.validateName(this.farmerBean.fathersName, "#fathersName", "#fathersNameAlert");
     // this.response10 = this.validationService.validateName(this.farmerBean.name, "#name", "#nameAlert");
     //
-    //
     // console.log("Valid or Invalid Data : ");
     // console.log(this.response1 + "," + this.response2 + "," + this.response3 + "," + this.response4 + "," + this.response5 + "," + this.response6 + "," + this.response7 + "," + this.response8 + "," + this.response9 + "," + this.response10);
-
 
     if (this.validationService.validateName(this.farmerBean.name, "#name", "#nameAlert") == "Valid" &&
       this.validationService.validateName(this.farmerBean.fathersName, "#fathersName", "#fathersNameAlert") == "Valid" &&
@@ -127,7 +121,6 @@ export class FarmerComponent implements OnInit{
       })
     }
   }
-
 
   // Check Aadhar Id
   checkAadharId(aadharId : any){
@@ -185,7 +178,6 @@ export class FarmerComponent implements OnInit{
           if (this.farmer.acknowledge != null){
             this.farmerBean.acknowledge = this.farmer.acknowledge.acknowledgeId;
           }
-
           this.addFarmer();
         })
       }

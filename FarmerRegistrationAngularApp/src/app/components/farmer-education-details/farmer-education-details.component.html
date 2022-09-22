@@ -1,0 +1,273 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Farmer Education</title>
+</head>
+<body>
+<a class="logoBrand navbar-brand shadow-soft py-2 px-3 rounded border border-light mr-lg-4" routerLink="" routerLinkActive="active">
+  <div class="navbar-brand-dark"><span class="fa fa-leaf"></span> FMS</div>
+</a>
+<!--<h3 class="text-center">Farmer Management System</h3>-->
+
+<div class="card">
+  <div class="card-header">
+    <ul class="nav nav-tabs nav-fill">
+      <button class="btn btn-primary" id="btn1" (click)="addEducation()">Add Farmer Education</button>
+      <button class="btn btn-primary" id="btn2" (click)="viewEducation()">View Farmer Education</button>
+    </ul>
+  </div>
+
+  <div class="card-body">
+    <div id="add">
+      <fieldset style="margin-left: 2rem; margin-right: 2rem;" class="form-group border p-3">
+        <legend class="w-auto px-2">Farmers Education Details</legend>
+        <form (ngSubmit)="farmerEducationForm()" [formGroup]="farmerEducationFormGroup" style="margin-top: 2rem; width: 99%"id="farmerForm">
+          <div class="container">
+
+            <div class="row">
+
+              <div class="col-sm">
+                <div class="col-md-12">
+                  <label for="farmerId" class="form-label">Select Farmer</label>
+                  <select class="form-control" formControlName="farmerId" id="farmerId">
+                    <option value="" hidden>Select Farmer</option><!--For Select Input Displaying "Select Farmer" and put It in Hidden Use Value="" and use Attribute Hidden-->
+                    <option *ngFor="let farmer of farmerList" value="{{farmer.id}}">{{farmer.name}}</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-sm">
+                <div class="col-md-12">
+                  <label for="highQualification" class="form-label">Highest Qualification</label>
+                  <input type="text" class="form-control" id="highQualification" formControlName="highQualification" style="background-color: #f2f2f2" placeholder="Enter Highest Qualification" required>
+                </div>
+              </div>
+
+              <div class="col-sm">
+                <div class="col-md-12">
+                  <label for="currEmployement" class="form-label">Current Employment</label>
+                  <input type="text"  class="form-control" id="currEmployement" formControlName="currEmployement" style="background-color: #f2f2f2" placeholder="Enter Current Employment" required>
+                </div>
+              </div>
+
+              <div class="col-sm">
+                <div class="col-md-12">
+                  <label class="form-label">Experience</label>
+                  <div>
+                    <input type="number" formControlName="experience" id="experiemce" class="form-control" style="background-color: #f2f2f2" placeholder="Enter Experience Year">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+<!--            Matriculation Check Box-->
+            <div class="row">
+              <div class="col-sm" style="margin-top: 2rem;">
+                <div class="col-md-12">
+                  <label for="matriculation" class="form-label">Matriculation</label>&nbsp;&nbsp;
+                  <input type="checkbox" id="matriculation" formControlName="matriculation" (change)="onCheckMatriculation($event)">
+                </div>
+              </div>
+            </div>
+
+
+<!--            Mstrictulation Details Form Start Here-->
+            <div *ngIf="matriculationVisible" id="matriculationId">
+              <div class="row" style="margin-top: 1rem;">
+                <div class="col-sm">
+                  <div class="col-md-12">
+                    <label for="matriculationBoard" class="form-label">Matriculation Board</label>
+                    <input type="text" class="form-control" id="matriculationBoard" formControlName="matriculationBoard" placeholder="Enter Matriculation Board" style="background-color: #f2f2f2">
+                  </div>
+                </div>
+
+                <div class="col-sm">
+                  <div class="col-md-12">
+                    <label for="schoolName" class="form-label">School/College Name</label>
+                    <input type="text"  class="form-control" id="schoolName" formControlName="schoolName" style="background-color: #f2f2f2" placeholder="Enter School Name" required>
+                    <div id="currEmploymentAlert" class="custom-alert"></div>
+                  </div>
+                </div>
+
+                <div class="col-sm">
+                  <div class="col-md-12">
+                    <label for="passoutYear" class="form-label">Passout Year</label>
+                    <input type="number" class="form-control" id="passoutYear" formControlName="passoutYear" style="background-color: #f2f2f2" placeholder="Enter Passout Year" required>
+                  </div>
+                </div>
+
+                <div class="col-sm">
+                  <div class="col-md-12">
+                    <label class="form-label">Percentage Secured</label>
+                    <input type="number" formControlName="percentage" id="percentage" class="form-control" style="background-color: #f2f2f2" placeholder="Enter Percentage">
+                  </div>
+                </div>
+              </div>
+
+              <!--            Intermediate Check Box-->
+              <div class="row">
+                <div class="col-sm" style="margin-top: 2rem;">
+                  <div class="col-md-12">
+                    <label for="intermediate" class="form-label">Intermediate</label>&nbsp;&nbsp;
+                    <input type="checkbox" id="intermediate" formControlName="intermediate" (change)="onCheckIntermediate($event)">
+                  </div>
+                </div>
+              </div>
+
+<!--              Intermediate Details Form Start Here-->
+              <div *ngIf="intermediateVisible" id="intermediateId">
+                <div class="row" style="margin-top: 1rem;">
+                  <div class="col-sm">
+                    <div class="col-md-12">
+                      <label for="intermediateBoard" class="form-label">Intermediate Board</label>
+                      <input type="text" class="form-control" id="intermediateBoard" formControlName="intermediateBoard" placeholder="Enter Intermediate Board" style="background-color: #f2f2f2">
+                    </div>
+                  </div>
+
+                  <div class="col-sm">
+                    <div class="col-md-12">
+                      <label for="collegeName" class="form-label">College Name</label>
+                      <input type="text"  class="form-control" id="collegeName" formControlName="collegeName" style="background-color: #f2f2f2" placeholder="Enter College Name" required>
+                    </div>
+                  </div>
+
+                  <div class="col-sm">
+                    <div class="col-md-12">
+                      <label for="intermediatePassoutYear" class="form-label">Passout Year</label>
+                      <input type="number" class="form-control" id="intermediatePassoutYear" formControlName="intermediatePassoutYear" style="background-color: #f2f2f2" placeholder="Enter Passout Year" required>
+                    </div>
+                  </div>
+
+                  <div class="col-sm">
+                    <div class="col-md-12">
+                      <label class="form-label">Percentage/CGPA Secured</label>
+                      <input type="number" formControlName="intermediatePercentage" id="intermediatePercentage" class="form-control" style="background-color: #f2f2f2" placeholder="Enter Percentage">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+
+          </div>
+
+          <div style="margin-top: 2rem;" class="container">
+
+            <div class="row buttonClass">
+
+              <div class="col-sm">
+                <div class="col-md-12">
+                  <button id="btnSubmit" class="btn" type="submit">Submit</button>
+                  <button id="btnReset" class="btn" type="reset">Reset</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </form>
+      </fieldset>
+    </div>
+<!--    <div id="view">-->
+<!--      <fieldset style="margin-left: 2rem; margin-right: 2rem;" class="form-group border p-3">-->
+<!--        <legend class="w-auto px-2">Farmers Details Table</legend>-->
+<!--        <table id="dynamicTable" class="table row-border hover table-responsive table-bordered" style="width: 95%; display: table; margin-bottom: 2rem;">-->
+
+<!--          <thead>-->
+<!--          <tr>-->
+<!--            <th>Sl No.</th>-->
+<!--            <th>Name</th>-->
+<!--            <th>Father's Name</th>-->
+<!--            <th>Relation</th>-->
+<!--            <th>Gender</th>-->
+<!--            <th>Age</th>-->
+<!--            <th>Aadhar No.</th>-->
+<!--            <th>Acknowledge No.</th>-->
+<!--            <th>Janadhaar No.</th>-->
+<!--            <th>Bank Acc. No.</th>-->
+<!--            <th>Relatives</th>-->
+<!--            <th>Validate</th>-->
+<!--            <th width="9%">Action</th>-->
+<!--          </tr>-->
+<!--          </thead>-->
+
+<!--          &lt;!&ndash;          If Farmer List Array is Empty&ndash;&gt;-->
+<!--          <tbody *ngIf="!farmerList?.length">-->
+<!--          <tr>-->
+<!--            <td colspan="11">No Data Found, Table is Empty!</td>-->
+<!--          </tr>-->
+<!--          </tbody>-->
+
+<!--          &lt;!&ndash;          If Farmer List Array is Not Empty&ndash;&gt;-->
+<!--          <tbody *ngIf="farmerList?.length">-->
+<!--          <tr *ngFor="let farmer of farmerList; let count = index">-->
+<!--            <td>{{count + 1}}</td>-->
+<!--            <td>{{farmer.name}}</td>-->
+<!--            <td>{{farmer.fathersName}}</td>-->
+<!--            <td>{{farmer.relation}}</td>-->
+<!--            <td>{{farmer.gender}}</td>-->
+<!--            <td>{{farmer.age}}</td>-->
+<!--            <td *ngIf="!farmer.aadhar">Not Provided</td>-->
+<!--            <td *ngIf="farmer.aadhar">{{farmer.aadhar.aadharId}}</td>-->
+<!--            <td *ngIf="!farmer.acknowledge">Not Provided</td>-->
+<!--            <td *ngIf="farmer.acknowledge">{{farmer.acknowledge.acknowledgeId}}</td>-->
+<!--            <td *ngIf="!farmer.janAdhaar">Not Provided</td>-->
+<!--            <td *ngIf="farmer.janAdhaar">{{farmer.janAdhaar.janadhaarId}}</td>-->
+<!--            <td title="Click To Fetch Details"><a href="javascript:void(0)" (click)="showBankDetails(farmer.bank, farmer.name)">{{farmer.bank.accountNumber}}</a></td>-->
+<!--            <td title="Click To View Relatives"><button (click)="viewRelatives(farmer, farmer.relationList, farmer.name, farmer.id)" class="btn btn-icon-only btn-facebook fa fa-eye" style="color: black"></button></td>-->
+<!--            <td>-->
+<!--              <div *ngIf="isLoading"><div class="loadingio-spinner-rolling-o08pwprj6g"><div class="ldio-1vv3dp0tlwf"><div></div></div></div><div>Varifying</div></div>-->
+<!--              <div *ngIf="!isLoading"><div><i class="fa fa-check-circle" ></i><div>Varified</div></div></div>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--              <button (click)="editFarmer(farmer.id)" class="btn btn-icon-only btn-facebook" type="button" aria-label="edit button" title="Edit Data"><span aria-hidden="true" class="fa fa-pencil"></span></button>&nbsp;&nbsp;-->
+<!--              <button (click)="deleteFarmer(farmer.id)" class="btn btn-icon-only btn-facebook" type="button" aria-label="delete button" title="Delete Data"><span aria-hidden="true" style="color: #da3b3b" class="fa fa-trash"></span></button>-->
+<!--            </td>-->
+<!--          </tr>-->
+<!--          </tbody>-->
+
+<!--        </table>-->
+
+<!--        <div class="col-md-3 paginationPage">-->
+<!--          <nav aria-label="Products page navigation">-->
+<!--            <ul class="pagination">-->
+<!--              <li class="page-item">-->
+<!--                <a class="page-link" href="javascript:void(0)">Previous</a>-->
+<!--              </li>-->
+<!--              <li class="page-item active">-->
+<!--                <a class="page-link" href="javascript:void(0)">1</a>-->
+<!--              </li>-->
+<!--              <li class="page-item">-->
+<!--                <a class="page-link" href="javascript:void(0)">2</a>-->
+<!--              </li>-->
+<!--              <li class="page-item">-->
+<!--                <a class="page-link" href="javascript:void(0)">3</a>-->
+<!--              </li>-->
+<!--              <li class="page-item">-->
+<!--                <a class="page-link" href="javascript:void(0)">4</a>-->
+<!--              </li>-->
+<!--              <li class="page-item">-->
+<!--                <a class="page-link" href="javascript:void(0)">5</a>-->
+<!--              </li>-->
+<!--              <li class="page-item">-->
+<!--                <a class="page-link" href="javascript:void(0)">Next</a>-->
+<!--              </li>-->
+<!--            </ul>-->
+<!--          </nav>-->
+<!--        </div>-->
+
+<!--      </fieldset>-->
+<!--    </div>-->
+  </div>
+</div>
+
+<!--<div class="example-button-row">-->
+<!--  <button mat-button color="primary" (click)="openModal()">Open Modal</button>-->
+<!--</div>-->
+
+</body>
+</html>

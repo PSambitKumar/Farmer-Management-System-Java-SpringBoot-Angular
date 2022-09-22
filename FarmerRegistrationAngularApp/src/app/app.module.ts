@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FarmerComponent } from './components/farmer/farmer.component';
 import { HomeComponent } from './components/home/home.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {DataTablesModule} from "angular-datatables";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
@@ -19,6 +19,7 @@ import {AddRelativeComponent} from "./modalComponents/add-relative/add-relative.
 import { FarmerPortalRegistrationComponent } from './components/farmer-portal-registration/farmer-portal-registration.component';
 import { FarmerImageUploadComponent } from './components/farmer-image-upload/farmer-image-upload.component';
 import { UploadAadharDocumentComponent } from './components/upload-aadhar-document/upload-aadhar-document.component';
+import { FarmerEducationDetailsComponent } from './components/farmer-education-details/farmer-education-details.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { UploadAadharDocumentComponent } from './components/upload-aadhar-docume
     FarmerPortalRegistrationComponent,
     FarmerImageUploadComponent,
     UploadAadharDocumentComponent,
+    FarmerEducationDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,7 +43,8 @@ import { UploadAadharDocumentComponent } from './components/upload-aadhar-docume
     DataTablesModule,//Added For Data Table
     FontAwesomeModule,//For Font Awesome
     MatDialogModule, BrowserAnimationsModule, MatButtonModule,//For Modal
-    FontAwesomeModule//Font Awesome Module
+    FontAwesomeModule,//Font Awesome Module
+    ReactiveFormsModule//For Reactive Form
   ],
   providers: [],
   bootstrap: [AppComponent]
