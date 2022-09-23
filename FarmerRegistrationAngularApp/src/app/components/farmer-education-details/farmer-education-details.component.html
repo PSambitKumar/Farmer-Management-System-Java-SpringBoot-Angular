@@ -148,6 +148,51 @@
                     </div>
                   </div>
                 </div>
+
+                <!--            Intermediate Check Box-->
+                <div class="row">
+                  <div class="col-sm" style="margin-top: 2rem;">
+                    <div class="col-md-12">
+                      <label for="intermediate" class="form-label">Graduation</label>&nbsp;&nbsp;
+                      <input type="checkbox" id="graduation" formControlName="graduation" (change)="onCheckGraduation($event)">
+                    </div>
+                  </div>
+                </div>
+
+                <!--              Intermediate Details Form Start Here-->
+                <div *ngIf="graduateVisible" id="graduateId">
+                  <div class="row" style="margin-top: 1rem;">
+                    <div class="col-sm">
+                      <div class="col-md-12">
+                        <label for="graduateBoard" class="form-label">Graduate Board</label>
+                        <input type="text" class="form-control" id="graduateBoard" formControlName="graduateBoard" placeholder="Enter Graduate Board" style="background-color: #f2f2f2">
+                      </div>
+                    </div>
+
+                    <div class="col-sm">
+                      <div class="col-md-12">
+                        <label for="graduateCollegeName" class="form-label">College Name</label>
+                        <input type="text"  class="form-control" id="graduateCollegeName" formControlName="graduateCollegeName" style="background-color: #f2f2f2" placeholder="Enter Graduate College Name" required>
+                      </div>
+                    </div>
+
+                    <div class="col-sm">
+                      <div class="col-md-12">
+                        <label for="geaudatePassoutYear" class="form-label">Passout Year</label>
+                        <input type="number" class="form-control" id="geaudatePassoutYear" formControlName="geaudatePassoutYear" style="background-color: #f2f2f2" placeholder="Enter Passout Year" required>
+                      </div>
+                    </div>
+
+                    <div class="col-sm">
+                      <div class="col-md-12">
+                        <label class="form-label">Percentage/CGPA Secured</label>
+                        <input type="number" formControlName="graduatePercentage" id="graduatePercentage" class="form-control" style="background-color: #f2f2f2" placeholder="Enter Percentage">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
               </div>
 
             </div>

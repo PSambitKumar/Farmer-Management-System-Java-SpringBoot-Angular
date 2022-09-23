@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FarmerService} from "../../services/farmer.service";
 import {Farmer} from "../../models/farmer";
 import {FormControl, FormGroup} from "@angular/forms";
+import {animate} from "@angular/animations";
 
 @Component({
   selector: 'app-farmer-education-details',
@@ -11,6 +12,7 @@ import {FormControl, FormGroup} from "@angular/forms";
 export class FarmerEducationDetailsComponent implements OnInit {
   matriculationVisible : boolean = false;
   intermediateVisible : boolean = false;
+  graduateVisible : boolean = false;
   farmerList : Farmer[] = [];
 
   constructor(private farmerService : FarmerService) { }
@@ -34,6 +36,11 @@ export class FarmerEducationDetailsComponent implements OnInit {
     collegeName : new FormControl(''),
     intermediatePassoutYear : new FormControl(''),
     intermediatePercentage : new FormControl(''),
+    graduation : new FormControl(''),
+    graduateBoard : new FormControl(''),
+    graduateCollegeName : new FormControl(''),
+    graduatePassoutYear : new FormControl(''),
+    graduatePercentage : new FormControl('')
   })
 
   addEducation(){}
@@ -66,6 +73,14 @@ export class FarmerEducationDetailsComponent implements OnInit {
       this.intermediateVisible = true;
     else
       this.intermediateVisible = false;
+  }
+
+  onCheckGraduation(event : any){
+    console.log(event.target.value);
+    if (event.target.checked)
+      this.graduateVisible = true;
+    else
+      this.graduateVisible = false;
   }
 
 }
