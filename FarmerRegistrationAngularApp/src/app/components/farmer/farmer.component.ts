@@ -39,8 +39,16 @@ export class FarmerComponent implements OnInit{
   response8: any;
   response9 : any;
   response10 : any;
+  paginationData : String =
+    '<ul class=\"pagination pagination-md\">' +
+    '<li class=\"page-item\"><a class=\"page-link\" href=\"javascript:void(0)\" >Previous</a></li>' +
+    '<li class=\"page-item\"><a class=\"page-link\" href=\"javascript:void(0)\" (click)=\"getData(1)\">1</a></li>' +
+    '<li class=\"page-item active\"><a class=\"page-link\" href=\"javascript:void(0)\" (click)=\"getData(2)\">2</a></li>' +
+    '</ul>';
 
-  constructor(private farmerService : FarmerService, private modalService : ModalService, public matDialog: MatDialog, private validationService : ValidationService, private router : Router) { }
+
+
+constructor(private farmerService : FarmerService, private modalService : ModalService, public matDialog: MatDialog, private validationService : ValidationService, private router : Router) { }
 
   ngOnInit(): void {
     this.hideUniqueIdInput();
@@ -306,7 +314,9 @@ export class FarmerComponent implements OnInit{
     $('#modalSubscribe').show();
   }
 
-
+  getData(data : any){
+  alert("Inside Get Data : " + data);
+  }
 
 
 }
