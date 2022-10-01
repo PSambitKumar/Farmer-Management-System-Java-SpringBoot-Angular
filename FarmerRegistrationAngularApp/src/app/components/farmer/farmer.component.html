@@ -32,13 +32,14 @@
               <div class="col-sm">
                 <div class="col-md-12">
                   <label for="name" class="form-label">Farmer Name</label>
-                  <input #name [(ngModel)]="farmerBean.name" [value]="farmer.name"  type="text"  class="form-control" maxlength="30" id="name" name="name" style="background-color: #f2f2f2" placeholder="Enter Farmer's Name" onkeyup="return(alert(this.value.toString().charCodeAt(0)))" required>
+                  <input #name [(ngModel)]="farmerBean.name" [value]="farmer.name"  type="text"  class="form-control" maxlength="30" id="name" name="name" style="background-color: #f2f2f2" placeholder="Enter Farmer's Name" required>
+                  <!-- onkeyup="return(alert(this.value.toString().charCodeAt(0)))"-->
                   <div id="nameAlert" class="custom-alert"></div>
-<!--                 <span *ngIf="name.invalid && (name.dirty || name.touched)">-->
-<!--                    <span  class="custom-alert" *ngIf="name.errors?.['required']">-->
-<!--                      Name is required.-->
-<!--                    </span>-->
-<!--                  </span>-->
+                  <!--                 <span *ngIf="name.invalid && (name.dirty || name.touched)">-->
+                  <!--                    <span  class="custom-alert" *ngIf="name.errors?.['required']">-->
+                  <!--                      Name is required.-->
+                  <!--                    </span>-->
+                  <!--                  </span>-->
                 </div>
               </div>
 
@@ -109,13 +110,13 @@
                   <input [(ngModel)]="farmerBean.bank" [value]="farmer.bank.bankName" type="text"  class="form-control" id="bankName" style="background-color: #f2f2f2" name="bankName" placeholder="Enter Bank Name" required>
                   <div id="bankAlert" class="custom-alert"></div>
                   <!--                  <select [(ngModel)]="farmerBean.bank" class="custom-select my-1 mr-sm-2"  aria-label="Default select example" style="background-color: #f2f2f2" id="bankName" name="bankName">-->
-<!--                    <option selected value="0">Select</option>-->
-<!--                    <option value="State Bank of India">State Bank of India</option>-->
-<!--                    <option value="Bank of Baroda">Bank of Baroda</option>-->
-<!--                    <option value="Axis Bank">Axis Bank</option>-->
-<!--                    <option value="Uco Bank">Uco Bank</option>-->
-<!--                    <option value="HDFC Bank">HDFC Bank</option>-->
-<!--                  </select>-->
+                  <!--                    <option selected value="0">Select</option>-->
+                  <!--                    <option value="State Bank of India">State Bank of India</option>-->
+                  <!--                    <option value="Bank of Baroda">Bank of Baroda</option>-->
+                  <!--                    <option value="Axis Bank">Axis Bank</option>-->
+                  <!--                    <option value="Uco Bank">Uco Bank</option>-->
+                  <!--                    <option value="HDFC Bank">HDFC Bank</option>-->
+                  <!--                  </select>-->
                 </div>
               </div>
 
@@ -212,69 +213,69 @@
           </tr>
           </thead>
 
-<!--          If Farmer List Array is Empty-->
-            <tbody *ngIf="!farmerList?.length">
-              <tr>
-                <td colspan="11">No Data Found, Table is Empty!</td>
-              </tr>
-            </tbody>
+          <!--          If Farmer List Array is Empty-->
+          <tbody *ngIf="!farmerList?.length">
+          <tr>
+            <td colspan="11">No Data Found, Table is Empty!</td>
+          </tr>
+          </tbody>
 
-<!--          If Farmer List Array is Not Empty-->
-            <tbody *ngIf="farmerList?.length">
-            <tr *ngFor="let farmer of farmerList; let count = index">
-              <td>{{count + 1}}</td>
-              <td>{{farmer.name}}</td>
-              <td>{{farmer.fathersName}}</td>
-              <td>{{farmer.relation}}</td>
-              <td>{{farmer.gender}}</td>
-              <td>{{farmer.age}}</td>
-              <td *ngIf="!farmer.aadhar">Not Provided</td>
-              <td *ngIf="farmer.aadhar">{{farmer.aadhar.aadharId}}</td>
-              <td *ngIf="!farmer.acknowledge">Not Provided</td>
-              <td *ngIf="farmer.acknowledge">{{farmer.acknowledge.acknowledgeId}}</td>
-              <td *ngIf="!farmer.janAdhaar">Not Provided</td>
-              <td *ngIf="farmer.janAdhaar">{{farmer.janAdhaar.janadhaarId}}</td>
-              <td title="Click To Fetch Details"><a href="javascript:void(0)" (click)="showBankDetails(farmer.bank, farmer.name)">{{farmer.bank.accountNumber}}</a></td>
-              <td title="Click To View Relatives"><button (click)="viewRelatives(farmer, farmer.relationList, farmer.name, farmer.id)" class="btn btn-icon-only btn-facebook fa fa-eye" style="color: black"></button></td>
-              <td>
-                  <div *ngIf="isLoading"><div class="loadingio-spinner-rolling-o08pwprj6g"><div class="ldio-1vv3dp0tlwf"><div></div></div></div><div>Varifying</div></div>
-                  <div *ngIf="!isLoading"><div><i class="fa fa-check-circle" ></i><div>Varified</div></div></div>
-              </td>
-              <td>
-                <button (click)="editFarmer(farmer.id)" class="btn btn-icon-only btn-facebook" type="button" aria-label="edit button" title="Edit Data"><span aria-hidden="true" class="fa fa-pencil"></span></button>&nbsp;&nbsp;
-                <button (click)="deleteFarmer(farmer.id)" class="btn btn-icon-only btn-facebook" type="button" aria-label="delete button" title="Delete Data"><span aria-hidden="true" style="color: #da3b3b" class="fa fa-trash"></span></button>
-              </td>
-            </tr>
-            </tbody>
+          <!--          If Farmer List Array is Not Empty-->
+          <tbody *ngIf="farmerList?.length">
+          <tr *ngFor="let farmer of farmerList; let count = index">
+            <td>{{count + 1}}</td>
+            <td>{{farmer.name}}</td>
+            <td>{{farmer.fathersName}}</td>
+            <td>{{farmer.relation}}</td>
+            <td>{{farmer.gender}}</td>
+            <td>{{farmer.age}}</td>
+            <td *ngIf="!farmer.aadhar">Not Provided</td>
+            <td *ngIf="farmer.aadhar">{{farmer.aadhar.aadharId}}</td>
+            <td *ngIf="!farmer.acknowledge">Not Provided</td>
+            <td *ngIf="farmer.acknowledge">{{farmer.acknowledge.acknowledgeId}}</td>
+            <td *ngIf="!farmer.janAdhaar">Not Provided</td>
+            <td *ngIf="farmer.janAdhaar">{{farmer.janAdhaar.janadhaarId}}</td>
+            <td title="Click To Fetch Details"><a href="javascript:void(0)" (click)="showBankDetails(farmer.bank, farmer.name)">{{farmer.bank.accountNumber}}</a></td>
+            <td title="Click To View Relatives"><button (click)="viewRelatives(farmer, farmer.relationList, farmer.name, farmer.id)" class="btn btn-icon-only btn-facebook fa fa-eye" style="color: black"></button></td>
+            <td>
+              <div *ngIf="isLoading"><div class="loadingio-spinner-rolling-o08pwprj6g"><div class="ldio-1vv3dp0tlwf"><div></div></div></div><div>Varifying</div></div>
+              <div *ngIf="!isLoading"><div><i class="fa fa-check-circle" ></i><div>Varified</div></div></div>
+            </td>
+            <td>
+              <button (click)="editFarmer(farmer.id)" class="btn btn-icon-only btn-facebook" type="button" aria-label="edit button" title="Edit Data"><span aria-hidden="true" class="fa fa-pencil"></span></button>&nbsp;&nbsp;
+              <button (click)="deleteFarmer(farmer.id)" class="btn btn-icon-only btn-facebook" type="button" aria-label="delete button" title="Delete Data"><span aria-hidden="true" style="color: #da3b3b" class="fa fa-trash"></span></button>
+            </td>
+          </tr>
+          </tbody>
 
         </table>
 
         <div class="col-md-3 paginationPage">
           <nav aria-label="Products page navigation">
-<!--            [innerHtml]="paginationData"-->
-                        <ul class="pagination">
-                          <li class="page-item">
-                            <a class="page-link" href="javascript:void(0)">Previous</a>
-                          </li>
-                          <li class="page-item active">
-                            <a class="page-link" href="javascript:void(0)">1</a>
-                          </li>
-                          <li class="page-item">
-                            <a class="page-link" href="javascript:void(0)">2</a>
-                          </li>
-                          <li class="page-item">
-                            <a class="page-link" href="javascript:void(0)">3</a>
-                          </li>
-                          <li class="page-item">
-                            <a class="page-link" href="javascript:void(0)">4</a>
-                          </li>
-                          <li class="page-item">
-                            <a class="page-link" href="javascript:void(0)">5</a>
-                          </li>
-                          <li class="page-item">
-                            <a class="page-link" href="javascript:void(0)">Next</a>
-                          </li>
-                        </ul>
+            <!--            [innerHtml]="paginationData"-->
+            <ul class="pagination">
+              <li class="page-item">
+                <a class="page-link" href="javascript:void(0)">Previous</a>
+              </li>
+              <li class="page-item active">
+                <a class="page-link" href="javascript:void(0)">1</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="javascript:void(0)">2</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="javascript:void(0)">3</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="javascript:void(0)">4</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="javascript:void(0)">5</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="javascript:void(0)">Next</a>
+              </li>
+            </ul>
           </nav>
         </div>
 

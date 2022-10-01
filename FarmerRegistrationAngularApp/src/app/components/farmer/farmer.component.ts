@@ -128,6 +128,7 @@ constructor(private farmerService : FarmerService, private modalService : ModalS
         console.log(this.bankDetailsBean);
       })
     }
+
   }
 
   // Check Aadhar Id
