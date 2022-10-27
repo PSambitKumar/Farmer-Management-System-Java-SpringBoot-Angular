@@ -12,6 +12,7 @@ import {FarmerImage} from "../models/farmerImage";
 })
 export class FarmerService {
   private baseUrl = "http://localhost:8080/farmer/v1";
+  responseTime : any;
 
   constructor(private httpClient : HttpClient) { }
 

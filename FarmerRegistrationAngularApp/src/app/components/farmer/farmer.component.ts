@@ -46,6 +46,16 @@ export class FarmerComponent implements OnInit{
     '<li class=\"page-item active\"><a class=\"page-link\" href=\"javascript:void(0)\" (click)=\"getData(2)\">2</a></li>' +
     '</ul>';
 
+  timer : any = 0;
+  timeLeft: number = 60;
+  private startTime : number = 0;
+  private responseTime: number = 0;
+
+  // Content Download. The browser is receiving the response, either directly from the network or from a service worker. This value is the total amount of time spent reading the response body. Larger than expected values could indicate a slow network, or that the browser is busy performing other work which delays the response from being read.
+contentDownloadTime : any = 0;
+  private endTime: number = 0;
+  private timeTaken: number = 0;
+
 
 
 constructor(private farmerService : FarmerService, private modalService : ModalService, public matDialog: MatDialog, private validationService : ValidationService, private router : Router) { }
@@ -54,6 +64,9 @@ constructor(private farmerService : FarmerService, private modalService : ModalS
     this.hideUniqueIdInput();
     this.addFarmer();
     this.getFarmerList();
+    // this.getFarmerList1()
+    // this.getTimer();
+
 
     setTimeout(() => {
       this.isLoading = false;
@@ -94,7 +107,7 @@ constructor(private farmerService : FarmerService, private modalService : ModalS
         showDenyButton: true,
         showCancelButton: true,
         confirmButtonText: 'Save',
-        denyButtonText: `Don't Save`,
+        denyButtonText: `Don't Save`
       }).then((result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
@@ -116,6 +129,7 @@ constructor(private farmerService : FarmerService, private modalService : ModalS
     }
   }
 
+
   // Chcek IFSC Code
   checkIFSCCode(ifscCode : any){
     console.log("IFSC Code : " + ifscCode);
@@ -136,11 +150,31 @@ constructor(private farmerService : FarmerService, private modalService : ModalS
     console.log(aadharId);
     this.validationService.validateAadhar(aadharId, "#adhaarId", "#aadharAlert");
   }
+  
+  
+  getFarmerList1(){
+  // Success Response
+  this.farmerService.getFarmerList().subscribe(data => {
+    this.startTime = new Date().getTime();
+    alert("Start Time : " + this.startTime);
+    this.farmerList = data;
+    this.endTime = new Date().getTime();
+    alert("End Time : " + this.endTime);
+    this.timeTaken = this.endTime - this.startTime;
+    alert("Time Taken : " + this.timeTaken);
+  });
+  }
+  
+  
   getFarmerList(){
     console.log("Inside Get Farmers List-------------->>")
     this.farmerService.getFarmerList().subscribe(data => {
+
+
+      console.log("Data Printing.");
+      console.log(data);
       this.farmerList = data;
-      console.log(this.farmerList);
+      // console.log(this.farmerList);
 
       // Iterator to Print Each Object of a List
       for (const datum of data) {
@@ -155,6 +189,8 @@ constructor(private farmerService : FarmerService, private modalService : ModalS
       }
     })
   }
+
+
 
   editFarmer(id : any){
     console.log("Farmer Id :" + id);
@@ -191,6 +227,14 @@ constructor(private farmerService : FarmerService, private modalService : ModalS
         })
       }
     })
+  }
+
+  getTimer(){
+  this.startTime = new Date().getTime();
+  this.farmerService.getFarmerList().subscribe(data => {
+    this.responseTime = new Date().getTime() - this.startTime;
+    alert("Response Time : " + this.responseTime);
+  })
   }
 
   deleteFarmer(id : any){
@@ -304,9 +348,23 @@ constructor(private farmerService : FarmerService, private modalService : ModalS
     // $('#btn2').removeClass("btn-primary");
 
   }
+
+
+// Response Time Counting Code
+  responseTimeCounting(){
+    this.startTime = new Date().getTime();
+    this.responseTime = new Date().getTime() - this.startTime;
+    console.log("Response Time : " + this.responseTime);
+  }
+
   viewFarmer(){
+
+
+
     $('#add').hide();
     $('#view').show();
+
+    // Count Timer
     // $('#btn2').addClass("btn-primary");
     // $('#btn1').removeClass("btn-primary");
   }
@@ -318,6 +376,11 @@ constructor(private farmerService : FarmerService, private modalService : ModalS
   getData(data : any){
   alert("Inside Get Data : " + data);
   }
+
+  getData1(){
+  alert("Data")
+  }
+
 
 
 }

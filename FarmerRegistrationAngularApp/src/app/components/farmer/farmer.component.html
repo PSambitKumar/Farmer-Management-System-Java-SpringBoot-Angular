@@ -209,6 +209,7 @@
             <th>Bank Acc. No.</th>
             <th>Relatives</th>
             <th>Validate</th>
+            <th>Download</th>
             <th width="9%">Action</th>
           </tr>
           </thead>
@@ -238,8 +239,11 @@
             <td title="Click To Fetch Details"><a href="javascript:void(0)" (click)="showBankDetails(farmer.bank, farmer.name)">{{farmer.bank.accountNumber}}</a></td>
             <td title="Click To View Relatives"><button (click)="viewRelatives(farmer, farmer.relationList, farmer.name, farmer.id)" class="btn btn-icon-only btn-facebook fa fa-eye" style="color: black"></button></td>
             <td>
-              <div *ngIf="isLoading"><div class="loadingio-spinner-rolling-o08pwprj6g"><div class="ldio-1vv3dp0tlwf"><div></div></div></div><div>Varifying</div></div>
+              <div *ngIf="isLoading"><div class="loadingio-spinner-rolling-o08pwprj6g"><div class="ldio-1vv3dp0tlwf"><div></div></div></div><div>Verifying</div></div>
               <div *ngIf="!isLoading"><div><i class="fa fa-check-circle" ></i><div>Varified</div></div></div>
+            </td>
+            <td>
+              <button class="btn btn-icon-only btn-facebook" type="button" aria-label="edit button" title="Download Excel"><span aria-hidden="true" class="fa fa-file-excel-o"></span></button>
             </td>
             <td>
               <button (click)="editFarmer(farmer.id)" class="btn btn-icon-only btn-facebook" type="button" aria-label="edit button" title="Edit Data"><span aria-hidden="true" class="fa fa-pencil"></span></button>&nbsp;&nbsp;
@@ -255,10 +259,10 @@
             <!--            [innerHtml]="paginationData"-->
             <ul class="pagination">
               <li class="page-item">
-                <a class="page-link" href="javascript:void(0)">Previous</a>
+                <a class="page-link" href="https://google.com" target="_blank" (click)="getData1()">Previous</a>
               </li>
               <li class="page-item active">
-                <a class="page-link" href="javascript:void(0)">1</a>
+                <a class="page-link" href="javascript:void(0)"  (click)="getData1()">1</a>
               </li>
               <li class="page-item">
                 <a class="page-link" href="javascript:void(0)">2</a>
@@ -283,6 +287,8 @@
     </div>
   </div>
 </div>
+
+<div id="timer" style="margin-left: 2rem;">Timer : {{timer}}</div>
 
 <!--<div class="example-button-row">-->
 <!--  <button mat-button color="primary" (click)="openModal()">Open Modal</button>-->
