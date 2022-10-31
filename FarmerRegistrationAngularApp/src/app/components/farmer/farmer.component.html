@@ -207,6 +207,8 @@
             <th>Acknowledge No.</th>
             <th>Janadhaar No.</th>
             <th>Bank Acc. No.</th>
+            <th>Status</th>
+            <th>Date</th>
             <th>Relatives</th>
             <th>Validate</th>
             <th>Download</th>
@@ -237,6 +239,11 @@
             <td *ngIf="!farmer.janAdhaar">Not Provided</td>
             <td *ngIf="farmer.janAdhaar">{{farmer.janAdhaar.janadhaarId}}</td>
             <td title="Click To Fetch Details"><a href="javascript:void(0)" (click)="showBankDetails(farmer.bank, farmer.name)">{{farmer.bank.accountNumber}}</a></td>
+            <td>
+              <ng-template [ngIf]="farmer.gender == 'male'" [ngIfElse]="elseTemplate">Valid</ng-template>
+              <ng-template #elseTemplate> Not Valid</ng-template>
+            </td>
+            <td>{{newDate | date}}</td>
             <td title="Click To View Relatives"><button (click)="viewRelatives(farmer, farmer.relationList, farmer.name, farmer.id)" class="btn btn-icon-only btn-facebook fa fa-eye" style="color: black"></button></td>
             <td>
               <div *ngIf="isLoading"><div class="loadingio-spinner-rolling-o08pwprj6g"><div class="ldio-1vv3dp0tlwf"><div></div></div></div><div>Verifying</div></div>

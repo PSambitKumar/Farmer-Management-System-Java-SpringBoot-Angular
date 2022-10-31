@@ -48,6 +48,8 @@ export class FarmerComponent implements OnInit{
 
   timer : any = 0;
   timeLeft: number = 60;
+  newDate : any = new Date();
+  staticDate : any = new Date('25-09-2022');
   private startTime : number = 0;
   private responseTime: number = 0;
 
@@ -55,6 +57,8 @@ export class FarmerComponent implements OnInit{
 contentDownloadTime : any = 0;
   private endTime: number = 0;
   private timeTaken: number = 0;
+
+
 
 
 
