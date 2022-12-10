@@ -49,7 +49,7 @@ export class FarmerComponent implements OnInit{
   timer : any = 0;
   timeLeft: number = 60;
   newDate : any = new Date();
-  staticDate : any = new Date('25-09-2022');
+  staticDate : any = '25-09-2022';
   private startTime : number = 0;
   private responseTime: number = 0;
 
@@ -57,6 +57,8 @@ export class FarmerComponent implements OnInit{
 contentDownloadTime : any = 0;
   private endTime: number = 0;
   private timeTaken: number = 0;
+
+  idList : any =[];
 
 
 
@@ -383,6 +385,16 @@ constructor(private farmerService : FarmerService, private modalService : ModalS
 
   getData1(){
   alert("Data")
+  }
+
+  getCheckValue(event : any, id : any){
+  if (event.target.checked){
+    this.idList.push(id);
+    console.log("Id List After Add : " + this.idList);
+  }else {
+    this.idList.splice(this.idList.indexOf(id), 1);
+    console.log("Id List  After Remove : " + this.idList);
+  }
   }
 
 

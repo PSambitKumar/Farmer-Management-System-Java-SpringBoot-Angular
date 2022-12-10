@@ -47,13 +47,13 @@ public class FarmersRegistrationController {
             bank.setBankName(bankName);
             bank.setAccountNumber(accountNumber);
             bank.setIfscCode(ifscCode);
-            bank.setMobileNumber((mobile));
+            bank.setMobileNumber(mobile);
             Bank saveBank = mainService.saveBank(bank);
             if (saveBank != null){
                 System.out.println("Bank Saved Successfully.");
                 farmer.setBank(bank);
                 if (uniqueId.equalsIgnoreCase("Ack Id")){
-                    System.out.println("Ack Id Recieved. " + ackId);
+                    System.out.println("Ack Id Received. " + ackId);
                     Acknowledge acknowledge = new Acknowledge();
                     acknowledge.setAcknowledgeId(ackId);
                     if (mainService.saveAcknowledge(acknowledge) != null){

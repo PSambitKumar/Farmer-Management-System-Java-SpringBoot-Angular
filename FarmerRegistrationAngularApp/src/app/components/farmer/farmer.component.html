@@ -197,6 +197,7 @@
 
           <thead>
           <tr>
+            <th><input type="checkbox"></th>
             <th>Sl No.</th>
             <th>Name</th>
             <th>Father's Name</th>
@@ -226,6 +227,7 @@
           <!--          If Farmer List Array is Not Empty-->
           <tbody *ngIf="farmerList?.length">
           <tr *ngFor="let farmer of farmerList; let count = index">
+            <td><input type="checkbox" (change)="getCheckValue($event, farmer.id)"></td>
             <td>{{count + 1}}</td>
             <td>{{farmer.name}}</td>
             <td>{{farmer.fathersName}}</td>
@@ -243,7 +245,7 @@
               <ng-template [ngIf]="farmer.gender == 'male'" [ngIfElse]="elseTemplate">Valid</ng-template>
               <ng-template #elseTemplate> Not Valid</ng-template>
             </td>
-            <td>{{newDate | date}}</td>
+            <td>{{staticDate | date}}</td>
             <td title="Click To View Relatives"><button (click)="viewRelatives(farmer, farmer.relationList, farmer.name, farmer.id)" class="btn btn-icon-only btn-facebook fa fa-eye" style="color: black"></button></td>
             <td>
               <div *ngIf="isLoading"><div class="loadingio-spinner-rolling-o08pwprj6g"><div class="ldio-1vv3dp0tlwf"><div></div></div></div><div>Verifying</div></div>
