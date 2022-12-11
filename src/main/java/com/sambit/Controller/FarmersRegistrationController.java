@@ -14,8 +14,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
-@Controller
 @Slf4j
+@Controller
 public class FarmersRegistrationController {
 
     private static final Logger logger = LoggerFactory.getLogger(FarmersRegistrationController.class);

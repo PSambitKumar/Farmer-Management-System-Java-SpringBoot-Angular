@@ -55,6 +55,7 @@ public class FarmersRegistrationAngularController {
     @GetMapping("/relationList")
     public List<Relation> getRelationList(){
         System.out.println("Inside Relation List Method-------------------->>");
+
         return mainService.findAllRelationList();
     }
 
