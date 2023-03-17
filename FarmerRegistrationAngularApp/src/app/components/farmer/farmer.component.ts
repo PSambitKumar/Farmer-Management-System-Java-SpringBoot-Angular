@@ -397,6 +397,16 @@ constructor(private farmerService : FarmerService, private modalService : ModalS
   }
   }
 
+  checkAll(event : any) {
+    if (event.target.checked) {
+      this.idList = [];
+      for (let i = 0; i < this.farmerList.length; i++) {
+        this.idList.push(this.farmerList[i].id);
+      }
+      console.log("Id List After Add : " + this.idList);
+    }
+  }
+
 
 
 }
