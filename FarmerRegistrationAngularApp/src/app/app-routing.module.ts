@@ -12,6 +12,7 @@ import {UploadAadharDocumentComponent} from "./components/upload-aadhar-document
 import {
   FarmerEducationDetailsComponent
 } from "./components/farmer-education-details/farmer-education-details.component";
+import {LandingComponent} from "./components/landing/landing.component";
 
 const routes: Routes = [
   {path: "home", component:HomeComponent},
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path : "farmerImageUpload", component : FarmerImageUploadComponent},
   {path : "uploadAadharDocument", component : UploadAadharDocumentComponent},
   {path : "farmerEducationDetails", component : FarmerEducationDetailsComponent},
+  {path : "landing", component : LandingComponent},
 ];
 
 @NgModule({

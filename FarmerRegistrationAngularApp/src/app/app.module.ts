@@ -20,6 +20,7 @@ import { FarmerPortalRegistrationComponent } from './components/farmer-portal-re
 import { FarmerImageUploadComponent } from './components/farmer-image-upload/farmer-image-upload.component';
 import { UploadAadharDocumentComponent } from './components/upload-aadhar-document/upload-aadhar-document.component';
 import { FarmerEducationDetailsComponent } from './components/farmer-education-details/farmer-education-details.component';
+import { LandingComponent } from './components/landing/landing.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { FarmerEducationDetailsComponent } from './components/farmer-education-d
     FarmerImageUploadComponent,
     UploadAadharDocumentComponent,
     FarmerEducationDetailsComponent,
+    LandingComponent,
   ],
   imports: [
     BrowserModule,
