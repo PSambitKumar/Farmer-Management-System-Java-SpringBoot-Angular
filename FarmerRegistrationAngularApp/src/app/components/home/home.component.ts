@@ -28,4 +28,41 @@ export class HomeComponent implements OnInit {
   //   });
   // }
 
+
+  // generate Form and Auto Submit
+  postForm(path: any, encData: any, method: any) {
+    const form = document.createElement('form');
+    form.setAttribute('method', method);
+    form.setAttribute('action', path);
+
+    const hiddenField = document.createElement('input');
+    hiddenField.setAttribute('type', 'hidden');
+    hiddenField.setAttribute('name', 'encData');
+    hiddenField.setAttribute('value', encData);
+    form.appendChild(hiddenField);
+
+    document.body.appendChild(form);
+    form.submit();
+  }
+
+  postForm1(path : any, params : any, method="") {
+    method = method || 'post';
+
+    var form = document.createElement('form');
+    form.setAttribute('method', method);
+    form.setAttribute('action', path);
+
+    for (var key in params) {
+      if (params.hasOwnProperty(key)) {
+        var hiddenField = document.createElement('input');
+        hiddenField.setAttribute('type', 'hidden');
+        hiddenField.setAttribute('name', key);
+        hiddenField.setAttribute('value', params[key]);
+        form.appendChild(hiddenField);
+      }
+    }
+    document.body.appendChild(form);
+    form.submit();
+  }
+
 }
