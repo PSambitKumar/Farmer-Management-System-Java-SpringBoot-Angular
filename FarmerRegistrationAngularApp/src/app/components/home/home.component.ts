@@ -64,5 +64,4 @@ export class HomeComponent implements OnInit {
     document.body.appendChild(form);
     form.submit();
   }
-
 }
