@@ -105,6 +105,47 @@ export class FarmerService {
 //   return this.httpClient.request(req);
 // }
 
+  // getBeneficiaryList(id,flag,block,user) {
+  //   let headers = new HttpHeaders({
+  //     'Content-Type': 'application/json',
+  //     'Authorization': this.jwtService.getJwtToken()
+  //   })
+  //   let options = {
+  //     headers:headers,
+  //     params: {
+  //       'userId': id,
+  //       'flag': flag,
+  //       'block': block,
+  //       'mskuser': user,
+  //     }
+  //   }
+  //   return this.httpClient.get(getBeneficiaryList,options)
+  // }
+  // cardPrint(data: any){
+  //   let headers = new HttpHeaders({
+  //     'Content-Type': 'application/json',
+  //     'Authorization': this.jwtService.getJwtToken()
+  //   })
+  //   let options = {
+  //     headers:headers
+  //   }
+  //   return this.httpClient.post(cardPrint,data,options)
+  // }
+  //
+  // getCardDeliveryStatusUsingURN(urn : any) {
+  //   let headers = new HttpHeaders({
+  //     'Content-Type': 'application/json',
+  //     'Authorization': this.jwtService.getJwtToken()
+  //   })
+  //   let options = {
+  //     headers:headers,
+  //     params: {
+  //       'urn': urn
+  //     }
+  //   }
+  //   return this.httpClient.get(getCardDeliveryStatusUsingURN,options)
+  // }
+
   // Sending Data Using Post Method Using FormData
   createFarmerImage(farmerImage : FarmerImage, imageData : File) : Observable<ResponseBean>{
     const farmerImageData = new FormData();
