@@ -3,7 +3,7 @@ import java.util.Base64;
 import java.util.Random;
 
 /**
- * @Project : BSKY Backend
+ * @Project : Famer Registration
  * @Auther : Sambit Kumar Pradhan
  * @Created On : 20/03/2023 - 3:57 PM
  */

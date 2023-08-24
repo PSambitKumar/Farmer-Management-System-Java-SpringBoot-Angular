@@ -40,12 +40,10 @@ public class CommonFileUpload {
                     File file1 = new File(filePath);
                     if (!file1.exists()){
                         boolean checkCreated1 = file1.mkdir();
-                        if (checkCreated1){
+                        if (checkCreated1)
                             result = "Success";
-                        }
-                        else {
+                        else
                             result = "Failed";
-                        }
                     }
                 }
             }
@@ -57,12 +55,10 @@ public class CommonFileUpload {
             File file1 = new File(filePath);
             if (!file1.exists()){
                 boolean checkCreated2 = file1.mkdir();
-                if (checkCreated2){
+                if (checkCreated2)
                     result = "Success";
-                }
-                else {
+                else
                     result = "Failed";
-                }
             }
         }
         return result;
@@ -73,12 +69,10 @@ public class CommonFileUpload {
     public static String fileExistsOrNot(String folderName){
         String filePath = "";
         String result= null;
-        if (operatingSystem.contains("windows")){
+        if (operatingSystem.contains("windows"))
             filePath = windowsRootFolder + folderName;
-        }
-        else if (operatingSystem.contains("nix") || operatingSystem.contains("nux") || operatingSystem.contains("aix")){
+        else if (operatingSystem.contains("nix") || operatingSystem.contains("nux") || operatingSystem.contains("aix"))
             filePath = linuxRootFolder + folderName;
-        }
 
        //Checking Root Directory is Present or Not
         File file = new File("C:/FarmerRegistrationData");

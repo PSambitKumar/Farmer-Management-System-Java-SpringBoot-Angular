@@ -14,3 +14,25 @@ h3{
   background: #0d6efd;
   border: none;
 }
+
+
+/*Blinks CSS*/
+.text-danger-glow {
+  color: #ff4141;
+  text-shadow:
+    0 0 20px #f00;
+    /*0 0 30px #f00,*/
+    /*0 0 40px #f00,*/
+    /*0 0 50px #f00,*/
+    /*0 0 60px #f00,*/
+    /*0 0 70px #f00,*/
+    /*0 0 80px #f00;*/
+}
+
+.blink {
+  animation: blinker 1s cubic-bezier(.5, 0, 1, 1) infinite alternate;
+}
+@keyframes blinker {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
