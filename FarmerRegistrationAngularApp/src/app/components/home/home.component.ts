@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Bank} from "../../models/bank";
 import {FarmerService} from "../../services/farmer.service";
 import {Relation} from "../../models/relation";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,8 @@ import {Relation} from "../../models/relation";
 export class HomeComponent implements OnInit {
   data : any = [];//For Declaration of Random Array
   // private relationList: Relation[] = [];
-  constructor(private farmerService : FarmerService) { }
+  constructor(private farmerService : FarmerService,
+              private router: Router) { }
 
   ngOnInit(): void {
     // this.getRelationList();
@@ -63,5 +65,9 @@ export class HomeComponent implements OnInit {
     }
     document.body.appendChild(form);
     form.submit();
+  }
+
+  routingMethods(code: any) {
+    this.router.navigate(['/componentPath'], { queryParams: { code: code } });
   }
 }

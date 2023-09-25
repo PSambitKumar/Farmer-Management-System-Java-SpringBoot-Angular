@@ -21,6 +21,7 @@ h3{
   color: #ff4141;
   text-shadow:
     0 0 20px #f00;
+    /*!*0 0 20px #f0;*!Only Blinks Text*/
     /*0 0 30px #f00,*/
     /*0 0 40px #f00,*/
     /*0 0 50px #f00,*/
@@ -35,4 +36,16 @@ h3{
 @keyframes blinker {
   from { opacity: 1; }
   to { opacity: 0; }
+}
+
+
+
+/*On Hover Bold Test add class bold-on-hover to the element*/
+.bold-on-hover {
+  font-weight: normal; /* Initial font weight */
+  cursor: pointer;
+}
+
+.bold-on-hover:hover {
+  font-weight: bold; /* Change to bold when hovering */
 }

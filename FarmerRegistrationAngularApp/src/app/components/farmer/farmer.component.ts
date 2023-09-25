@@ -407,6 +407,28 @@ constructor(private farmerService : FarmerService, private modalService : ModalS
     }
   }
 
+  setDate() {
+    let currentDate = new Date();
+
+    let firstDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1);
+    let firstDate1 = this.formatDate(firstDate);
+
+    let secondDate = new Date(currentDate);
+    secondDate.setDate(currentDate.getDate() - 30);
+    let secondDate1 = this.formatDate(secondDate);
+
+    let today = new Date(currentDate);
+    let today1 = this.formatDate(today);
+  }
+
+  formatDate(date: any) {
+    const monthsArray = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    let day = date.getDate();
+    let month = monthsArray[date.getMonth()];
+    let year = date.getFullYear();
+    return `${day}-${month}-${year}`;
+  }
+
 
 
 }
