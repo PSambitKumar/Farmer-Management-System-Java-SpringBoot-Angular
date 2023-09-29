@@ -429,6 +429,55 @@ constructor(private farmerService : FarmerService, private modalService : ModalS
     return `${day}-${month}-${year}`;
   }
 
+  // Sort Table
+  // Html File Code
+// <table class="table table-striped m-0">
+//   <thead>
+//     <tr>
+//       <th scope="col" (click)="sort('memberID')">Member ID</th>
+// <th scope="col" (click)="sort('memberName')">Name</th>
+//     <th scope="col" (click)="sort('memberGender')">Gender</th>
+//     <th scope="col" (click)="sort('memberAge')">Age</th>
+//     <th scope="col" (click)="sort('maskAadhaarNumber')">Aadhaar Card No</th>
+// <th scope="col" (click)="sort('rationCardNumber')">Ration Card No</th>
+// <th scope="col">Select Patient</th>
+// </tr>
+// </thead>
+// <tbody>
+// <tr *ngFor="let family of familyInformation; let i = index">
+// <!-- Rest of your code for table rows -->
+// </tr>
+// </tbody>
+// </table>
+
+
+  // TS File Code
+
+  // familyInformation = [/* ... */]; // Your family information array
+  // sortByKey: string = ''; // Key to sort by
+  // sortAscending: boolean = true; // Sort order
+  //
+  // sort(key: string) {
+  //   // If clicking on the same key, toggle sort order
+  //   if (this.sortByKey === key) {
+  //     this.sortAscending = !this.sortAscending;
+  //   } else {
+  //     this.sortByKey = key;
+  //     this.sortAscending = true;
+  //   }
+  //
+  //   // Sort the array based on the selected key and order
+  //   this.familyInformation.sort((a, b) => {
+  //     const valA = a[key] ? a[key] : 'NA';
+  //     const valB = b[key] ? b[key] : 'NA';
+  //
+  //     if (this.sortAscending) {
+  //       return valA.localeCompare(valB);
+  //     } else {
+  //       return valB.localeCompare(valA);
+  //     }
+  //   });
+  // }
 
 
 }
