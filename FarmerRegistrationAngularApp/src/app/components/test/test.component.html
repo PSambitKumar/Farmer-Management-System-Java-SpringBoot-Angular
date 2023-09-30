@@ -4,4 +4,7 @@
   <input type="checkbox" value="Janaadhar" />
   <input type="checkbox" value="Acknowledge" />
   <input (click)="myFun()" type="button" value="Submit"/>
+
+  <label class="mb-2 text-left">Time Remaining <span id="otpTimer">{{ formattedTime }}</span></label>
+  <button (click)="addTime()">Add 10 Minutes</button>
 </form>

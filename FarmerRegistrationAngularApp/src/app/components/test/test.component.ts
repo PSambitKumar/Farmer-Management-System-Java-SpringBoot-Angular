@@ -8,9 +8,14 @@ import * as $ from 'jquery';
 })
 export class TestComponent implements OnInit {
 
+  timeRemaining: number = 0;
+  formattedTime: string = '--:--';
+
   constructor() { }
 
   ngOnInit(): void {
+    this.timeRemaining = 600;
+    this.updateTime();
   }
 
   myFun() {
@@ -22,6 +27,29 @@ export class TestComponent implements OnInit {
     });
     alert(val)
     alert("End");
+  }
+
+  updateTime() {
+    setInterval(() => {
+      if (this.timeRemaining > 0) {
+        this.timeRemaining--;
+        this.formattedTime = this.formatTime(this.timeRemaining);
+      }
+    }, 1000);
+  }
+
+  addTime() {
+    this.timeRemaining += 600;
+  }
+
+  formatTime(seconds: number): string {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${this.pad(minutes)}:${this.pad(remainingSeconds)}`;
+  }
+
+  pad(val: number): string {
+    return val < 10 ? `0${val}` : `${val}`;
   }
 
 }
