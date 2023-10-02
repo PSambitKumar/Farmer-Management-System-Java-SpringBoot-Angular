@@ -9,6 +9,7 @@ import * as $ from 'jquery';
 export class TestComponent implements OnInit {
 
   timeRemaining: number = 0;
+  intervalId: any;
   formattedTime: string = '--:--';
 
   constructor() { }
@@ -30,10 +31,16 @@ export class TestComponent implements OnInit {
   }
 
   updateTime() {
-    setInterval(() => {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+      this.intervalId = null;
+    }
+
+    this.intervalId = setInterval(() => {
       if (this.timeRemaining > 0) {
         this.timeRemaining--;
         this.formattedTime = this.formatTime(this.timeRemaining);
+        console.log(this.formattedTime);
       }
     }, 1000);
   }
