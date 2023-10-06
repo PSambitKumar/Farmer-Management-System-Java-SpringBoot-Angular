@@ -191,7 +191,7 @@ public class FarmersRegistrationAngularController {
     public ResponseEntity<ResponseBean> createFarmerImage(@RequestParam(value = "name", required = false)String name,
                                     @RequestParam(value = "image", required = false)String imagePath,
                                     @RequestParam(value = "imageData", required = false)MultipartFile imageData,
-                                    FarmerImage farmerImage, ResponseBean responseBean) throws IOException {
+                                    FarmerImage farmerImage, ResponseBean responseBean) throws IOException {//can also recieve data using bean
         System.out.println("Inside Create Farmer Image---------->>");
         System.out.println("Farmer Image Object : " + imageData);
         System.out.println("Farmer Image Name : " + imageData.getOriginalFilename());
