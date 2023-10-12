@@ -52,4 +52,27 @@ export class SWALService {
       confirmButtonText: 'OK'
     })
   }
+
+  confirmSWAL(title: string, text: string) {
+    return Swal.fire({
+      title: title,
+      text: text,
+      icon: 'success',
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'No'
+    })
+  }
+
+  questionConfirmSWAL(title: string, text: string) {
+    return Swal.fire({
+      title: title,
+      text: text,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: '<i class="fa fa-check"></i>' +' Yes',
+      cancelButtonText: 'No',
+      confirmButtonColor: title.toUpperCase() == 'DELETE' ? '#ce0101' : '#6631b6',
+    })
+  }
 }
