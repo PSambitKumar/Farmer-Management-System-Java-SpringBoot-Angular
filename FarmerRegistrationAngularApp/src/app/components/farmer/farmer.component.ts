@@ -480,4 +480,112 @@ constructor(private farmerService : FarmerService, private modalService : ModalS
   // }
 
 
+
+  // Learning
+  // addPackage() {
+  //   if (this.selectedPackageHeader == null)
+  //     this.swalService.infoSWAL('Info', 'Please select package header!');
+  //   else if (this.selectedPackageDetails == null)
+  //     this.swalService.infoSWAL('Info', 'Please select package details!');
+  //   else if (this.selectedWardDetails == null)
+  //     this.swalService.infoSWAL('Info', 'Please select ward!');
+  //   else if($('#txtTreatDays').val() == '' || $('#txtTreatDays').val() == 0)
+  //     this.swalService.infoSWAL('Info', 'Please enter treatment days!');
+  //   else if ($('#txtWardCost').val() == '' || $('#txtWardCost').val() == 0)
+  //     this.swalService.infoSWAL('Info', 'Please enter ward cost and must be greater than 0!');
+  //   else {
+  //     let data = {
+  //       packageHeaderId: this.selectedPackageHeader.packageHeaderId,
+  //       packageHeaderName: this.selectedPackageHeader.packageHeaderName,
+  //       packageSubCategoryId: this.selectedPackageDetails.packageSubCategoryId,
+  //       packageSubCategoryName: this.selectedPackageDetails.packageSubCategoryName,
+  //       procedureCode: this.selectedPackageDetails.procedureCode,
+  //       packageCost: this.helperService.formatToNumber($('#txtPackageCost').val()),
+  //       treatmentDays: $('#txtTreatDays').val(),
+  //       wardId: this.selectedWardDetails.wardId,
+  //       wardName: this.selectedWardDetails.wardName,
+  //       wardCost: this.helperService.formatToNumber($('#txtWardCost').val()),
+  //       totalPackageCost: this.helperService.formatToNumber($('#txtTotalPackageCost').val()),
+  //       approvalRequired: this.selectedPackageDetails.mandetoryPreAuth.toUpperCase(),
+  //       implantCost: 0,
+  //       highEndDrugsCost: 0,
+  //       packageHeader: this.selectedPackageHeader,
+  //       packageDetails: this.selectedPackageDetails,
+  //       wardDetails: this.selectedWardDetails,
+  //       isPreAuthRequired: this.isPreApprovalRequired,
+  //       medicalType: this.medicalType
+  //     }
+  //
+  //     this.addedPackageList.push(data);
+  //
+  //     this.calculateAllTotalPackageCost();
+  //     this.clearPackageSelection();
+  //   }
+  // }
+  //
+  // deleteAddedPackage(index: any, packageDetails: any) {
+  //   this.swalService.questionConfirmSWAL('Delete', 'Are you sure you want to delete this package?')
+  //     .then(
+  //       (result: any) => {
+  //         if (result.isConfirmed) {
+  //           this.addedPackageList.splice(index, 1);
+  //           this.calculateAllTotalPackageCost();
+  //         }
+  //       });
+  // }
+  //
+  // calculateAllTotalPackageCost() {
+  //   this.totalAmountToBeBlocked = {
+  //     totalPackageCost: this.addedPackageList.reduce((a, b) => a + b.packageCost, 0),
+  //     totalWardCost: this.addedPackageList.reduce((a, b) => a + b.wardCost, 0),
+  //     totalOfTotalPackageCost: this.addedPackageList.reduce((a, b) => a + b.totalPackageCost, 0),
+  //     totalImplantCost: this.addedPackageList.reduce((a, b) => a + b.implantCost, 0),
+  //     totalHighEndDrugsCost: this.addedPackageList.reduce((a, b) => a + b.highEndDrugsCost, 0)
+  //   }
+  //
+  //   this.allTotalCost = this.totalAmountToBeBlocked.totalOfTotalPackageCost +
+  //     this.totalAmountToBeBlocked.totalImplantCost +
+  //     this.totalAmountToBeBlocked.totalHighEndDrugsCost;
+  //
+  //   if (this.addedPackageList.length == 0) {
+  //     this.isVisibleEmergency = false;
+  //     this.isVisibleSurgical = false;
+  //   }
+  // }
+  //
+  // clearPackageSelection() {
+  //   this.selectedPackageHeader = null;
+  //   this.selectedPackageDetails = null;
+  //   this.selectedWardDetails = null;
+  //   this.wardDetailsList = [];
+  //   this.isPreApprovalRequired = false;
+  //
+  //   $('#txtPackageHeader').val('');
+  //   $('#txtPackageDetails').val('');
+  //   $('#txtSubPackage').val('');
+  //   $('#txtPackageCost').val('');
+  //   $('#txtTotalPackageCost').val('');
+  //   $('#txtWardCost').val('').attr('disabled', true);
+  //   $('#txtTreatDays').val('').attr('disabled', true);
+  // }
+  //
+  // hideAll() {
+  //   this.isVisiblePatientInfo = false;
+  //   this.isVisiblePatientDetails = false;
+  //   this.isVisiblePackageDetails = false;
+  //   this.admissionDetails = false;
+  // }
+  //
+  // shouldDisplayHighEndDrugsButton(addedPackage: any): boolean {
+  //   const { wardDetails, packageDetails} = addedPackage;
+  //
+  //   const isRoutineWard = wardDetails.wardName === 'Routine Ward';
+  //   const isProcedureCodeMatch = packageDetails.procedureCode === 'MG069A'
+  //     || packageDetails.procedureCode === 'MG090B'
+  //     || packageDetails.procedureCode === 'MG092B';
+  //
+  //   return !isRoutineWard || (isRoutineWard && isProcedureCodeMatch);
+  // }
+
+
 }
