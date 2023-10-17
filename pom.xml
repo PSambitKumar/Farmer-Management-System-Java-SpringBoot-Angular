@@ -78,6 +78,7 @@
     </dependencies>
 
     <build>
+        <finalName>Farmer Registration</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

@@ -586,6 +586,5 @@ constructor(private farmerService : FarmerService, private modalService : ModalS
   //
   //   return !isRoutineWard || (isRoutineWard && isProcedureCodeMatch);
   // }
-
-
+  
 }
