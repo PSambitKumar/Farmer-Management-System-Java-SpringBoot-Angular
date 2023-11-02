@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpEvent, HttpParams, HttpRequest} from "@angular/common/http";
+import {HttpClient, HttpEvent, HttpHeaders, HttpParams, HttpRequest} from "@angular/common/http";
 import {FarmerBean} from "../beans/farmerBean";
 import {Observable} from "rxjs";
 import {Farmer} from "../models/farmer";
@@ -184,6 +184,23 @@ export class FarmerService {
   //   // alert("From Service : " + path);
   //   return this.httpClient.get<ResponseBean>(`${this.baseUrl}/downloadFile1/` + aadharDocPathId/*, {responseType: 'blob' as 'json'}*/);
   // }
+
+  validateService(serviceId: any) {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: '7895hjgdkfshgjhru56y9',
+    });
+
+
+    let options = {
+      headers: headers,
+      params: {
+        serviceId: serviceId
+      }
+    }
+    return this.httpClient.post('/pageValidate', null, options)
+  }
+
 
 
 }
