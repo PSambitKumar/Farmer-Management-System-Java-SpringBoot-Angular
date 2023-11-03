@@ -586,5 +586,13 @@ constructor(private farmerService : FarmerService, private modalService : ModalS
   //
   //   return !isRoutineWard || (isRoutineWard && isProcedureCodeMatch);
   // }
+  getCurrentDate() {
+    const date = new Date();
+    const day = date.getDate().toString().padStart(2, '0'); // Ensure two-digit day
+    const monthNames = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+    const month = monthNames[date.getMonth()];
+    const year = date.getFullYear().toString().slice(-2); // Extract the last 2 digits of the year
+    const today = `${day}-${month}-${year}`;
+  }
   
 }
