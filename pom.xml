@@ -78,7 +78,7 @@
     </dependencies>
 
     <build>
-             <final-name>Farmer</final-name>
+             
         <plugins>
             <plugin>
                 <groupId>org.spring framework.boot</groupId>
