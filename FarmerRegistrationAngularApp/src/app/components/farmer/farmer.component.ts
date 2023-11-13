@@ -594,5 +594,16 @@ constructor(private farmerService : FarmerService, private modalService : ModalS
     const year = date.getFullYear().toString().slice(-2); // Extract the last 2 digits of the year
     const today = `${day}-${month}-${year}`;
   }
+
+  // Update Data using event target
+  toUpperCase(event: any) {
+    (event.target as HTMLInputElement).value = (event.target as HTMLInputElement).value.toUpperCase();
+  }
+
+  clearForm() {
+    window.scrollTo(0, 0);
+    if (window.scrollY === 0)
+      window.location.reload();
+  }
   
 }
