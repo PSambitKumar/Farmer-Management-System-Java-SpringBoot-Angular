@@ -64,7 +64,13 @@ contentDownloadTime : any = 0;
 
 
 
-constructor(private farmerService : FarmerService, private modalService : ModalService, public matDialog: MatDialog, private validationService : ValidationService, private router : Router) { }
+constructor(
+  private farmerService : FarmerService,
+  private modalService : ModalService,
+  public matDialog: MatDialog,
+  private validationService : ValidationService,
+  private router : Router
+) { }
 
   ngOnInit(): void {
     this.hideUniqueIdInput();
@@ -604,6 +610,39 @@ constructor(private farmerService : FarmerService, private modalService : ModalS
     window.scrollTo(0, 0);
     if (window.scrollY === 0)
       window.location.reload();
+  }
+
+  investigationDoc: any;
+  referralDoc: any;
+  uploadFile(docType: string, event: any, maxFileSize: number, allowedExtensions: string[]) {
+    const file = event.target.files[0];
+
+    if (this.validationService.validateFileExtension(file, allowedExtensions)) {
+      Swal.fire('Info', 'File to be uploaded in pdf, jpeg, jpg');
+      if (docType === 'referral') this.referralDoc = null;
+    }
+    else if (this.validationService.validateFileSize(file, maxFileSize))
+      Swal.fire('Info', 'File size should not exceed 5 MB');
+    else {
+      if (docType === 'referral')
+        this.referralDoc = file;
+      else if (docType === 'investigation')
+        this.investigationDoc = file;
+    }
+  }
+
+  saveDoc(docType: any, event: any): void {
+    this.uploadFile(docType, event, 5242880, ['pdf', 'jpeg', 'jpg']);
+  }
+
+  removeDoc(docType: string, id: any) {
+    if (docType === 'investigation')
+      this.investigationDoc = null;
+    else if (docType === 'referral')
+      this.referralDoc = null;
+
+    const fileInput = document.getElementById(id) as HTMLInputElement;
+    if (fileInput) fileInput.value = '';
   }
   
 }

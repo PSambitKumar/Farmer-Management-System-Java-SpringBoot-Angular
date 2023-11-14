@@ -14,6 +14,23 @@ export class ValidationService {
 
   constructor(private farmerService : FarmerService) { }
 
+  validateEmptyField(field: any) {
+    return (field === undefined || field === null || field === '');
+  }
+
+  validateNumber(number: any) {
+    const reg = /^[0-9]+$/;
+    return !reg.test(number);
+  }
+
+  validateFileExtension(file: any, extensions: any[]) {
+    return !extensions.includes(file.name.split('.').pop());
+  }
+
+  validateFileSize(file: any, size: number) {
+    return file.size >= size;
+  }
+
   // Name Validation
   validateName(name : any, inputId : any, alertId : any){
     const alphaRegX = /^[a-z A-Z.]*$/;
