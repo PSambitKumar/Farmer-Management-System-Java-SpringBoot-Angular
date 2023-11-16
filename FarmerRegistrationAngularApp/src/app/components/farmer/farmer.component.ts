@@ -644,5 +644,22 @@ constructor(
     const fileInput = document.getElementById(id) as HTMLInputElement;
     if (fileInput) fileInput.value = '';
   }
+
+  setDatePicker() {
+    const datepickerOptions = {
+      dateFormat: 'dd-M-y',
+      changeMonth: true,
+      changeYear: true,
+      maxDate: new Date,
+      beforeShow: function(input: any, inst: any) {
+        input.setAttribute('readonly', true);
+        input.setAttribute('style', 'background-color: white')
+      }
+    };
+
+    $("#txtReferralToDate").datepicker(datepickerOptions);
+    $("#txtPatientFormDate").datepicker(datepickerOptions);
+    $("#txtReferralFromDate").datepicker(datepickerOptions);
+  }
   
 }
