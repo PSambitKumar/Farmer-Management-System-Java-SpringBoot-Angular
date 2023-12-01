@@ -645,6 +645,32 @@ constructor(
     if (fileInput) fileInput.value = '';
   }
 
+  timeRemaining: number = 0;
+  formattedTime: string = '--:--';
+  updateTime() {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+      this.intervalId = null;
+    }
+
+    this.intervalId = setInterval(() => {
+      if (this.timeRemaining > 0) {
+        this.timeRemaining--;
+        this.formattedTime = this.formatTime(this.timeRemaining);
+      }
+    }, 1000);
+  }
+
+  formatTime(seconds: number): string {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${this.pad(minutes)}:${this.pad(remainingSeconds)}`;
+  }
+
+  pad(val: number): string {
+    return val < 10 ? `0${val}` : `${val}`;
+  }
+
   // setDatePicker() {
   //   const datepickerOptions = {
   //     dateFormat: 'dd-M-y',
