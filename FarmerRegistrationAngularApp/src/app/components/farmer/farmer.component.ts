@@ -23,6 +23,7 @@ import {ViewRelativesComponent} from "../../modalComponents/view-relatives-modal
 
 export class FarmerComponent implements OnInit{
 
+  intervalId: any;
   farmerBean : FarmerBean = new FarmerBean();
   farmer : Farmer = new Farmer();
   responseBean : ResponseBean = new ResponseBean();
