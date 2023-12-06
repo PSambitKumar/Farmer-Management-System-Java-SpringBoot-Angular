@@ -688,5 +688,25 @@ constructor(
   //   $("#txtPatientFormDate").datepicker(datepickerOptions);
   //   $("#txtReferralFromDate").datepicker(datepickerOptions);
   // }
-  
+
+
+  // Open Page in New Window
+  windowUnblockPackageSlipPopUp(url: string): boolean {
+    const width = 1200;
+    const height = 700;
+    const left = (screen.width - width) / 2;
+    const top = (screen.height - height) / 2;
+
+    let params = `width=${width}, height=${height}`;
+    params += `, top=${top}, left=${left}`;
+    params += ', directories=no';
+    params += ', location=no';
+    params += ', menubar=no';
+    params += ', resizable=no';
+    params += ', scrollbars=yes';
+    params += ', status=no';
+    params += ', toolbar=no';
+    window.open(url, 'windowname5', params);
+    return false;
+  }
 }
