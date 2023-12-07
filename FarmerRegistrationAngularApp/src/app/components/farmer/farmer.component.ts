@@ -709,4 +709,22 @@ constructor(
     window.open(url, 'windowname5', params);
     return false;
   }
+
+  // Set Data Dynamically
+  fromDate: any;
+  toDate: any;
+  setData (status: any) {
+    let data: { [key: string]: any } = {
+      actionCode: 'A',
+      searchType: $("#searchType").val(),
+    };
+
+    if (status === 0) {
+      data['fromDate'] = this.fromDate;
+      data['toDate'] = this.toDate;
+    } else {
+      data['fromDate'] = $('#fromDate').val() as string;
+      data['toDate'] = $('#toDate').val() as string;
+    }
+  }
 }
