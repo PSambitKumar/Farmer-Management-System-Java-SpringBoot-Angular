@@ -727,4 +727,11 @@ constructor(
       data['toDate'] = $('#toDate').val() as string;
     }
   }
+
+  maskMobileNumber(mobileNumber: number){
+    if (mobileNumber && mobileNumber.toString().length >= 4)
+      return 'X'.repeat(mobileNumber.toString().length - 4) + mobileNumber.toString().slice(-4);
+    else
+      return mobileNumber;
+  }
 }
