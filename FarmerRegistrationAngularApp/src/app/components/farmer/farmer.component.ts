@@ -21,57 +21,55 @@ import {ViewRelativesComponent} from "../../modalComponents/view-relatives-modal
   styleUrls: ['./farmer.component.css']
 })
 
-export class FarmerComponent implements OnInit{
+export class FarmerComponent implements OnInit {
 
   intervalId: any;
-  farmerBean : FarmerBean = new FarmerBean();
-  farmer : Farmer = new Farmer();
-  responseBean : ResponseBean = new ResponseBean();
-  farmerList : Farmer[] = [];
-  bankDetailsBean : BankDetailsBean = new BankDetailsBean();
-  isLoading : boolean = true;
-  response1 : any;
-  response2 : any;
-  response3 : any;
-  response4 : any;
-  response5 : any;
-  response6 : any;
-  response7 : any;
+  farmerBean: FarmerBean = new FarmerBean();
+  farmer: Farmer = new Farmer();
+  responseBean: ResponseBean = new ResponseBean();
+  farmerList: Farmer[] = [];
+  bankDetailsBean: BankDetailsBean = new BankDetailsBean();
+  isLoading: boolean = true;
+  response1: any;
+  response2: any;
+  response3: any;
+  response4: any;
+  response5: any;
+  response6: any;
+  response7: any;
   response8: any;
-  response9 : any;
-  response10 : any;
-  paginationData : String =
+  response9: any;
+  response10: any;
+  paginationData: String =
     '<ul class=\"pagination pagination-md\">' +
     '<li class=\"page-item\"><a class=\"page-link\" href=\"javascript:void(0)\" >Previous</a></li>' +
     '<li class=\"page-item\"><a class=\"page-link\" href=\"javascript:void(0)\" (click)=\"getData(1)\">1</a></li>' +
     '<li class=\"page-item active\"><a class=\"page-link\" href=\"javascript:void(0)\" (click)=\"getData(2)\">2</a></li>' +
     '</ul>';
 
-  timer : any = 0;
+  timer: any = 0;
   timeLeft: number = 60;
-  newDate : any = new Date();
-  staticDate : any = '25-09-2022';
-  private startTime : number = 0;
+  newDate: any = new Date();
+  staticDate: any = '25-09-2022';
+  private startTime: number = 0;
   private responseTime: number = 0;
 
   // Content Download. The browser is receiving the response, either directly from the network or from a service worker. This value is the total amount of time spent reading the response body. Larger than expected values could indicate a slow network, or that the browser is busy performing other work which delays the response from being read.
-contentDownloadTime : any = 0;
+  contentDownloadTime: any = 0;
   private endTime: number = 0;
   private timeTaken: number = 0;
 
-  idList : any =[];
+  idList: any = [];
 
 
-
-
-
-constructor(
-  private farmerService : FarmerService,
-  private modalService : ModalService,
-  public matDialog: MatDialog,
-  private validationService : ValidationService,
-  private router : Router
-) { }
+  constructor(
+    private farmerService: FarmerService,
+    private modalService: ModalService,
+    public matDialog: MatDialog,
+    private validationService: ValidationService,
+    private router: Router
+  ) {
+  }
 
   ngOnInit(): void {
     this.hideUniqueIdInput();
@@ -87,7 +85,7 @@ constructor(
   }
 
   // Methods Part
-  farmerForm(){
+  farmerForm() {
     console.log(this.farmerBean);
     console.log("Inside FarmerBean Form Submit-------------->>");
 
@@ -114,7 +112,7 @@ constructor(
       this.validationService.validateIFSCode(this.farmerBean.ifscCode, "#ifscCode", "#ifscAlert") == "Valid" &&
       this.validationService.validateName(this.farmerBean.bank, "#bankName", "#bankAlert") == "Valid" &&
       this.validationService.validateMobileNumber(this.farmerBean.mobile, "#mobile", "#mobileAlert") == "Valid" &&
-      this.validationService.validateDropdown(this.farmerBean.uniqueId, "#uniqueId", "#uniqueIdAlert", this.farmerBean.acknowledge, this.farmerBean.janAdhaar, this.farmerBean.aadhar) == "Valid"){
+      this.validationService.validateDropdown(this.farmerBean.uniqueId, "#uniqueId", "#uniqueIdAlert", this.farmerBean.acknowledge, this.farmerBean.janAdhaar, this.farmerBean.aadhar) == "Valid") {
       Swal.fire({
         title: 'Do you want to save the Data?',
         showDenyButton: true,
@@ -129,7 +127,7 @@ constructor(
             console.log("Resposnse Data : " + data);//Check Difference In Console
             this.responseBean = data;
             console.log(this.responseBean);
-            if (this.responseBean.status == "Success"){
+            if (this.responseBean.status == "Success") {
               this.router.navigate([""]);
             }
           });
@@ -144,9 +142,9 @@ constructor(
 
 
   // Chcek IFSC Code
-  checkIFSCCode(ifscCode : any){
+  checkIFSCCode(ifscCode: any) {
     console.log("IFSC Code : " + ifscCode);
-    if (this.validationService.validateIFSCode(ifscCode, "#ifscCode", "#ifscAlert") == "Valid"){
+    if (this.validationService.validateIFSCode(ifscCode, "#ifscCode", "#ifscAlert") == "Valid") {
       this.farmerService.getBankDetailsUsingIFSC(ifscCode).subscribe(data => {
         this.bankDetailsBean = data;
         $('#bankName').val(this.bankDetailsBean.bank);
@@ -159,27 +157,27 @@ constructor(
   }
 
   // Check Aadhar Id
-  checkAadharId(aadharId : any){
+  checkAadharId(aadharId: any) {
     console.log(aadharId);
     this.validationService.validateAadhar(aadharId, "#adhaarId", "#aadharAlert");
   }
-  
-  
-  getFarmerList1(){
-  // Success Response
-  this.farmerService.getFarmerList().subscribe(data => {
-    this.startTime = new Date().getTime();
-    alert("Start Time : " + this.startTime);
-    this.farmerList = data;
-    this.endTime = new Date().getTime();
-    alert("End Time : " + this.endTime);
-    this.timeTaken = this.endTime - this.startTime;
-    alert("Time Taken : " + this.timeTaken);
-  });
+
+
+  getFarmerList1() {
+    // Success Response
+    this.farmerService.getFarmerList().subscribe(data => {
+      this.startTime = new Date().getTime();
+      alert("Start Time : " + this.startTime);
+      this.farmerList = data;
+      this.endTime = new Date().getTime();
+      alert("End Time : " + this.endTime);
+      this.timeTaken = this.endTime - this.startTime;
+      alert("Time Taken : " + this.timeTaken);
+    });
   }
-  
-  
-  getFarmerList(){
+
+
+  getFarmerList() {
     console.log("Inside Get Farmers List-------------->>")
     this.farmerService.getFarmerList().subscribe(data => {
 
@@ -204,8 +202,7 @@ constructor(
   }
 
 
-
-  editFarmer(id : any){
+  editFarmer(id: any) {
     console.log("Farmer Id :" + id);
     Swal.fire({
       title: 'Do You Want to Edit?',
@@ -227,13 +224,13 @@ constructor(
           this.farmerBean.bank = this.farmer.bank.bankName;
           this.farmerBean.mobile = this.farmer.mobile;
           this.farmerBean.relation = this.farmer.relation;
-          if (this.farmer.aadhar != null){
+          if (this.farmer.aadhar != null) {
             this.farmerBean.aadhar = this.farmer.aadhar.aadharId;
           }
-          if (this.farmer.janAdhaar != null){
+          if (this.farmer.janAdhaar != null) {
             this.farmerBean.janAdhaar = this.farmer.janAdhaar.janadhaarId;
           }
-          if (this.farmer.acknowledge != null){
+          if (this.farmer.acknowledge != null) {
             this.farmerBean.acknowledge = this.farmer.acknowledge.acknowledgeId;
           }
           this.addFarmer();
@@ -242,15 +239,15 @@ constructor(
     })
   }
 
-  getTimer(){
-  this.startTime = new Date().getTime();
-  this.farmerService.getFarmerList().subscribe(data => {
-    this.responseTime = new Date().getTime() - this.startTime;
-    alert("Response Time : " + this.responseTime);
-  })
+  getTimer() {
+    this.startTime = new Date().getTime();
+    this.farmerService.getFarmerList().subscribe(data => {
+      this.responseTime = new Date().getTime() - this.startTime;
+      alert("Response Time : " + this.responseTime);
+    })
   }
 
-  deleteFarmer(id : any){
+  deleteFarmer(id: any) {
     console.log("Farmer Id :" + id);
     Swal.fire({
       title: 'Are you sure?',
@@ -265,7 +262,7 @@ constructor(
         this.farmerService.deleteFarmerById(id).subscribe(data => {
           console.log(data)
           this.responseBean = data;
-          if (this.responseBean.status == "Success"){
+          if (this.responseBean.status == "Success") {
             // location.reload();
             // this.viewFarmer();
             this.ngOnInit()
@@ -280,12 +277,12 @@ constructor(
     });
   }
 
-  showBankDetails(bank : Bank, name : any){
+  showBankDetails(bank: Bank, name: any) {
     console.log("Bank Details :" + bank);
     const dialogRef = this.matDialog.open(BankModalComponent, {
-      data : {
-        "bank" : bank,
-        "farmerName" : name
+      data: {
+        "bank": bank,
+        "farmerName": name
       }
     });
 
@@ -294,18 +291,18 @@ constructor(
     });
   }
 
-  viewRelatives(farmer : Farmer, relationList : Relation[], farmerName : any, farmerId : any){
+  viewRelatives(farmer: Farmer, relationList: Relation[], farmerName: any, farmerId: any) {
     // alert("Relation Lists Are : " + JSON.stringify(relationList) + ", Farmer Name : " + farmerName);
     const dialogRef = this.matDialog.open(ViewRelativesComponent, {
-      data : {
-        "farmer" : farmer,
-        "relationList" : relationList,
-        "farmerName" : farmerName,
-        "farmerId" : farmerId
+      data: {
+        "farmer": farmer,
+        "relationList": relationList,
+        "farmerName": farmerName,
+        "farmerId": farmerId
       }
     });
 
-    dialogRef.afterClosed().subscribe(result =>{
+    dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog Result : ${result}`);
     })
   }
@@ -333,28 +330,28 @@ constructor(
   }
 
   // When Unique Dropdown Changes This Function Calls
-  uniqueDropDownChange(uniqueId : any){
+  uniqueDropDownChange(uniqueId: any) {
     // alert(uniqueId);
-    if (uniqueId == 1){
+    if (uniqueId == 1) {
       $('#id1').show();
       $('#id2').hide();
       $('#id3').hide();
-    }else if (uniqueId == 2){
+    } else if (uniqueId == 2) {
       $('#id2').show();
       $('#id1').hide();
       $('#id3').hide();
-    }else if (uniqueId == 3){
+    } else if (uniqueId == 3) {
       $('#id3').show();
       $('#id1').hide();
       $('#id2').hide();
-    }else {
+    } else {
       $('#id1').hide();
       $('#id2').hide();
       $('#id3').hide();
     }
   }
 
-  addFarmer(){
+  addFarmer() {
     $('#add').show();
     $('#view').hide();
     // $('#btn1').addClass("btn-primary");
@@ -364,14 +361,13 @@ constructor(
 
 
 // Response Time Counting Code
-  responseTimeCounting(){
+  responseTimeCounting() {
     this.startTime = new Date().getTime();
     this.responseTime = new Date().getTime() - this.startTime;
     console.log("Response Time : " + this.responseTime);
   }
 
-  viewFarmer(){
-
+  viewFarmer() {
 
 
     $('#add').hide();
@@ -382,29 +378,29 @@ constructor(
     // $('#btn1').removeClass("btn-primary");
   }
 
-  openModal1(){
+  openModal1() {
     $('#modalSubscribe').show();
   }
 
-  getData(data : any){
-  alert("Inside Get Data : " + data);
+  getData(data: any) {
+    alert("Inside Get Data : " + data);
   }
 
-  getData1(){
-  alert("Data")
+  getData1() {
+    alert("Data")
   }
 
-  getCheckValue(event : any, id : any){
-  if (event.target.checked){
-    this.idList.push(id);
-    console.log("Id List After Add : " + this.idList);
-  }else {
-    this.idList.splice(this.idList.indexOf(id), 1);
-    console.log("Id List  After Remove : " + this.idList);
-  }
+  getCheckValue(event: any, id: any) {
+    if (event.target.checked) {
+      this.idList.push(id);
+      console.log("Id List After Add : " + this.idList);
+    } else {
+      this.idList.splice(this.idList.indexOf(id), 1);
+      console.log("Id List  After Remove : " + this.idList);
+    }
   }
 
-  checkAll(event : any) {
+  checkAll(event: any) {
     if (event.target.checked) {
       this.idList = [];
       for (let i = 0; i < this.farmerList.length; i++) {
@@ -485,7 +481,6 @@ constructor(
   //     }
   //   });
   // }
-
 
 
   // Learning
@@ -615,14 +610,14 @@ constructor(
 
   investigationDoc: any;
   referralDoc: any;
+
   uploadFile(docType: string, event: any, maxFileSize: number, allowedExtensions: string[]) {
     const file = event.target.files[0];
 
     if (this.validationService.validateFileExtension(file, allowedExtensions)) {
       Swal.fire('Info', 'File to be uploaded in pdf, jpeg, jpg');
       if (docType === 'referral') this.referralDoc = null;
-    }
-    else if (this.validationService.validateFileSize(file, maxFileSize))
+    } else if (this.validationService.validateFileSize(file, maxFileSize))
       Swal.fire('Info', 'File size should not exceed 5 MB');
     else {
       if (docType === 'referral')
@@ -648,6 +643,7 @@ constructor(
 
   timeRemaining: number = 0;
   formattedTime: string = '--:--';
+
   updateTime() {
     if (this.intervalId) {
       clearInterval(this.intervalId);
@@ -713,7 +709,8 @@ constructor(
   // Set Data Dynamically
   fromDate: any;
   toDate: any;
-  setData (status: any) {
+
+  setData(status: any) {
     let data: { [key: string]: any } = {
       actionCode: 'A',
       searchType: $("#searchType").val(),
@@ -728,7 +725,7 @@ constructor(
     }
   }
 
-  maskMobileNumber(mobileNumber: number){
+  maskMobileNumber(mobileNumber: number) {
     if (mobileNumber && mobileNumber.toString().length >= 4)
       return 'X'.repeat(mobileNumber.toString().length - 4) + mobileNumber.toString().slice(-4);
     else

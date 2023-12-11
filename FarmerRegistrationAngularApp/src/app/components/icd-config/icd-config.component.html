@@ -1,0 +1,101 @@
+<div class="form-box-bg mb-4" id="ICDDIV">
+  <div class="row  mb-3 heading-pkg border-bottom">
+    <h5>Patient Diagnosis Details </h5>
+  </div>
+
+  <div class="form-row mt-2 mb-3 row">
+
+    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+      <div class="form-designsc">
+        <div class="col-form-label">
+          Primary Diagnosis
+        </div>
+        <div class="form-group">
+          <div class="autocomplete w-100">
+            <input type="text" id="txtPrimaryDiagnosis" class="form-control ctw-input apiInitializationCompleted"
+                   autocomplete="off" data-ctw-ino="1" placeholder="Enter Diagnosis Details">
+          </div>
+        </div>
+        <div class="ctw-window" data-ctw-ino="1"><div class="ectComponent"></div></div>
+      </div>
+    </div>
+
+    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+      <div class="form-designsc">
+        <div class="col-form-label">
+          Secondary Diagnosis
+        </div>
+        <div class="form-group">
+          <div class="autocomplete w-100 pr-0">
+            <input type="text" id="txtSecondaryDiagnosis" class="form-control ctw-input apiInitializationCompleted"
+                   autocomplete="off" data-ctw-ino="2" placeholder="Enter Diagnosis Details">
+          </div>
+        </div>
+        <div class="ctw-window" data-ctw-ino="2"><div class="ectComponent"></div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="content-box" *ngIf="icdTableData.length > 0">
+    <div class="row">
+      <div class="table-responsive">
+        <table id="treatmentTable" class="table mb-0 border">
+          <caption></caption>
+          <thead>
+          <tr>
+            <th style="width: 50;">Sl No.</th>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Mode</th>
+            <th>Details View</th>
+            <th>Action</th>
+          </tr>
+          </thead>
+
+          <tbody>
+          <ng-container *ngFor="let item of icdTableData; let i = index">
+            <tr>
+              <td>{{ i + 1 }}</td>
+              <td style="width: 50;">{{ item.icdCode }}</td>
+              <td style="width: 100;">{{ item.icdName }}</td>
+              <td style="width: 100;">{{ item.icdMode == '1' ? 'Primary Diagnosis' : 'Secondary Diagnosis' }}</td>
+              <td style="width: 100;" (click)="item.isExpand = !item.isExpand">
+                <i class="btn btn-outline-{{ item.isExpand ? 'danger' : 'success' }} bi {{ item.isExpand ? 'bi-arrow-bar-up' : 'bi-arrow-bar-down' }}"></i>
+              </td>
+              <td style="width: 100;"><i class="btn btn-outline-danger bi bi-trash" (click)="removeIcd(i)"></i></td>
+            </tr>
+
+            <tr *ngIf="item?.isExpand">
+              <td colspan="6">
+                <table class="table mb-0 border">
+                  <caption></caption>
+                  <thead>
+                  <tr>
+                    <th>Code</th>
+                    <th>Name</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let dt of item.subList">
+                    <td>{{ dt.icdSubCode }}</td>
+                    <td>{{ dt.icdSubName }}</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </ng-container>
+
+          <tr *ngIf="!icdTableData?.length && isVisible">
+            <td colspan="6" style="text-align: center">
+              <strong class="text-danger">No Data Found!</strong>
+            </td>
+          </tr>
+          </tbody>
+
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
