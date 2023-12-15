@@ -75,4 +75,13 @@ export class FarmerImageUploadComponent implements OnInit {
   editFarmer(id : any){}
   deleteFarmer(id : any){}
 
+  ocPatientPhotoSrc: any = "assets/images/ocPatientPhoto.png";
+  getPatientPhoto(target: any) {
+    let reader = new FileReader();
+    reader.readAsDataURL(target.files[0]);
+    reader.onload = (_event) => {
+      this.ocPatientPhotoSrc = reader.result;
+    }
+  }
+
 }
