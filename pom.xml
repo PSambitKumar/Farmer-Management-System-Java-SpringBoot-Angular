@@ -78,7 +78,7 @@
     </dependencies>
 
     <build>
-             <finalname>farmermanagementsystem <finalname/>
+             <finalName>FarmerManagementSystem</finalName>
              
         <plugins>
             <plugin>
