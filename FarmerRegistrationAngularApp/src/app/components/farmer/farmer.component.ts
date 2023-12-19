@@ -685,6 +685,11 @@ export class FarmerComponent implements OnInit {
   //   $("#txtReferralFromDate").datepicker(datepickerOptions);
   // }
 
+  onKeyPress(event: any): boolean {
+    // Allowing only numeric characters (0-9)
+    return event.charCode >= 48 && event.charCode <= 57;
+  }
+
 
   // Open Page in New Window
   windowUnblockPackageSlipPopUp(url: string): boolean {

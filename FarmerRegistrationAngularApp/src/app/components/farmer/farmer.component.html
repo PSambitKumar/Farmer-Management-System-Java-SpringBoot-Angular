@@ -329,5 +329,16 @@
 <!--  <button mat-button color="primary" (click)="openModal()">Open Modal</button>-->
 <!--</div>-->
 
+
+
+
+<!--<input type="text" id="ddPatientPhone" maxlength="10" minlength="10" class="form-control black"
+       autocomplete="off" placeholder="Enter Patient Phone No" [(ngModel)]="patientPhone"
+       (input)="sendAdmissionOTP($event)" (keypress)="onKeyPress($event)">
+
+<input type="text" id="ddPatientPhone" maxlength="10" min="10" class="form-control black"
+       autocomplete="off" placeholder="Enter Patient Phone No" (input)="sendAdmissionOTP($event)"
+       oninput="validity.valid||(value='');" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>-->
+
 </body>
 </html>
