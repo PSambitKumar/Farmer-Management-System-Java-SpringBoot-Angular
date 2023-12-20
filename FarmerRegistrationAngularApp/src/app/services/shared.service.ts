@@ -1,5 +1,5 @@
 import {EventEmitter, Injectable} from '@angular/core';
-import {Observable, Subject} from 'rxjs';
+import {Observable, Subject, Subscription} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +10,7 @@ export class SharedService {
   public message$: Observable<string> = this.message.asObservable();
 
   invokeFirstComponentFunction = new EventEmitter();
+  subscription: any = Subscription;
 
 
   onFirstComponentButtonClick(icdData: any) {
