@@ -22,6 +22,7 @@ import { UploadAadharDocumentComponent } from './components/upload-aadhar-docume
 import { FarmerEducationDetailsComponent } from './components/farmer-education-details/farmer-education-details.component';
 import { LandingComponent } from './components/landing/landing.component';
 import {IcdConfigComponent} from "./components/icd-config/icd-config.component";
+import {LoaderComponent} from "./components/loader/loader.component";
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import {IcdConfigComponent} from "./components/icd-config/icd-config.component";
     UploadAadharDocumentComponent,
     FarmerEducationDetailsComponent,
     LandingComponent,
-    IcdConfigComponent
+    IcdConfigComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
