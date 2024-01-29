@@ -736,4 +736,32 @@ export class FarmerComponent implements OnInit {
     else
       return mobileNumber;
   }
+
+  downloadDoc(docName: any, hospitalCode: any, admissionDate: any) {
+    this.commonService.downloadFile(docName, hospitalCode, admissionDate).subscribe(
+      (res: any) => {
+        // For Opening Image in New Tab
+        let blob = new Blob([res], { type: res.type });
+        let url = window.URL.createObjectURL(blob);
+        window.open(url);
+
+
+// For Downloading Image
+        let blob1 = new Blob([res], { type: res.type });
+        const fileName: string = docName;
+        const objectUrl: string = URL.createObjectURL(blob1);
+        const a: HTMLAnchorElement = document.createElement('a') as HTMLAnchorElement;
+
+
+        a.href = objectUrl;
+        a.download = fileName;
+        document.body.appendChild(a);
+        a.click();
+
+
+        document.body.removeChild(a);
+        URL.revokeObjectURL(objectUrl);
+      }
+    )
+  }
 }
