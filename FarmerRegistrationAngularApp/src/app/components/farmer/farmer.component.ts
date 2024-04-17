@@ -737,7 +737,14 @@ export class FarmerComponent implements OnInit {
       return mobileNumber;
   }
 
-  downloadDoc(docName: any, hospitalCode: any, admissionDate: any) {
+  replaceNonLatin1Characters(inputString: string): string {
+    const htmlEntityMap: { [key: string]: string } = {
+      '•': '.',
+    };
+    return inputString.replace(/[^\u0000-\u00FF]/g, (char) => htmlEntityMap[char] || '');
+  }
+
+/*  downloadDoc(docName: any, hospitalCode: any, admissionDate: any) {
     this.commonService.downloadFile(docName, hospitalCode, admissionDate).subscribe(
       (res: any) => {
         // For Opening Image in New Tab
@@ -761,7 +768,15 @@ export class FarmerComponent implements OnInit {
 
         document.body.removeChild(a);
         URL.revokeObjectURL(objectUrl);
+
+        // For Downloading File
+        let blob2 = new Blob([res], { type: res.type });
+
+        let link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob2);
+        link.download = "fileName";
+        link.click();
       }
     )
-  }
+  }*/
 }
