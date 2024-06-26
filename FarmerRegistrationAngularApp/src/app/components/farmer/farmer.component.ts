@@ -23,6 +23,7 @@ import {ViewRelativesComponent} from "../../modalComponents/view-relatives-modal
 
 export class FarmerComponent implements OnInit {
 
+  displayedValue: any = 200;
   intervalId: any;
   farmerBean: FarmerBean = new FarmerBean();
   farmer: Farmer = new Farmer();
@@ -779,4 +780,30 @@ export class FarmerComponent implements OnInit {
       }
     )
   }*/
+
+  animateValueChange(startValue: number, endValue: number) {
+    const duration = 1000; // duration of the animation in milliseconds
+    const frameDuration = 1000 / 60; // frame duration for 60fps
+    const totalFrames = Math.round(duration / frameDuration);
+    const easeOutQuad = (t: number) => t * (2 - t);
+
+    let frame = 0;
+    const startTime = performance.now();
+    const animate = () => {
+      const now = performance.now();
+      const elapsedTime = now - startTime;
+      const progress = Math.min(elapsedTime / duration, 1);
+      const easedProgress = easeOutQuad(progress);
+
+      this.displayedValue = Math.floor(startValue + (endValue - startValue) * easedProgress);
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        this.displayedValue = endValue;
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }
 }
