@@ -848,4 +848,29 @@ export class FarmerComponent implements OnInit {
     requestAnimationFrame(animate);
 }
 
+    animateValueChange1(startValue: number, endValue: number, elementId: string) {
+    const duration = 2000;
+    const easeOutQuad = (t: number) => t * (2 - t);
+
+    const startTime = performance.now();
+
+    const animate = () => {
+      const now = performance.now();
+      const elapsedTime = now - startTime;
+      const progress = Math.min(elapsedTime / duration, 1);
+      const easedProgress = easeOutQuad(progress);
+
+      const currentValue = Math.floor(startValue + (endValue - startValue) * easedProgress);
+      document.getElementById(elementId)!.innerText = currentValue.toString();
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        document.getElementById(elementId)!.innerText = endValue.toString();
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }
+
 }
