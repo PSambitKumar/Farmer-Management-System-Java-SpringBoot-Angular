@@ -779,4 +779,38 @@ export class FarmerComponent implements OnInit {
       }
     )
   }*/
+
+// CountDownTimer
+ /* overrideExpiryTime: any;
+  extractTimeLeftForTempOverrideCode(dateString: string) {
+    const [datePart, timePart, period] = dateString.split(' ');
+    const [day, month, year] = datePart.split('-').map(Number);
+    let [hours, minutes, seconds] = timePart.split(':').map(Number);
+
+    if (period === 'PM' && hours < 12) hours += 12;
+    else if (period === 'AM' && hours === 12) hours = 0;
+
+    const targetDate = new Date(year, month - 1, day, hours, minutes, seconds);
+
+    const updateCountdown = () => {
+      const currentDate = new Date();
+      const timeDifference = targetDate.getTime() - currentDate.getTime();
+
+      if (timeDifference <= 0) {
+        this.overrideExpiryTime = "Time is up!";
+        clearInterval(intervalId);
+        return;
+      }
+
+      const daysLeft = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+      const hoursLeft = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutesLeft = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+      const secondsLeft = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+      this.overrideExpiryTime = `Time left: ${daysLeft} days, ${hoursLeft} hours, ${minutesLeft} minutes, ${secondsLeft} seconds`;
+    };
+
+    updateCountdown(); // Initial call to set the countdown immediately
+    const intervalId = setInterval(updateCountdown, 1000); // Update the countdown every second
+  }*/
 }
