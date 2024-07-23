@@ -23,6 +23,7 @@ import {ViewRelativesComponent} from "../../modalComponents/view-relatives-modal
 
 export class FarmerComponent implements OnInit {
 
+  displayedValue: any = 200;
   intervalId: any;
   farmerBean: FarmerBean = new FarmerBean();
   farmer: Farmer = new Farmer();
@@ -813,4 +814,96 @@ export class FarmerComponent implements OnInit {
     updateCountdown(); // Initial call to set the countdown immediately
     const intervalId = setInterval(updateCountdown, 1000); // Update the countdown every second
   }*/
+  animateValueChange(startValue: number, endValue: number) {
+    const duration = 1000; // duration of the animation in milliseconds
+    const frameDuration = 1000 / 60; // frame duration for 60fps
+    const totalFrames = Math.round(duration / frameDuration);
+    const easeOutQuad = (t: number) => t * (2 - t);
+
+    let frame = 0;
+    const startTime = performance.now();
+    const animate = () => {
+      const now = performance.now();
+      const elapsedTime = now - startTime;
+      const progress = Math.min(elapsedTime / duration, 1);
+      const easedProgress = easeOutQuad(progress);
+
+      this.displayedValue = Math.floor(startValue + (endValue - startValue) * easedProgress);
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        this.displayedValue = endValue;
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }
+
+  
+  /*animateValueChange(startValue: any, endValue: any, elementId: any) {
+    const duration = 1000;
+    const frameDuration = 1000 / 60;
+    const totalFrames = Math.round(duration / frameDuration);
+    
+    // Determine the direction of change
+    const direction = endValue > startValue ? 1 : -1;
+
+    // Use easeOutQuad function for easing
+    const easeOutQuad = (t: any) => t * (2 - t);
+
+    let frame = 0;
+    const startTime = performance.now();
+    const animate = () => {
+        const now = performance.now();
+        const elapsedTime = now - startTime;
+        const progress = Math.min(elapsedTime / duration, 1);
+        const easedProgress = easeOutQuad(progress);
+
+        let currentValue;
+
+        if (direction === 1) {
+            // Increase animation
+            currentValue = Math.floor(startValue + (endValue - startValue) * easedProgress);
+        } else {
+            // Decrease animation
+            currentValue = Math.floor(endValue + (startValue - endValue) * (1 - easedProgress));
+        }
+
+        $(`#${elementId}`).text(currentValue);
+
+        if (progress < 1) {
+            requestAnimationFrame(animate);
+        } else {
+            $(`#${elementId}`).text(endValue);
+        }
+    };
+    requestAnimationFrame(animate);
+}*/
+
+    animateValueChange1(startValue: number, endValue: number, elementId: string) {
+    const duration = 2000;
+    const easeOutQuad = (t: number) => t * (2 - t);
+
+    const startTime = performance.now();
+
+    const animate = () => {
+      const now = performance.now();
+      const elapsedTime = now - startTime;
+      const progress = Math.min(elapsedTime / duration, 1);
+      const easedProgress = easeOutQuad(progress);
+
+      const currentValue = Math.floor(startValue + (endValue - startValue) * easedProgress);
+      document.getElementById(elementId)!.innerText = currentValue.toString();
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        document.getElementById(elementId)!.innerText = endValue.toString();
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }
+
 }
